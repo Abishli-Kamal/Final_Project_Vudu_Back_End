@@ -1,0 +1,2355 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #041c2c !important;
+}
+
+header {
+  background-color: #1f5e94;
+  height: 9vh;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 3;
+}
+header #releases .cardReleases {
+  margin-top: 2%;
+  position: relative;
+}
+header #releases .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  visibility: hidden;
+}
+header #releases .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+header #releases .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+header #releases .cardReleases .description .icon {
+  margin-top: 10%;
+  color: orange;
+  padding-left: 8px;
+}
+header #releases .cardReleases .description .icon i {
+  font-size: 12px;
+}
+header #releases .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+header #releases .cardReleases .description .check i {
+  color: green;
+}
+header #releases .cardReleases .description .buttonTr {
+  margin-top: 10%;
+  width: 100%;
+}
+header #releases .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+header #releases .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+header #releases .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+header .overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #011629;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+header .overlay-content {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  height: 20vh;
+  background-color: white;
+  z-index: 5;
+}
+header .overlay-content input {
+  color: #333333;
+  height: 100%;
+  font-size: 30px;
+  font-weight: 400;
+  border: none;
+  width: 90%;
+}
+header .overlay-content input:focus {
+  outline: none !important;
+}
+header .overlay a {
+  text-decoration: none;
+  font-size: 36px;
+  display: block;
+  transition: 0.3s;
+}
+header .overlay .closebtn {
+  position: absolute;
+  font-size: 60px;
+  color: black;
+}
+header .logo {
+  color: white;
+  margin-left: 10%;
+}
+header .wrapper {
+  width: 100%;
+  background-color: #1f5e94;
+}
+header .wrapper a {
+  text-decoration: none;
+}
+header .wrapper .mega_menu {
+  width: 100%;
+  height: 60px;
+}
+header .wrapper .mega_menu ul li a {
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+  margin-left: 15px;
+}
+header .wrapper .mega_menu ul li a:hover {
+  color: rgb(216, 214, 214);
+}
+header .wrapper .mega_menu .sub_menu {
+  z-index: 1;
+}
+header .wrapper .mega_menu .sub_menu ul li a {
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+}
+header .wrapper .mega_menu .sub_menu ul li a:hover {
+  color: rgb(150, 148, 148);
+}
+header .wrapper .mega_menu .sub_menu .categoryMovies {
+  z-index: 1;
+}
+header .wrapper .mega_menu ul li {
+  display: inline-block;
+  padding: 5px;
+}
+header .wrapper .mega_menu ul li .sub_menu {
+  background-color: #022b4f;
+  position: absolute;
+  width: 100%;
+  padding-top: 60px;
+  padding: 25px 15px;
+  display: flex;
+  justify-content: space-around;
+  visibility: hidden;
+  line-height: 24px;
+}
+header .wrapper .mega_menu ul li .sub_menu button {
+  background-color: black;
+}
+header .wrapper .mega_menu ul li .sub_menu button:hover {
+  background-color: #1f5e94;
+}
+header .wrapper .mega_menu ul li:hover .sub_menu {
+  visibility: visible;
+}
+header .navbarSecond ul {
+  display: flex;
+  justify-content: end;
+}
+header .navbarSecond ul li {
+  list-style: none;
+  margin-right: 3%;
+}
+header .navbarSecond ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+header .navbarSecond ul li a:hover {
+  color: rgb(216, 214, 214);
+}
+header .navbarSecond ul li a i {
+  font-size: 25px;
+}
+header .dropbtn {
+  width: 60px;
+  color: white;
+}
+header .dropdown {
+  position: relative;
+  display: inline-block;
+}
+header .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #022b4f;
+  min-width: 160px;
+}
+header .dropdown-content a {
+  color: white;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+}
+header .dropdown-content a:hover {
+  background-color: #011629;
+}
+header .dropdown:hover .dropdown-content {
+  display: block;
+}
+header .navbar {
+  background-color: #0470b8;
+  opacity: 1;
+  z-index: 1;
+}
+header .navbar .collapse .nav-item a {
+  color: white;
+}
+header .navbar .collapse ul li a {
+  color: white;
+  text-decoration: none;
+}
+header .navbar .collapse ul li a:hover {
+  color: black;
+}
+header .categoriesOne {
+  background-color: #0470b8;
+}
+header .categoriesOne .categories ul li {
+  list-style: none;
+  padding-top: 15px;
+}
+header .categoriesOne .categories ul li a {
+  text-decoration: none;
+  color: white;
+}
+header nav button:focus {
+  outline: none;
+}
+
+main {
+  margin-top: 4%;
+}
+main .mainTop {
+  display: flex;
+  justify-content: end;
+}
+main .mainTop img {
+  padding-right: 4%;
+}
+main #slider ol {
+  z-index: 1;
+}
+main #slider ol li {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+main #releases .title {
+  margin-top: 4%;
+  width: 100%;
+}
+main #releases .title .subTitle a {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+main #releases .title .all a {
+  color: gray;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 17px;
+}
+main #releases .title .all a:hover {
+  color: white;
+}
+main #releases .cardReleases {
+  margin-top: 2%;
+  position: relative;
+}
+main #releases .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  visibility: hidden;
+}
+main #releases .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+main #releases .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+main #releases .cardReleases .description .icon {
+  margin-top: 10%;
+  color: orange;
+  padding-left: 8px;
+}
+main #releases .cardReleases .description .icon i {
+  font-size: 12px;
+}
+main #releases .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+main #releases .cardReleases .description .check i {
+  color: green;
+}
+main #releases .cardReleases .description .buttonTr {
+  margin-top: 10%;
+  width: 100%;
+}
+main #releases .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+main #releases .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+main #releases .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+#Trailer {
+  background-color: #041c2c;
+}
+#Trailer .overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  background-color: #011629;
+  overflow-x: hidden;
+}
+#Trailer .overlay-content {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+#Trailer .overlay-content Iframe {
+  height: 100vh;
+}
+#Trailer .overlay a {
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+#Trailer .overlay a:hover, #Trailer .overlay a:focus {
+  color: #f1f1f1;
+}
+#Trailer .overlay .closebtn {
+  position: absolute;
+  left: 25%;
+  z-index: 3;
+  font-size: 60px;
+}
+
+hr {
+  background-color: #022b4f;
+}
+
+footer .cards {
+  margin-top: 4%;
+}
+footer .cards h5 {
+  color: white;
+}
+footer .cards ul li {
+  list-style: none;
+  padding-top: 8px;
+}
+footer .cards ul li a {
+  text-decoration: none;
+  color: #a4b9be;
+  font-weight: 500;
+  font-size: 14px;
+}
+footer .cards ul li a:hover {
+  color: white;
+}
+footer .download {
+  width: 45%;
+}
+footer .ButtonEnd {
+  width: 90%;
+  display: none !important;
+}
+footer .ButtonEnd a {
+  width: 100%;
+  margin-top: 3%;
+  margin-left: 4%;
+}
+footer .ButtonEnd a button {
+  width: 100%;
+}
+footer .icons {
+  display: flex;
+  justify-content: end;
+}
+footer .icons .icon {
+  width: 40px;
+  text-align: center;
+  height: 40px;
+}
+footer .icons .icon i {
+  font-size: 20px;
+}
+footer .icons .icon:hover {
+  background-color: white;
+  transition: 1s;
+}
+footer .icons .icon a {
+  text-decoration: none;
+}
+footer .icons .icon a i {
+  color: white;
+  margin-top: 10px;
+}
+footer .respFooter {
+  display: none;
+}
+footer .respFooter ul li {
+  list-style: none;
+  color: #a4b9be;
+  cursor: pointer;
+}
+footer .respFooter .footerToggle .footerSelect ul li {
+  list-style: none;
+  margin-top: 10px;
+}
+footer .respFooter .footerToggle .footerSelect ul li a {
+  text-decoration: none;
+  color: #a4b9be;
+}
+footer .footerEnd {
+  width: 100%;
+}
+footer .footerEnd .end a {
+  border-right: 2px solid rgb(99, 98, 98);
+  text-decoration: none;
+  padding-right: 10px;
+  font-size: 12px;
+}
+footer .footerSelect {
+  max-height: 0;
+  overflow: hidden;
+}
+footer .footerToggle.active .footerSelect {
+  max-height: 300px;
+}
+footer .footerToggle.active i {
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 992px) {
+  main #releases .cardReleases {
+    width: 16%;
+    margin: 0;
+    padding: 10px;
+  }
+  main #releases .cardReleases .description {
+    display: none;
+  }
+}
+@media screen and (min-width: 992px) {
+  header .navbar {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  header .navbarSecond {
+    display: none;
+  }
+  header .logo {
+    display: none;
+  }
+  header .mega_menu {
+    display: none;
+  }
+  header .mega_menu .sub_menu .categoryMovies {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  footer .download {
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+  }
+  footer .download div {
+    width: 100%;
+    margin-left: 3%;
+  }
+  footer .download div .img {
+    width: 100%;
+  }
+  footer .ButtonEnd {
+    margin-top: 3%;
+    display: block !important;
+  }
+  footer .cards {
+    display: none;
+  }
+  footer .respFooter {
+    display: block;
+  }
+  footer .footerEnd {
+    display: none;
+  }
+}
+#header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  width: 100%;
+  background-color: #011629;
+  z-index: 1;
+}
+#header .title {
+  width: 100%;
+}
+#header .title .reset {
+  display: none;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+#header .title .reset a {
+  text-decoration: none;
+  color: white;
+}
+#header .title .sub {
+  width: 35%;
+}
+#header .title button {
+  width: 30%;
+  height: 5vh;
+  background-color: #1c9e7d;
+  color: white;
+  font-weight: 500;
+}
+#header .title button i {
+  font-size: 20px;
+  margin-top: 0;
+  padding-top: 0;
+}
+#header .title input {
+  cursor: pointer;
+}
+#header .title label {
+  border: 0;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+#header .filterAll {
+  z-index: 1;
+  background-color: #011629;
+  display: none;
+}
+#header .filterAll .filters {
+  padding-left: 3%;
+}
+#header .filterAll .filters .title h6 {
+  color: white;
+  font-size: 14px;
+}
+#header .filterAll .filters .genre ul li {
+  list-style: none;
+}
+#header .filterAll .filters .genre ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+#header .filterAll .filters .genre ul li a:hover {
+  color: gray;
+}
+#header .filterAll .clear a {
+  text-decoration: none;
+  color: grey;
+  text-decoration: none;
+  font-size: 15px;
+}
+#header .filterAll .clear a:hover {
+  color: white;
+}
+#header .filterEnd li button {
+  width: 100%;
+}
+#header .responsiveUl {
+  display: none;
+}
+#header .responsiveUl .dropdown button {
+  background-color: #011629 !important;
+  border: 0;
+  width: 100%;
+}
+#header .responsiveUl .dropdown .dropdown-menu {
+  background-color: #011629;
+}
+#header .responsiveUl .dropdown .dropdown-menu a {
+  color: white;
+}
+#header .responsiveUl .dropdown .dropdown-menu a:hover {
+  background-color: #011629;
+}
+#header .responsiveMenubar {
+  display: none;
+}
+#header .responsiveMenubar i {
+  font-size: 30px;
+  color: white;
+  margin-right: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+#header .respMenuFilters {
+  display: none;
+}
+#header .respMenuFilters .filters {
+  padding-left: 3%;
+}
+#header .respMenuFilters .filters .title h6 {
+  color: white;
+  font-size: 13px;
+}
+#header .respMenuFilters .filters .genre ul li {
+  list-style: none;
+  width: 110px;
+}
+#header .respMenuFilters .filters .genre ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+#header .respMenuFilters .filters .genre ul li a:hover {
+  color: gray;
+}
+
+#main {
+  background-image: url(../img/AllMovies/main.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+#main #all-movies .cardReleases {
+  position: relative;
+  margin: 1%;
+}
+#main #all-movies .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+#main #all-movies .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+#main #all-movies .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+#main #all-movies .cardReleases .description .icon {
+  margin-top: 10%;
+  color: orange;
+  padding-left: 8px;
+}
+#main #all-movies .cardReleases .description .icon i {
+  font-size: 12px;
+}
+#main #all-movies .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+#main #all-movies .cardReleases .description .check i {
+  color: green;
+}
+#main #all-movies .cardReleases .description .buttonTr {
+  width: 100%;
+}
+#main #all-movies .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#main #all-movies .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+#main #all-movies .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  #main #all-movies .cardReleases {
+    width: 30%;
+  }
+  #main #all-movies .description {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  #header .title .titleBtn {
+    display: none;
+  }
+  #header .filterEnd {
+    display: none;
+  }
+  #header .filterEnd {
+    display: none;
+  }
+  #header .responsiveUl {
+    display: block;
+  }
+  #header .responsiveMenubar {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 992) {
+  #header .filters {
+    display: none;
+  }
+}
+#headerBottom {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  width: 100%;
+  background-color: #011629;
+  z-index: 1;
+}
+#headerBottom .maintitle .title {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  text-align: center;
+}
+#headerBottom .maintitle .title h4 {
+  color: white;
+  padding-top: 2%;
+}
+#headerBottom .respmenuIcon {
+  display: none;
+}
+#headerBottom .respmenuIcon .icon {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+}
+#headerBottom .respmenuIcon .icon i {
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+}
+#headerBottom .sub {
+  width: 35%;
+  height: 9vh;
+}
+#headerBottom .sub button {
+  width: 30%;
+  height: 5vh;
+  background-color: #1c9e7d;
+  color: white;
+  font-weight: 500;
+}
+#headerBottom .sub button i {
+  font-size: 20px;
+  margin-top: 0;
+  padding-top: 0;
+}
+#headerBottom .filterAll {
+  z-index: 1;
+  display: none;
+  height: 48vh;
+}
+#headerBottom .filterAll .filters .title h6 {
+  color: white;
+  font-size: 14px;
+}
+#headerBottom .filterAll .filters .genre ul li {
+  list-style: none;
+}
+#headerBottom .filterAll .filters .genre ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+#headerBottom .filterAll .filters .genre ul li a:hover {
+  color: gray;
+}
+#headerBottom .filterAll .clear {
+  text-align: center;
+}
+#headerBottom .filterAll .clear a {
+  text-decoration: none;
+  color: grey;
+  font-size: 13px;
+}
+#headerBottom .filterAll .clear a:hover {
+  color: white;
+}
+#headerBottom .responsiveRentFilter {
+  display: none;
+}
+#headerBottom .responsiveRentFilter .filters {
+  padding-left: 3%;
+}
+#headerBottom .responsiveRentFilter .filters .title h6 {
+  color: white;
+  font-size: 13px;
+}
+#headerBottom .responsiveRentFilter .filters .genre ul li {
+  list-style: none;
+  width: 110px;
+}
+#headerBottom .responsiveRentFilter .filters .genre ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+#headerBottom .responsiveRentFilter .filters .genre ul li a:hover {
+  color: gray;
+}
+
+#RentAllMovies {
+  background-image: url(../img/AllMovies/main.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+#RentAllMovies .cardReleases {
+  margin-top: 2%;
+  position: relative;
+}
+#RentAllMovies .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+#RentAllMovies .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+#RentAllMovies .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+#RentAllMovies .cardReleases .description .icon {
+  margin-top: 10%;
+  color: orange;
+  padding-left: 8px;
+}
+#RentAllMovies .cardReleases .description .icon i {
+  font-size: 12px;
+}
+#RentAllMovies .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+#RentAllMovies .cardReleases .description .check i {
+  color: green;
+}
+#RentAllMovies .cardReleases .description .buttonTr {
+  margin-top: 10%;
+  width: 100%;
+}
+#RentAllMovies .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#RentAllMovies .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+#RentAllMovies .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  #RentAllMovies .cardReleases {
+    width: 30%;
+  }
+  #RentAllMovies .cardReleases .description {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  #headerBottom .maintitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #headerBottom .sub button {
+    width: 100%;
+  }
+  #headerBottom .filterAll {
+    height: 60vh;
+  }
+}
+#orderTop {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  width: 100%;
+  background-color: #041c2c;
+  z-index: 1;
+  height: 15vh;
+}
+#orderTop .title {
+  padding-top: 3%;
+  padding-top: 3%;
+}
+#orderTop .title h4 {
+  color: white;
+}
+
+#ordermovies .cardReleases {
+  margin-top: 2%;
+  position: relative;
+}
+#ordermovies .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+#ordermovies .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+#ordermovies .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+#ordermovies .cardReleases .description .icon {
+  margin-top: 10%;
+  color: orange;
+  padding-left: 8px;
+}
+#ordermovies .cardReleases .description .icon i {
+  font-size: 12px;
+}
+#ordermovies .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+#ordermovies .cardReleases .description .check i {
+  color: green;
+}
+#ordermovies .cardReleases .description .buttonTr {
+  margin-top: 10%;
+  width: 100%;
+}
+#ordermovies .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#ordermovies .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+#ordermovies .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  #orderTop .title h4 {
+    padding-top: 5%;
+  }
+  #ordermovies .cardReleases {
+    width: 30%;
+  }
+  #ordermovies .cardReleases .description {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  #RottenTop .title h4 {
+    padding-top: 5%;
+  }
+}
+#Uhdheader {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  width: 100%;
+  background-color: #011629;
+  z-index: 1;
+}
+#Uhdheader .title {
+  width: 100%;
+}
+#Uhdheader .title h4 {
+  color: white;
+  padding-top: 3%;
+}
+#Uhdheader .title .reset {
+  display: none;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+#Uhdheader .title .reset a {
+  text-decoration: none;
+  color: white;
+}
+#Uhdheader .title .sub {
+  width: 35%;
+}
+#Uhdheader .title button {
+  width: 30%;
+  height: 5vh;
+  background-color: #1c9e7d;
+  color: white;
+  font-weight: 500;
+}
+#Uhdheader .title button i {
+  font-size: 20px;
+  margin-top: 0;
+  padding-top: 0;
+}
+#Uhdheader .title input {
+  cursor: pointer;
+}
+#Uhdheader .title label {
+  border: 0;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+#Uhdheader .filterAll {
+  z-index: 1;
+  background-color: #011629;
+  display: none;
+}
+#Uhdheader .filterAll .filters {
+  padding-left: 3%;
+}
+#Uhdheader .filterAll .filters .title h6 {
+  color: white;
+  font-size: 14px;
+}
+#Uhdheader .filterAll .filters .genre ul li {
+  list-style: none;
+}
+#Uhdheader .filterAll .filters .genre ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+#Uhdheader .filterAll .filters .genre ul li a:hover {
+  color: gray;
+}
+#Uhdheader .filterAll .clear a {
+  text-decoration: none;
+  color: grey;
+  text-decoration: none;
+  font-size: 15px;
+}
+#Uhdheader .filterAll .clear a:hover {
+  color: white;
+}
+#Uhdheader .filterEnd li button {
+  width: 100%;
+}
+#Uhdheader .responsiveUl {
+  display: none;
+}
+#Uhdheader .responsiveUl .dropdown button {
+  background-color: #011629 !important;
+  border: 0;
+  width: 100%;
+}
+#Uhdheader .responsiveUl .dropdown .dropdown-menu {
+  background-color: #011629;
+}
+#Uhdheader .responsiveUl .dropdown .dropdown-menu a {
+  color: white;
+}
+#Uhdheader .responsiveUl .dropdown .dropdown-menu a:hover {
+  background-color: #011629;
+}
+#Uhdheader .responsiveMenubar {
+  display: none;
+}
+#Uhdheader .responsiveMenubar i {
+  font-size: 30px;
+  color: white;
+  margin-right: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+#Uhdheader .respMenuFilters {
+  display: none;
+}
+#Uhdheader .respMenuFilters .filters {
+  padding-left: 3%;
+}
+#Uhdheader .respMenuFilters .filters .title h6 {
+  color: white;
+  font-size: 13px;
+}
+#Uhdheader .respMenuFilters .filters .genre ul li {
+  list-style: none;
+  width: 110px;
+}
+#Uhdheader .respMenuFilters .filters .genre ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+#Uhdheader .respMenuFilters .filters .genre ul li a:hover {
+  color: gray;
+}
+
+#UhdMain {
+  background-image: url(../img/AllMovies/main.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+#UhdMain #all-movies .cardReleases {
+  position: relative;
+  margin: 1%;
+}
+#UhdMain #all-movies .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+#UhdMain #all-movies .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+#UhdMain #all-movies .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+#UhdMain #all-movies .cardReleases .description .icon {
+  margin-top: 5%;
+  color: orange;
+  padding-left: 8px;
+}
+#UhdMain #all-movies .cardReleases .description .icon i {
+  font-size: 12px;
+}
+#UhdMain #all-movies .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+#UhdMain #all-movies .cardReleases .description .check i {
+  color: green;
+}
+#UhdMain #all-movies .cardReleases .description .buttonTr {
+  width: 100%;
+}
+#UhdMain #all-movies .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#UhdMain #all-movies .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+#UhdMain #all-movies .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  #UhdMain #all-movies .cardReleases {
+    width: 30%;
+  }
+  #UhdMain #all-movies .description {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  #Uhdheader .title .titleBtn {
+    display: none;
+  }
+  #Uhdheader .filterEnd {
+    display: none;
+  }
+  #Uhdheader .filterEnd {
+    display: none;
+  }
+  #Uhdheader .responsiveUl {
+    display: block;
+  }
+  #Uhdheader .responsiveMenubar {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 992) {
+  #header .filters {
+    display: none;
+  }
+}
+#anywheremov {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  width: 100%;
+  background-color: #011629;
+  z-index: 1;
+}
+#anywheremov .reset a {
+  text-decoration: none;
+  color: white;
+}
+#anywheremov .title {
+  width: 100%;
+}
+#anywheremov .title h4 {
+  color: white;
+  padding-top: 3%;
+}
+#anywheremov .title .reset {
+  display: none;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+#anywheremov .title .reset a {
+  text-decoration: none;
+  color: white;
+}
+#anywheremov .title .sub {
+  width: 35%;
+}
+#anywheremov .title button {
+  width: 30%;
+  height: 5vh;
+  background-color: #1c9e7d;
+  color: white;
+  font-weight: 500;
+}
+#anywheremov .title button i {
+  font-size: 20px;
+  margin-top: 0;
+  padding-top: 0;
+}
+#anywheremov .title input {
+  cursor: pointer;
+}
+#anywheremov .title label {
+  border: 0;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+#anywheremov .filterAll {
+  z-index: 1;
+  background-color: #011629;
+  display: none;
+}
+#anywheremov .filterAll .filters {
+  padding-left: 3%;
+}
+#anywheremov .filterAll .filters .title h6 {
+  color: white;
+  font-size: 14px;
+}
+#anywheremov .filterAll .filters .genre ul li {
+  list-style: none;
+}
+#anywheremov .filterAll .filters .genre ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+#anywheremov .filterAll .filters .genre ul li a:hover {
+  color: gray;
+}
+#anywheremov .filterAll .clear a {
+  text-decoration: none;
+  color: grey;
+  text-decoration: none;
+  font-size: 15px;
+}
+#anywheremov .filterAll .clear a:hover {
+  color: white;
+}
+#anywheremov .filterEnd li button {
+  width: 100%;
+}
+#anywheremov .responsiveUl {
+  display: none;
+}
+#anywheremov .responsiveUl .dropdown button {
+  background-color: #011629 !important;
+  border: 0;
+  width: 100%;
+}
+#anywheremov .responsiveUl .dropdown .dropdown-menu {
+  background-color: #011629;
+}
+#anywheremov .responsiveUl .dropdown .dropdown-menu a {
+  color: white;
+}
+#anywheremov .responsiveUl .dropdown .dropdown-menu a:hover {
+  background-color: #011629;
+}
+#anywheremov .responsiveMenubar {
+  display: none;
+}
+#anywheremov .responsiveMenubar i {
+  font-size: 30px;
+  color: white;
+  margin-right: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+#anywheremov .respMenuFilters {
+  display: none;
+}
+#anywheremov .respMenuFilters .filters {
+  padding-left: 3%;
+}
+#anywheremov .respMenuFilters .filters .title h6 {
+  color: white;
+  font-size: 13px;
+}
+#anywheremov .respMenuFilters .filters .genre ul li {
+  list-style: none;
+  width: 110px;
+}
+#anywheremov .respMenuFilters .filters .genre ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+#anywheremov .respMenuFilters .filters .genre ul li a:hover {
+  color: gray;
+}
+
+#anywheremain {
+  background-image: url(../img/AllMovies/main.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+#anywheremain #all-movies .cardReleases {
+  position: relative;
+  margin: 1%;
+}
+#anywheremain #all-movies .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+#anywheremain #all-movies .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+#anywheremain #all-movies .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+#anywheremain #all-movies .cardReleases .description .icon {
+  margin-top: 10%;
+  color: orange;
+  padding-left: 8px;
+}
+#anywheremain #all-movies .cardReleases .description .icon i {
+  font-size: 12px;
+}
+#anywheremain #all-movies .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+#anywheremain #all-movies .cardReleases .description .check i {
+  color: green;
+}
+#anywheremain #all-movies .cardReleases .description .buttonTr {
+  width: 100%;
+}
+#anywheremain #all-movies .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#anywheremain #all-movies .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+#anywheremain #all-movies .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  #anywheremain #all-movies .cardReleases {
+    width: 30%;
+  }
+  #anywheremain #all-movies .description {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  #anywheremov .reset {
+    display: block !important;
+  }
+  #anywheremov .title .titleBtn {
+    display: none;
+  }
+  #anywheremov .filterEnd {
+    display: none;
+  }
+  #anywheremov .filterEnd {
+    display: none;
+  }
+  #anywheremov .responsiveUl {
+    display: block;
+  }
+  #anywheremov .responsiveMenubar {
+    display: block !important;
+  }
+}
+#collectionTop {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  width: 100%;
+  background-color: #041c2c;
+  z-index: 1;
+  height: 15vh;
+}
+#collectionTop .title {
+  padding-top: 3%;
+  padding-top: 3%;
+}
+#collectionTop .title h4 {
+  color: white;
+}
+
+#collectionMovies .cardReleases {
+  margin-top: 2%;
+}
+#collectionMovies .cardReleases:hover {
+  opacity: 70%;
+}
+
+@media screen and (max-width: 992px) {
+  #collectionMovies .cardReleases {
+    width: 30%;
+  }
+}
+#DealsTop .title h2 {
+  padding-top: 20px;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 992px) {
+  #DealsTop .title h2 {
+    padding-top: 10%;
+  }
+}
+#RentTop .title h4 {
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 992px) {
+  #RentTop .title h4 {
+    padding-top: 10%;
+  }
+}
+#franchisesTop .title h2 {
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 992px) {
+  #franchisesTop .title h2 {
+    margin-top: 10%;
+  }
+}
+#KidsTop .title h2 {
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 992px) {
+  #KidsTop .title {
+    margin-top: 8%;
+  }
+}
+#HorrorTop .title h2 {
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 992px) {
+  #HorrorTop .title {
+    margin-top: 8%;
+  }
+}
+#FreeTop .title h2 {
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 992px) {
+  #FreeTop .title {
+    margin-top: 8%;
+  }
+}
+#FreeNews .cardReleases {
+  position: relative;
+  margin: 1%;
+}
+#FreeNews .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+#FreeNews .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+#FreeNews .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+#FreeNews .cardReleases .description .icon {
+  margin-top: 5%;
+  color: orange;
+  padding-left: 8px;
+}
+#FreeNews .cardReleases .description .icon i {
+  font-size: 12px;
+}
+#FreeNews .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+#FreeNews .cardReleases .description .check i {
+  color: green;
+}
+#FreeNews .cardReleases .description .buttonTr {
+  width: 100%;
+}
+#FreeNews .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#FreeNews .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+#FreeNews .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  #FreeNews .cardReleases {
+    width: 30%;
+  }
+  #FreeNews .description {
+    display: none;
+  }
+}
+#FreeMoviesTop {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  width: 100%;
+  background-color: #011629;
+  z-index: 1;
+}
+#FreeMoviesTop .title {
+  width: 100%;
+}
+#FreeMoviesTop .title h4 {
+  color: white;
+  padding-top: 3%;
+}
+#FreeMoviesTop .title .reset {
+  display: none;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+#FreeMoviesTop .title .reset a {
+  text-decoration: none;
+  color: white;
+}
+#FreeMoviesTop .title .sub {
+  width: 35%;
+}
+#FreeMoviesTop .title button {
+  width: 30%;
+  height: 5vh;
+  background-color: #1c9e7d;
+  color: white;
+  font-weight: 500;
+}
+#FreeMoviesTop .title button i {
+  font-size: 20px;
+  margin-top: 0;
+  padding-top: 0;
+}
+#FreeMoviesTop .title input {
+  cursor: pointer;
+}
+#FreeMoviesTop .title label {
+  border: 0;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+#FreeMoviesTop .filterAll {
+  z-index: 1;
+  background-color: #011629;
+  display: none;
+}
+#FreeMoviesTop .filterAll .filters {
+  padding-left: 3%;
+}
+#FreeMoviesTop .filterAll .filters .title h6 {
+  color: white;
+  font-size: 14px;
+}
+#FreeMoviesTop .filterAll .filters .genre ul li {
+  list-style: none;
+}
+#FreeMoviesTop .filterAll .filters .genre ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+#FreeMoviesTop .filterAll .filters .genre ul li a:hover {
+  color: gray;
+}
+#FreeMoviesTop .filterAll .clear a {
+  text-decoration: none;
+  color: grey;
+  text-decoration: none;
+  font-size: 15px;
+}
+#FreeMoviesTop .filterAll .clear a:hover {
+  color: white;
+}
+#FreeMoviesTop .filterEnd li button {
+  width: 100%;
+}
+#FreeMoviesTop .responsiveUl {
+  display: none;
+}
+#FreeMoviesTop .responsiveUl .dropdown button {
+  background-color: #011629 !important;
+  border: 0;
+  width: 100%;
+}
+#FreeMoviesTop .responsiveUl .dropdown .dropdown-menu {
+  background-color: #011629;
+}
+#FreeMoviesTop .responsiveUl .dropdown .dropdown-menu a {
+  color: white;
+}
+#FreeMoviesTop .responsiveUl .dropdown .dropdown-menu a:hover {
+  background-color: #011629;
+}
+#FreeMoviesTop .responsiveMenubar {
+  display: none;
+}
+#FreeMoviesTop .responsiveMenubar i {
+  font-size: 30px;
+  color: white;
+  margin-right: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+#FreeMoviesTop .respMenuFilters {
+  display: none;
+}
+#FreeMoviesTop .respMenuFilters .filters {
+  padding-left: 3%;
+}
+#FreeMoviesTop .respMenuFilters .filters .title h6 {
+  color: white;
+  font-size: 13px;
+}
+#FreeMoviesTop .respMenuFilters .filters .genre ul li {
+  list-style: none;
+  width: 110px;
+}
+#FreeMoviesTop .respMenuFilters .filters .genre ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+#FreeMoviesTop .respMenuFilters .filters .genre ul li a:hover {
+  color: gray;
+}
+
+#freeMovies {
+  background-image: url(../img/AllMovies/main.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+#freeMovies #all-movies .cardReleases {
+  position: relative;
+  margin: 1%;
+}
+#freeMovies #all-movies .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+#freeMovies #all-movies .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+#freeMovies #all-movies .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+#freeMovies #all-movies .cardReleases .description .icon {
+  margin-top: 5%;
+  color: orange;
+  padding-left: 8px;
+}
+#freeMovies #all-movies .cardReleases .description .icon i {
+  font-size: 12px;
+}
+#freeMovies #all-movies .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+#freeMovies #all-movies .cardReleases .description .check i {
+  color: green;
+}
+#freeMovies #all-movies .cardReleases .description .buttonTr {
+  width: 100%;
+}
+#freeMovies #all-movies .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#freeMovies #all-movies .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+#freeMovies #all-movies .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  #freeMovies #releases .cardReleases {
+    width: 33%;
+  }
+  #freeMovies #releases .description {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  #FreeMoviesTop .title .titleBtn {
+    display: none;
+  }
+  #FreeMoviesTop .filterEnd {
+    display: none;
+  }
+  #FreeMoviesTop .filterEnd {
+    display: none;
+  }
+  #FreeMoviesTop .responsiveUl {
+    display: block;
+  }
+  #FreeMoviesTop .responsiveMenubar {
+    display: block !important;
+  }
+}
+#FreeAllTime .cardReleases {
+  position: relative;
+  margin: 1%;
+}
+#FreeAllTime .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+#FreeAllTime .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+#FreeAllTime .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+#FreeAllTime .cardReleases .description .icon {
+  margin-top: 5%;
+  color: orange;
+  padding-left: 8px;
+}
+#FreeAllTime .cardReleases .description .icon i {
+  font-size: 12px;
+}
+#FreeAllTime .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+#FreeAllTime .cardReleases .description .check i {
+  color: green;
+}
+#FreeAllTime .cardReleases .description .buttonTr {
+  width: 100%;
+}
+#FreeAllTime .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#FreeAllTime .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+#FreeAllTime .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  #FreeAllTime .cardReleases {
+    width: 30%;
+  }
+  #FreeAllTime .cardReleases .description {
+    display: none;
+  }
+}
+#audience .cardReleases {
+  position: relative;
+  margin: 1%;
+}
+#audience .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+#audience .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+#audience .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+#audience .cardReleases .description .icon {
+  margin-top: 5%;
+  color: orange;
+  padding-left: 8px;
+}
+#audience .cardReleases .description .icon i {
+  font-size: 12px;
+}
+#audience .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+#audience .cardReleases .description .check i {
+  color: green;
+}
+#audience .cardReleases .description .buttonTr {
+  width: 100%;
+}
+#audience .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#audience .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+#audience .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  #audience .cardReleases {
+    width: 30%;
+  }
+  #audience .cardReleases .description {
+    display: none;
+  }
+}
+#FreeStars .cardReleases {
+  position: relative;
+  margin: 1%;
+}
+#FreeStars .cardReleases .description {
+  position: absolute;
+  background-color: #011629;
+  opacity: 87%;
+  height: 100%;
+  width: 84.5%;
+  color: white;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+#FreeStars .cardReleases .description a {
+  text-decoration: none;
+  color: white;
+}
+#FreeStars .cardReleases .description span {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+}
+#FreeStars .cardReleases .description .icon {
+  margin-top: 5%;
+  color: orange;
+  padding-left: 8px;
+}
+#FreeStars .cardReleases .description .icon i {
+  font-size: 12px;
+}
+#FreeStars .cardReleases .description .plus {
+  color: #0470b8;
+  padding-left: 8px;
+}
+#FreeStars .cardReleases .description .check i {
+  color: green;
+}
+#FreeStars .cardReleases .description .buttonTr {
+  width: 100%;
+}
+#FreeStars .cardReleases .description .buttonTr button {
+  background-color: #011629;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#FreeStars .cardReleases .description .buttonTr button:hover {
+  color: gray;
+}
+#FreeStars .cardReleases:hover .description {
+  opacity: 85%;
+  visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  #FreeStars .cardReleases {
+    width: 30%;
+  }
+  #FreeStars .cardReleases .description {
+    display: none;
+  }
+}
+#Register {
+  margin-top: 8%;
+}
+#Register .Form {
+  background-color: white;
+  width: 39.5%;
+}
+#Register .Form .title {
+  padding-top: 30px;
+}
+#Register .Form .title h4 {
+  font-weight: bold;
+}
+#Register .Form input {
+  width: 78%;
+  height: 7vh;
+}
+#Register .Form .name {
+  margin-left: 7%;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+}
+#Register .Form .name input {
+  width: 50%;
+}
+#Register .Form .image {
+  width: 40%;
+}
+#Register .Form .image img {
+  width: 100%;
+}
+#Register .Form .terms {
+  margin-left: 10%;
+  color: rgb(74, 73, 73);
+}
+#Register .Form .terms p {
+  font-size: 13px;
+  font-weight: bold;
+}
+#Register .Form .terms a {
+  text-decoration: none;
+  font-weight: bold;
+}
+#Register .Form .terms input {
+  width: 15px;
+  margin-bottom: 30px;
+}
+#Register .Registerbtn {
+  width: 85%;
+}
+#Register .Registerbtn button {
+  width: 100%;
+  height: 7vh;
+}
+
+@media screen and (max-width: 1000px) {
+  #Register {
+    background-color: white;
+  }
+  #Register .Form {
+    width: 100%;
+    transition: 0.5s;
+  }
+  #Register .Form .name input {
+    width: 100%;
+    margin-top: 10px;
+  }
+  #Register .image {
+    margin-top: 15%;
+    width: 100%;
+  }
+  #Register .image img {
+    width: 100%;
+  }
+}
+#Login {
+  background-color: #171c20;
+}
+#Login .title {
+  padding-top: 10%;
+}
+#Login .title h3 {
+  color: white;
+}
+#Login input {
+  height: 7vh;
+  background-color: #171c20;
+  color: white;
+  width: 40%;
+}
+#Login .forgotPw {
+  width: 70%;
+  font-weight: bold;
+}
+#Login .lgnBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30%;
+  width: 40%;
+}
+#Login .lgnBtn button {
+  background-color: #373d41;
+  width: 100%;
+  color: white;
+}
+#Login .PasswordLogin {
+  position: relative;
+}
+#Login .PasswordLogin .iconType {
+  position: absolute;
+  top: 18px;
+  right: 33%;
+}
+#Login .PasswordLogin .iconType i {
+  color: white;
+}
+#Login .PasswordLogin .iconType #hide2 {
+  display: none;
+}
+
+#detailMovie {
+  margin-top: 8%;
+}
+#detailMovie .InfoMovie {
+  box-shadow: 56px 0px 80px 0px #051c2b;
+  z-index: 1;
+  border: 0;
+}
+#detailMovie .title h3 {
+  color: white;
+}
+#detailMovie .subtitle .info {
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+}
+#detailMovie .StarInfo .star i {
+  color: #ffbf00;
+  font-size: 13px;
+}
+#detailMovie .StarInfo i {
+  color: green;
+}
+#detailMovie .StarInfo span {
+  color: white;
+  font-size: 13px;
+}
+#detailMovie .buttonTr {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+}
+#detailMovie .buttonTr button {
+  background-color: #011629;
+  width: 48%;
+  height: 4vh;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid #0470b8;
+  font-weight: 500;
+}
+#detailMovie .buttonTr button:hover {
+  color: gray;
+}
+#detailMovie .description p {
+  color: white;
+}
+
+#actors .actor {
+  cursor: pointer;
+}
+#actors .actor:hover {
+  opacity: 80%;
+}
+#actors .actor .name {
+  color: white;
+}
+#actors .actor .name i {
+  font-size: 14px;
+  color: #797b7d;
+}
+
+#parentalGuide .title .name h5 {
+  color: white;
+}
+#parentalGuide .title .titleImg img {
+  width: 75%;
+}
+#parentalGuide .age span {
+  color: white;
+  font-weight: 500;
+  font-size: 17px;
+}
+#parentalGuide .age i {
+  color: green;
+  font-size: 18px;
+}
+#parentalGuide .subject p {
+  color: white;
+}
+#parentalGuide .iconMessage .icon i {
+  font-size: 13px;
+  color: white;
+}
+#parentalGuide .iconMessage p {
+  color: white;
+  font-size: 14px;
+}
+#parentalGuide .parentalEnd {
+  color: white;
+}
+#parentalGuide .parentalEnd p {
+  font-size: 14px;
+}
+#parentalGuide .parentalEnd span {
+  font-size: 12px;
+  color: #797b7d;
+  font-weight: 600;
+}
+
+#moreInfo .title h5 {
+  color: white;
+}
+#moreInfo .FirstInfo div {
+  color: white;
+  font-size: 13px;
+}
+#moreInfo .SecondInfo span {
+  font-size: 13px;
+  color: white;
+}
+
+#basketTable {
+  margin-top: 5%;
+}
+
+@media screen and (max-width: 992px) {
+  #basketTable table {
+    margin-top: 15%;
+  }
+  #basketTable table thead tr th {
+    font-size: 13px;
+    font-weight: bold;
+  }
+  #basketTable table tbody tr td {
+    font-size: 13px;
+  }
+}
+.dBlock {
+  display: block !important;
+}
+
+.dNone {
+  display: none !important;
+}/*# sourceMappingURL=style.css.map */

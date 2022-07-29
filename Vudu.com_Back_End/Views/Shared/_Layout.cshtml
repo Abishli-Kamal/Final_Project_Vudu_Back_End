@@ -1,0 +1,391 @@
+﻿@using Vudu.com_Back_End.Models
+@using Vudu.com_Back_End.View_models
+@model HomeVM
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/assets/bootstrap/bootstrap.min.css">
+
+    <title>Vudu</title>
+</head>
+
+<body>
+    <header>
+        <div class="row w-100 ">
+            <div class="wrapper col-lg-6  d-flex">
+                <div class="logo pt-3 ">
+                    <a href="index.html"><img src="assets/img/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Logo").Value " alt=""></a>
+                </div>
+                <div class="mega_menu pt-3  mx-3 ">
+                    <ul>
+                        @foreach (var item in Model.MainOptions)
+                        {
+                            <li>
+                                <a href="movieslist.html">@item.Name</a>
+
+                                <div class="sub_menu">
+
+                                    <div class="movies">
+                                     
+                                            <div class="title">
+                                                <h5>
+                                                     @foreach (SubOption sub in Model.SubOptions.FindAll(s => s.MainOptionId==item.Id))
+                                                {
+                                                    <a href="movieslist.html" style="color: rgb(3, 128, 3);">
+                                                        @sub.Title
+                                                    </a>
+                                                }
+                                                </h5>
+                                            </div>
+                                        
+                                        <div class="categories">
+                                            <ul>
+                                                @foreach (SubOption sub in Model.SubOptions.FindAll(s => s.MainOptionId==item.Id))
+                                                {
+                                                    <li><a href="rent.html">@sub.SubTitle</a></li>
+                                                }
+                                            </ul>
+                                        </div>
+                                        <div class="row mt-3">
+                                            @foreach (SubOption sub in Model.SubOptions.FindAll(s => s.MainOptionId==item.Id))
+                                            {
+                                                <div class="col-lg-4 moviesBtm pt-3">
+                                                    <a href="deals.html ">
+                                                        <img width="100%" src="~/assets/img/Mov-Img-Navbar/@sub.Image" alt=""><button class=" btn btn-dark rounded-0 w-100 mx-3">
+                                                            @sub.ImageName
+                                                        </button>
+                                                    </a>
+
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 ">
+                <div class="navbarSecond pt-3">
+                    <ul>
+                        <div class="dropdown">
+                        <li class="dropbtn mx-3"><a href="Login.html">Sign In</a></li>
+                        <div class="dropdown-content mt-2">
+                            <a href="Login.html">Sign In</a>
+                            <a href="Register.html">Create an Account</a>
+                        </div>
+                </div>
+                </li>
+                <li><a href="basket.html"><i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="basket").Value"></i></a></li>
+                <li>
+                    <i style="font-size:25px;cursor:pointer;color: white;" onclick="openNav()"
+                       class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="search").Value"></i>
+                </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div id="myNav" class="overlay">
+            <div class="overlay-content d-flex ">
+                <div class="w-75">
+                    <form action="" class="mt-4">
+                        <input type="text" placeholder="Search for Movies, TV Shows or People" id="searchItem"
+                               onkeyup="search()">
+                    </form>
+
+                </div>
+                <div class="">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                </div>
+
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse"
+                    data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a style="cursor:pointer;" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Movies
+                        </a>
+                        <div class="dropdown-menu categoriesOne border-0" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="categories">
+
+                                <ul>
+                                    <li><a href="movieslist.html">View All Movies</a></li>
+                                    <li><a href="rent.html">New to Rent</a></li>
+                                    <li><a href="orders.html">Pre-Orders</a></li>
+                                    <li><a href="4kUhd.html">4K UHD</a></li>
+                                    <li><a href="rotten.html">Rotten Tomatoes</a></li>
+                                    <li><a href="movAnywhere.html">Movies Anywhere </a></li>
+                                    <li><a href="collection.html">Collections</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            TV
+                        </a>
+                        <div class="dropdown-menu categoriesOne border-0" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="categories">
+
+                                <ul>
+                                    <li><a href="">View All TV</a></li>
+                                    <li><a href="">TV Networks</a></li>
+                                    <li><a href="">Recently Released TV</a></li>
+                                    <li><a href="">TV Store</a></li>
+                                    <li><a href="">ABC</a></li>
+                                    <li><a href="">Anime</a></li>
+                                    <li><a href="">Page To Screen TV</a></li>
+                                    <li><a href="">Drama TV</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Free
+                        </a>
+                        <div class="dropdown-menu categoriesOne border-0" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="categories">
+
+                                <ul>
+                                    <li><a href="Free.html">View All Free Movies & TV</a></li>
+                                    <li><a href="freeMovies.html">Movies</a></li>
+                                    <li><a href="">Recently Released TV</a></li>
+                                    <li><a href="">TV </a></li>
+                                    <li><a href="FreeNew.html">New</a></li>
+                                    <li><a href="FreeNewRel.html">New Releases</a></li>
+                                    <li><a href=""> Top TV Series</a></li>
+                                    <li><a href="FreeAllTime.html">All Time Movie Favorites</a></li>
+                                    <li><a href="audience.html"> Audience Favorites </a></li>
+                                    <li><a href="Critically.html"> Critically Acclaimed </a></li>
+                                    <li><a href="FreeStars.html"> Big Time Movie Stars </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mt-2"><a href="Login.html">My Vudu</a> </li>
+                    <li class="mt-2"><a href="Login.html">Sign In</a> </li>
+                    <li class="mt-2"><a href="Register.html">Create New Account</a> </li>
+                </ul>
+            </div>
+            <div class="logoRes pt-2 mt-2 mr-5 ">
+                <a href="index.html"><img src="assets/img/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Logo").Value" alt=""></a>
+            </div>
+            <a style="color: white; font-size:25px;" href="basket.html"><i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="basket").Value mx-3"></i></a>
+        </nav>
+    </header>
+    @RenderBody()
+    <footer>
+        <div class="container">
+            <div class="row justify-content-between mt-4 download ">
+                <div class="w-25">
+                    <a href="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Itunes").Value"> <img class="w-100" src="assets/img/Footer/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Itunes").Value" alt=""></a>
+                </div>
+                <div class="w-25">
+                    <a href="https://play.google.com/store/apps/details?id=air.com.vudu.air.DownloaderTablet"><img class="w-100" src="assets/img/Footer/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="googlePlay").Value" alt=""></a>
+                </div>
+                <div class="w-25">
+                    <a href="https://apps.microsoft.com/store/detail/9NBLGGH4V68B?hl=en-az&gl=AZ"> <img class="w-75" src="assets/img/Footer/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Windows").Value" alt=""></a>
+                </div>
+            </div>
+            <div class="ButtonEnd row justify-content-center ">
+                <a href="Register.html"><button class="btn btn-primary">Sign Up</button></a>
+            </div>
+            <hr>
+            <div class=" respFooter">
+                <ul class="text-center">
+                    <li class="footerToggle">
+                        Watch <i class="fa-solid fa-angle-down ml-1"></i>
+                        <hr>
+                        <div class=" footerSelect mt-1">
+                            <ul>
+                                <li><a href="movieslist.html">Movies</a></li>
+                                <li><a href="">TV</a></li>
+                                <li><a href="Free.html">Free</a></li>
+                            </ul>
+                            <hr>
+                        </div>
+
+                    </li>
+
+                    <li class="footerToggle">
+                        My Account <i class="fa-solid fa-angle-down"></i>
+                        <hr>
+                        <div class="footerSelect mt-1">
+                            <ul>
+                                <li><a href="Login.html">My Vudu</a></li>
+                            </ul>
+                            <hr>
+                        </div>
+                    </li>
+                    <li class="footerToggle">
+                        Feature <i class="fa-solid fa-angle-down"></i>
+                        <hr>
+                        <div class=" footerSelect mt-1">
+                            <ul>
+                                <li><a href="">Lists</a></li>
+                                <li><a href="">Family</a></li>
+                                <li><a href="">Disc to Digital</a></li>
+                                <li><a href="">Movies Anywhere</a></li>
+                            </ul>
+                            <hr>
+                        </div>
+                    </li>
+                    <li class="footerToggle">
+                        Help <i class="fa-solid fa-angle-down"></i>
+                        <hr>
+                        <div class="footerSelect mt-1">
+                            <ul>
+                                <li><a href="">About Us</a></li>
+                                <li><a href="">Devices</a></li>
+                                <li><a href="">Customer Support</a></li>
+                                <li><a href="">Forums</a></li>
+                                <li><a href="">Contact Us</a></li>
+                                <li><a href="">Advertise</a></li>
+                            </ul>
+                            <hr>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="row cards ">
+                <div class="col-lg-2">
+                    <h5>Watch</h5>
+                    <ul>
+                        <li><a href="">Spotlight</a></li>
+                        <li><a href="movieslist.html">Movies</a></li>
+                        <li><a href="">TV</a></li>
+                        <li><a href="Free.html">Free</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5>My Account</h5>
+                    <ul>
+                        <li><a href="Login.html">My Vudu</a></li>
+                        <li><a href="Login.html">Account</a></li>
+                        <li><a href="">Settings</a></li>
+                        <li><a href="">Manage Devices</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="">Lists</a></li>
+                        <li><a href="">Family</a></li>
+                        <li><a href="">Disc to Digital</a></li>
+                        <li><a href="">Movies Anywhere</a></li>
+                        <li><a href="">InstaWatch</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5>Help</h5>
+                    <ul>
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">Devices</a></li>
+                        <li><a href="">Customer Support</a></li>
+                        <li><a href="">Forums</a></li>
+                        <li><a href="">Contact Us</a></li>
+                        <li><a href="">Advertise</a></li>
+                        <li><a href="">Accessibility</a></li>
+                        <li><a href="">Jobs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row social-media justify-content-end  ">
+                <div class="col-lg-6 w-100">
+                    <div class="icons d-flex w-50 mx-5">
+                        <div class="icon rounded-circle  mx-2 bg-primary">
+                            <a href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQEfUAjB4LJijQAAAYIx3Yt4dDj2OWkKju5g0iF1GdqjMGV1_mWrkq3ylro9HVdy6XiP7nB_OdQaVM3k0z86J6ImdYRmkCzLz4mAcr3ISOqHeNmtnmuPejlZnTLgfJ9VhTW6mfM=&original_referer=https://www.vudu.com/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fvudu%2F">
+                                <i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="LinkEdin").Value"></i>
+                            </a>
+                        </div>
+                        <div style="background-color: #3b5998;" class="icon rounded-circle   mx-2">
+                            <a href="https://www.facebook.com/vudufans?ref=ts">
+                                <i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Facebook").Value "></i>
+                            </a>
+                        </div>
+                        <div class="icon rounded-circle   mx-2 bg-primary">
+                            <a href="https://twitter.com/vudusupport">
+                                <i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Twitter").Value"></i>
+                            </a>
+                        </div>
+                        <div style="background-color: red;" class="icon rounded-circle mx-2">
+                            <a href="https://www.youtube.com/c/vudu">
+                                <i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Youtube").Value"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footerEnd row justify-content-between ">
+                <div class="d-flex justify-content-between ">
+                    <div class="end ">
+                        <a href="https://www.fandango.com/policies/terms-and-policies">Terms and Policies</a>
+                    </div>
+                    <div class="end ">
+                        <a href="https://www.fandango.com/policies/privacy-policy">Your Privacy Rights - Privacy Policy</a>
+                    </div>
+                    <div class="end ">
+                        <a href="https://www.fandango.com/policies/cookies-and-tracking#cookie_management">AdChoices</a>
+                    </div>
+                    <div class="end ">
+                        <a href="https://privacyportal-cdn.onetrust.com/dsarwebform/17e5cb00-ad90-47f5-a58d-77597d9d2c16/32a60552-d51c-4734-9c16-70a45aa78080.html">Do Not Sell My Personal Information</a>
+                    </div>
+                    <div class="end ">
+                        <a href="https://www.fandango.com/policies/privacy-policy#personal-information-we-collect-and-purposes">California Notice</a>
+                    </div>
+                    <div class="end">
+                        <a href="">FeedBack</a>
+                    </div>
+                </div>
+                <div class="">
+                    <span>© 2022 Fandango</span>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="~/assets/js/script.js"></script>
+</body>
+
+</html>
+
