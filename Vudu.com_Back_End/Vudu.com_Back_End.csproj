@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20220729130518_CreateTableMainOptionAndSubOption.Designer.cs" />
     <Compile Remove="Migrations\20220729130747_AddFiledMainOption.cs" />
     <Compile Remove="Migrations\20220729130747_AddFiledMainOption.Designer.cs" />
+    <Compile Remove="Migrations\20220729203204_CreateTableFilterAndFilterSubOptions.cs" />
+    <Compile Remove="Migrations\20220729203204_CreateTableFilterAndFilterSubOptions.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

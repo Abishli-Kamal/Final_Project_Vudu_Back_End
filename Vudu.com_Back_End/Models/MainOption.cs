@@ -7,5 +7,7 @@ namespace Vudu.com_Back_End.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public List<SubOption> SubOptions { get; set; }
+        public List<Movie> Movies { get; set; }
+
     }
 }

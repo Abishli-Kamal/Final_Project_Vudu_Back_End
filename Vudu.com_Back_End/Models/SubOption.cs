@@ -1,4 +1,6 @@
-﻿namespace Vudu.com_Back_End.Models
+﻿using System.Collections.Generic;
+
+namespace Vudu.com_Back_End.Models
 {
     public class SubOption
     {
@@ -9,5 +11,6 @@
         public string ImageName { get; set; }
         public int? MainOptionId { get; set; }
         public MainOption MainOption { get; set; }
+        public List<MovieSubOption> MovieSubOptions { get; set; }
     }
 }
