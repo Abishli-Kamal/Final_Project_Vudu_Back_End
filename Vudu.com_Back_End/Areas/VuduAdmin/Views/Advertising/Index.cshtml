@@ -1,0 +1,48 @@
+﻿@model List<Advertising>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class=" mt-4">
+    <a class="btn btn-dark" asp-controller="Advertising" asp-action="Create">Create</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Advertising advertising in Model)
+        {
+            <tr>
+                <td>@advertising.Id</td>
+                <td>
+                    <img class="w-100" src="~/assets/img/Releases/@advertising.Image"/>
+                </td>
+                <td>
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <a class="mx-2" style="color:red; font-size:25px;" asp-controller="Advertising" asp-action="Detail" asp-route-Id="@advertising.Id"><i class="fa-solid fa-circle-info"></i></a>
+                        </div>
+
+                        <div>
+                            <a style="color:red; font-size:25px;" asp-controller="Advertising" asp-action="Edit" asp-route-Id="@advertising.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+
+                        <div class="mx-2">
+                            <a style="color:red; font-size:25px;" asp-controller="Advertising" asp-action="Delete" asp-route-Id="@advertising.Id"><i class="fa-solid fa-trash-can"></i></a>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+

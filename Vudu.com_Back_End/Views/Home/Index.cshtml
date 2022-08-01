@@ -12,23 +12,26 @@
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators  ">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+                @{
+                    var count = -1;
+
+                    @foreach (Slider item in Model.Sliders)
+                    {
+                        count++;
+                        <li data-target="#carouselExampleIndicators" data-slide-to="@count"></li>
+                    }
+                }
+
             </ol>
             <div class="carousel-inner ">
                 @{
                     var i = 0;
+
                     @foreach (Slider slider in Model.Sliders)
                     {
                         var sliderClass = i++ ==0 ? "slider active" : "slider";
                         <div class="carousel-item @sliderClass">
-                            <a href=""><img class="d-block w-100" src="assets/img/Slider/@slider.Image" alt="First slide"></a>
+                            <a href=""><img class="d-block w-100" src="~/assets/img/Slider/@slider.Image" alt="First slide"></a>
                         </div>
                     }
                 }
@@ -115,7 +118,7 @@
             </div>
         </section>
         <hr>
-        @foreach (Advertising advr in Model.Advertisings.Where(s=>s.Id==item.Id))
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
         {
             <div class="advertising">
                 <div class="container">

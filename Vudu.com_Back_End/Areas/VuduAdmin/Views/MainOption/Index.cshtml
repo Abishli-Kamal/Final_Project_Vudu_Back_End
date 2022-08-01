@@ -1,0 +1,43 @@
+﻿@model List<MainOption>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class=" mt-4">
+    <a class="btn btn-dark" asp-controller="MainOption" asp-action="Create">Create</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (MainOption main in Model)
+        {
+            <tr>
+                <td>@main.Id</td>
+                <td>@main.Name</td>
+                <td>
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <a class="mx-2" style="color:red; font-size:25px;" asp-controller="MainOption" asp-action="Detail" asp-route-Id="@main.Id"><i class="fa-solid fa-circle-info"></i></a>
+                        </div>
+
+                        <div>
+                            <a style="color:red; font-size:25px;" asp-controller="MainOption" asp-action="Edit" asp-route-Id="@main.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+
+                        <div class="mx-2">
+                            <a style="color:red; font-size:25px;" asp-controller="MainOption" asp-action="Delete" asp-route-Id="@main.Id"><i class="fa-solid fa-trash-can"></i></a>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
