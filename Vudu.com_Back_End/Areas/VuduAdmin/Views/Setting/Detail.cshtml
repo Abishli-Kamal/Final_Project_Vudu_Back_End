@@ -1,0 +1,23 @@
+﻿@model Setting
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<table class="table table-warning mt-5">
+    <thead>
+        <tr>
+
+            <th scope="col">Id</th>
+            <th scope="col">Key</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td>@Model.Id</td>
+            <td>@Model.Key</td>
+            <td>@Model.Value</td>
+        </tr>
+</table>
+

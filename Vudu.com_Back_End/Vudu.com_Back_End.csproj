@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20220729130747_AddFiledMainOption.Designer.cs" />
     <Compile Remove="Migrations\20220729203204_CreateTableFilterAndFilterSubOptions.cs" />
     <Compile Remove="Migrations\20220729203204_CreateTableFilterAndFilterSubOptions.Designer.cs" />
+    <Compile Remove="Migrations\20220802102545_CreateTableSubOptionTitle.cs" />
+    <Compile Remove="Migrations\20220802102545_CreateTableSubOptionTitle.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -126,6 +128,8 @@
   <ItemGroup>
     <Folder Include="Areas\VuduAdmin\Data\" />
     <Folder Include="Areas\VuduAdmin\Models\" />
+    <Folder Include="wwwroot\assets\img\Actors\SecondMovies\" />
+    <Folder Include="wwwroot\assets\img\Footer\" />
     <Folder Include="wwwroot\assets\img\VideoTrailer\" />
   </ItemGroup>
 

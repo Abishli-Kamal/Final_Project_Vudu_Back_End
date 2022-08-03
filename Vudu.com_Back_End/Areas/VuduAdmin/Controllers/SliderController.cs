@@ -79,8 +79,7 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
                         System.IO.File.Delete(path);
                     }
                     existedsl.Image = await slider.Photo.FileCreate(_env.WebRootPath, @"assets\img\Slider");
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                   
 
                 }
                 else
@@ -89,11 +88,9 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
                     return View();
                 }
             }
-            else
-            {
-                ModelState.AddModelError("Photo", "Please choose file");
-                return View();
-            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
 
         }
         public async Task<IActionResult> Delete(int id)

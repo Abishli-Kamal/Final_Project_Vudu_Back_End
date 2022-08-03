@@ -1,0 +1,22 @@
+﻿@model SubOptionSubTitle
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<form method="post">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input asp-for="Title" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Main Option Id</label>
+        <input asp-for="MainOptionId" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="MainOptionId"></span>
+    </div>
+    <div>
+       <button type="submit" class="btn btn-primary mt-3">Edit</button>
+    </div>
+</form>
+

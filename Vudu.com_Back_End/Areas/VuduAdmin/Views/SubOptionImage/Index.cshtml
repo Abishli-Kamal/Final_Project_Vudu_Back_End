@@ -1,0 +1,49 @@
+﻿@model List<SubOptionImage>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class=" mt-4">
+    <a class="btn btn-dark" asp-controller="SubOptionImage" asp-action="Create">Create</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+             <th scope="col">Main Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SubOptionImage sub in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/assets/img/Mov-Img-Navbar/@sub.Image"/>
+                </td>
+                <td>@sub.Title</td>
+                 <td>@sub.MainOptionId</td>
+                <td>
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <a class="mx-2" style="color:red; font-size:25px;" asp-controller="SubOptionImage" asp-action="Detail" asp-route-Id="@sub.Id"><i class="fa-solid fa-circle-info"></i></a>
+                        </div>
+
+                        <div>
+                            <a style="color:red; font-size:25px;" asp-controller="SubOptionImage" asp-action="Edit" asp-route-Id="@sub.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+
+                        <div class="mx-2">
+                            <a style="color:red; font-size:25px;" asp-controller="SubOptionImage" asp-action="Delete" asp-route-Id="@sub.Id"><i class="fa-solid fa-trash-can"></i></a>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+

@@ -27,7 +27,7 @@
                 </div>
                 <div class="mega_menu pt-3  mx-3 ">
                     <ul>
-                        @foreach (var item in Model.MainOptions)
+                        @foreach (MainOption item in Model.MainOptions)
                         {
                             <li>
                                 <a href="movieslist.html">@item.Name</a>
@@ -35,33 +35,33 @@
                                 <div class="sub_menu">
 
                                     <div class="movies">
-                                     
-                                            <div class="title">
-                                                <h5>
-                                                     @foreach (SubOption sub in Model.SubOptions.FindAll(s => s.MainOptionId==item.Id))
+
+                                        <div class="title">
+                                            <h5>
+                                                @foreach (SubOptionTitle sub in Model.SubOptionTitles.Where(s => s.Id==item.Id))
                                                 {
                                                     <a href="movieslist.html" style="color: rgb(3, 128, 3);">
                                                         @sub.Title
                                                     </a>
                                                 }
-                                                </h5>
-                                            </div>
-                                        
+                                            </h5>
+                                        </div>
+
                                         <div class="categories">
                                             <ul>
-                                                @foreach (SubOption sub in Model.SubOptions.FindAll(s => s.MainOptionId==item.Id))
+                                                @foreach (SubOptionSubTitle subTitle in Model.SubOptionSubTitles.FindAll(s => s.MainOptionId==item.Id))
                                                 {
-                                                    <li><a href="rent.html">@sub.SubTitle</a></li>
+                                                    <li><a href="rent.html">@subTitle.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
                                         <div class="row mt-3">
-                                            @foreach (SubOption sub in Model.SubOptions.FindAll(s => s.MainOptionId==item.Id))
+                                            @foreach (SubOptionImage subImage in Model.SubOptionImages.Where(s => s.MainOptionId==item.Id))
                                             {
                                                 <div class="col-lg-4 moviesBtm pt-3">
                                                     <a href="deals.html ">
-                                                        <img width="100%" src="~/assets/img/Mov-Img-Navbar/@sub.Image" alt=""><button class=" btn btn-dark rounded-0 w-100 mx-3">
-                                                            @sub.ImageName
+                                                        <img width="100%" src="~/assets/img/Mov-Img-Navbar/@subImage.Image" alt=""><button class=" btn btn-dark rounded-0 w-100 mx-3">
+                                                            @subImage.Title
                                                         </button>
                                                     </a>
 
@@ -203,13 +203,13 @@
         <div class="container">
             <div class="row justify-content-between mt-4 download ">
                 <div class="w-25">
-                    <a href="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Itunes").Value"> <img class="w-100" src="assets/img/Footer/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Itunes").Value" alt=""></a>
+                    <a href="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Itunes").Value"> <img class="w-100" src="assets/img/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Itunes").Value" alt=""></a>
                 </div>
                 <div class="w-25">
-                    <a href="https://play.google.com/store/apps/details?id=air.com.vudu.air.DownloaderTablet"><img class="w-100" src="assets/img/Footer/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="googlePlay").Value" alt=""></a>
+                    <a href="https://play.google.com/store/apps/details?id=air.com.vudu.air.DownloaderTablet"><img class="w-100" src="assets/img/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="googlePlay").Value" alt=""></a>
                 </div>
                 <div class="w-25">
-                    <a href="https://apps.microsoft.com/store/detail/9NBLGGH4V68B?hl=en-az&gl=AZ"> <img class="w-75" src="assets/img/Footer/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Windows").Value" alt=""></a>
+                    <a href="https://apps.microsoft.com/store/detail/9NBLGGH4V68B?hl=en-az&gl=AZ"> <img class="w-75" src="assets/img/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Windows").Value" alt=""></a>
                 </div>
             </div>
             <div class="ButtonEnd row justify-content-center ">

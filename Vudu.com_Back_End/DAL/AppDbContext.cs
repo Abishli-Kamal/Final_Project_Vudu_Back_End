@@ -27,6 +27,12 @@ namespace Vudu.com_Back_End.DAL
         public DbSet<MovieIndexOption> MovieIndexOptions { get; set; }
         public DbSet<IndexOption> IndexOptions { get; set; }
         public DbSet<Advertising> Advertisings { get; set; }
+        public DbSet<SubOptionTitle> SubOptionTitles { get; set; }
+        public DbSet<MovieSubOptionTitle> MovieSubOptionTitles { get; set; }
+        public DbSet<MovieSubOptionSubTitle> MovieSubOptionSubTitles { get; set; }
+        public DbSet<SubOptionSubTitle> SubOptionSubTitles { get; set; }
+        public DbSet<SubOptionImage> SubOptionImages { get; set; }
+        public DbSet<MovieSubOptionImage> MovieSubOptionImages { get; set; }
     }
 }
 

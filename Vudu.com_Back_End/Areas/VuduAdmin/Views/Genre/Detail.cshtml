@@ -1,0 +1,20 @@
+﻿@model Genre
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<table class="table table-secondary mt-5">
+    <thead>
+        <tr>
+
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td>@Model.Id</td>
+            <td>@Model.Name</td>
+        </tr>
+</table>

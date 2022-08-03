@@ -23,5 +23,11 @@ namespace Vudu.com_Back_End.View_models
         public List<IndexOption> IndexOptions { get; set; }
         public List<MovieIndexOption> MovieIndexOptions { get; set; }
         public List<Advertising> Advertisings { get; set; }
+        public List<SubOptionTitle> SubOptionTitles { get; set; }
+        public List<MovieSubOptionTitle> MovieSubOptionTitles { get; set; }
+        public List<SubOptionSubTitle> SubOptionSubTitles { get; set; }
+        public List<MovieSubOptionSubTitle> MovieSubOptionSubTitles { get; set; }
+        public List<SubOptionImage> SubOptionImages { get; set; }
+        public List<MovieSubOptionImage> MovieSubOptionImages { get; set; }
     }
 }

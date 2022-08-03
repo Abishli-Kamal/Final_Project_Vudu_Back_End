@@ -27,6 +27,8 @@ namespace Vudu.com_Back_End.Models
         public int? StudioId { get; set; }
         public Studio Studio { get; set; }
         public string Trailer { get; set; }
-
+        public List<MovieSubOptionTitle> MovieSubOptionTitles { get; set; }
+        public List<MovieSubOptionSubTitle> MovieSubOptionSubTitles { get; set; }
+        public List<MovieSubOptionImage> MovieSubOptionImages { get; set; }
     }
 }

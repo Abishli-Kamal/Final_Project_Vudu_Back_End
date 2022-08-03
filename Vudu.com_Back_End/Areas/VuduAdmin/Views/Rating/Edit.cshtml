@@ -1,0 +1,16 @@
+﻿@model Rating
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<form method="post">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input asp-for="Name" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-dark mt-3">Edit</button>
+    </div>
+</form>

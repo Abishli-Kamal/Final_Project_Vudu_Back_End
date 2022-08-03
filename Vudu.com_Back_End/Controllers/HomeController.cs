@@ -36,6 +36,11 @@ namespace Vudu.com_Back_End.Controllers
                 MovieIndexOptions=await _context.MovieIndexOptions.ToListAsync(),
                 IndexOptions=await _context.IndexOptions.ToListAsync(),
                 Advertisings=await _context.Advertisings.ToListAsync(),
+                MovieSubOptionTitles=await _context.MovieSubOptionTitles.ToListAsync(),
+                SubOptionTitles=await _context.SubOptionTitles.ToListAsync(),
+                MovieSubOptionSubTitles=await _context.MovieSubOptionSubTitles.ToListAsync(),
+                SubOptionSubTitles=await _context.SubOptionSubTitles.ToListAsync(),
+                SubOptionImages=await _context.SubOptionImages.ToListAsync(),
                 
 
             };

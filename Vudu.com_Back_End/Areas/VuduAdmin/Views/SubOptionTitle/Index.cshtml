@@ -1,0 +1,48 @@
+﻿@model List<SubOptionTitle>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class=" mt-4">
+    <a class="btn btn-dark" asp-controller="SubOptionTitle" asp-action="Create">Create</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Main Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SubOptionTitle sub in Model)
+        {
+            <tr>
+                <td>@sub.Id</td>
+                <td>@sub.Title</td>
+                <td> @sub.MainOptionId </td>
+                <td>
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <a class="mx-2" style="color:red; font-size:25px;" asp-controller="SubOptionTitle" asp-action="Detail" asp-route-Id="@sub.Id"><i class="fa-solid fa-circle-info"></i></a>
+                        </div>
+
+                        <div>
+                            <a style="color:red; font-size:25px;" asp-controller="SubOptionTitle" asp-action="Edit" asp-route-Id="@sub.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+
+                        <div class="mx-2">
+                            <a style="color:red; font-size:25px;" asp-controller="SubOptionTitle" asp-action="Delete" asp-route-Id="@sub.Id"><i class="fa-solid fa-trash-can"></i></a>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+
