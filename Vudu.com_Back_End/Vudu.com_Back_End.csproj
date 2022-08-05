@@ -128,7 +128,6 @@
   <ItemGroup>
     <Folder Include="Areas\VuduAdmin\Data\" />
     <Folder Include="Areas\VuduAdmin\Models\" />
-    <Folder Include="wwwroot\assets\img\Actors\SecondMovies\" />
     <Folder Include="wwwroot\assets\img\Footer\" />
     <Folder Include="wwwroot\assets\img\VideoTrailer\" />
   </ItemGroup>

@@ -332,7 +332,7 @@ main #releases .cardReleases .description .buttonTr {
   margin-top: 10%;
   width: 100%;
 }
-main #releases .cardReleases .description .buttonTr button {
+main #releases .cardReleases .description .buttonTr  button {
   background-color: #011629;
   width: 100%;
   border-radius: 8px;

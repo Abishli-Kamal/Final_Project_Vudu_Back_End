@@ -224,3 +224,5 @@ C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Setting\Edit.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Setting\Delete.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Setting\Detail.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Detail\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Search\Index.cshtml.g.cs

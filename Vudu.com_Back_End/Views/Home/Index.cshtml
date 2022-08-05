@@ -85,9 +85,16 @@
                                 <a href=""><img class="w-100" src="assets/img/Releases/@movie.Movie.Image" alt=""></a>
                             </div>
                             <div class="description">
-                                <a href="">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Id">
                                     <h6 class="p-2">@movie.Movie.Name</h6>
-                                    <span> May 27 PG-13 @movie.Movie.Length</span>
+                                    <span>
+                                        May 27 |
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                       | @movie.Movie.Length
+                                    </span>
                                     <div class="pl-2 check">
                                         <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
                                     </div>
@@ -128,96 +135,7 @@
         }
     }
 
-    <section id="releases">
-        <div class="container">
-            <div class="row">
-                <div class="title d-flex justify-content-between w-100">
-                    <div class="subTitle">
-                        <a href=""> Browse All Free Titles</a>
-                    </div>
-                    <div class="all">
-                        <a href="">View All</a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Browse/1.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Browse/2.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Browse/3.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Browse/4.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Browse/5.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Browse/6.jpg" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <hr>
-    <section id="releases">
-        <div class="container">
-            <div class="row">
-                <div class="title d-flex justify-content-between w-100">
-                    <div class="subTitle">
-                        <a href=""> More Deals to Explore</a>
-                    </div>
-                    <div class="all">
-                        <a href="">View All</a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Releases/13-1.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Releases/13-2.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Releases/13-3.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Releases/13-4.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Releases/13-5.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Releases/13-6.jpg" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <hr>
+
 </main>
 
 

@@ -1,0 +1,259 @@
+﻿@model HomeVM
+<main>
+    <section id="Trailer">
+        <div id="myTrailer" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeTrailer()">&times;</a>
+            <div class="overlay-content">
+                <iframe style="width: 100%; display: block;" src="https://www.youtube.com/embed/AJktDS4dV18"
+                        title="YouTube video player" frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+
+    </section>
+    <section id="detailMovie">
+        <div class="row w-100">
+            <div class="col-lg-2 ml-5">
+                <img src="~/assets/img/Releases/@Model.Movie.Image" alt="">
+            </div>
+            <div class="col-lg-3 InfoMovie">
+                <div class="title">
+                    <h3>@Model.Movie.Name</h3>
+                </div>
+                <div class="subtitle w-100">
+                    <div class="w-100 info">
+                        @foreach (MovieGenre movieGenre in Model.MovieGenres.Where(s => s.MovieId==Model.Movie.Id))
+                        {
+                            @movieGenre.Genre.Name
+
+                            <span>  |  </span>
+                        } Jun 10 | 
+                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==Model.Movie.RatingId))
+                        {
+                            @rt.Name
+                        }
+                        |@Model.Movie.Length CC
+                    </div>
+                </div>
+                <div class="d-flex StarInfo">
+                    <div class="star d-flex pt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+
+                    </div>
+                    <span>(26,559)</span>
+                    <div class="ml-2">
+                        <span>@Model.Movie.RottenTomatoes %</span>
+                    </div>
+                    <div class="pl-2 check">
+                        <i class="fa-regular fa-circle-check"></i><span>@Model.Movie.Age</span>
+                    </div>
+                </div>
+                <div class="buttonTr mt-4">
+                    <button onclick="openTrailer()"> Trailer</button>
+                    <button> <i class="fa-solid fa-circle-plus mr-2"></i>List</button>
+                </div>
+                <div class="description mt-3">
+                    <p>@Model.Movie.Description</p>
+                </div>
+            </div>
+            <div class="col-lg-6 DetailMov">
+                <img class="w-100" src="~/assets/img/Releases/DetailBack/@Model.Movie.BackImage" alt="">
+            </div>
+
+        </div>
+    </section>
+    <hr>
+    <section id="actors">
+        <div class="container">
+            <div class="title">
+                <h4 style="color: white;">Cast & Crew</h4>
+            </div>
+            <div class="row">
+                @foreach (ActorMovie actor in Model.ActorMovies.Where(s => s.MovieId==Model.Movie.Id))
+                {
+                    <div class="col-lg-2 actor">
+                        <img src="~/assets/img/Actors/OneMovies/@actor.Actor.Image" alt="DFGH">
+                        <div class="name">
+                            <h5>@actor.Actor.Name</h5>
+                            <i>@actor.Actor.Duty</i>
+                        </div>
+                    </div>
+                }
+
+            </div>
+    </section>
+    <hr>
+    <section id="parentalGuide">
+        <div class="container">
+            <div class="row">
+                <div class="title d-flex justify-content-between w-100">
+                    <div class="name">
+                        <h5>Parental Guide</h5>
+                    </div>
+                    <div class="titleImg">
+                        <img src="assets/img/Detail/Media.png" alt="">
+                    </div>
+                </div>
+                <div class="age">
+                    <i class="fa-regular fa-circle-check"></i><span>@Model.Movie.Age</span>
+                </div>
+            </div>
+            <div class="subject row mt-2">
+                <p>Intense dino series finale focuses on human relationships.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 iconMessage">
+                    <div class="icon d-flex">
+                        <i style="font-size: 20px;" class="fa-solid fa-comment-medical"></i>
+                        <i class="fa-solid fa-circle ml-2 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                    </div>
+                    <p>Positive Messages</p>
+                </div>
+                <div class="col-lg-2 iconMessage">
+                    <div class="icon d-flex">
+                        <i style="font-size: 20px;" class="fa-solid fa-user-plus"></i>
+                        <i class="fa-solid fa-circle ml-2 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                    </div>
+                    <p> Positive Role Models & Representations</p>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-lg-2 iconMessage">
+                    <div class="icon d-flex">
+                        <i style="font-size: 20px;" class="fa-solid fa-bomb"></i>
+                        <i class="fa-solid fa-circle ml-2 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                    </div>
+                    <p> Violence</p>
+                </div>
+                <div class="col-lg-2 iconMessage">
+                    <div class="icon d-flex">
+                        <i style="font-size: 20px;" class="fa-solid fa-face-kiss-wink-heart"></i>
+                        <i class="fa-solid fa-circle ml-2 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                    </div>
+                    <p> Sex</p>
+                </div>
+                <div class="col-lg-2 iconMessage">
+                    <div class="icon d-flex">
+                        <span style="font-size: 20px; color: white;">#!</span>
+                        <i class="fa-solid fa-circle ml-2 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                    </div>
+                    <p> Language</p>
+                </div>
+                <div class="col-lg-2 iconMessage">
+                    <div class="icon d-flex">
+                        <i style="font-size: 20px;" class="fa-solid fa-dollar-sign"></i>
+                        <i class="fa-solid fa-circle ml-2 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-solid fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                    </div>
+                    <p> Consumerism</p>
+                </div>
+                <div class="col-lg-2 iconMessage">
+                    <div class="icon d-flex">
+                        <i style="font-size: 20px;" class="fa-solid fa-wine-glass"></i>
+                        <i class="fa-solid fa-circle ml-2 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                        <i class="fa-regular fa-circle ml-1 mt-1"></i>
+                    </div>
+                    <p>Drinking & Smoking</p>
+                </div>
+
+            </div>
+            <div class="parentalEnd">
+                <h5>What Parents Need To Know</h5>
+                <p>@Model.Movie.Description</p>
+                <span>
+                    Review by Common Sense Media® Common Sense Media is a registered trademark, other associated
+                    names and logos are trademarks of Common Sense Media, a 501(c)(3) nonprofit organization.
+                </span>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section id="moreInfo">
+        <div class="container">
+            <div class="title">
+                <h5>More info</h5>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 FirstInfo">
+                    <div>
+                        Genre:
+                        @foreach (MovieGenre movieGenre in Model.MovieGenres.Where(s => s.MovieId==Model.Movie.Id))
+                        {
+                            @movieGenre.Genre.Name
+
+                            <span>  |  </span>
+                        }
+                    </div>
+                    <div>Length:@Model.Movie.Length</div>
+                    <div>Released: Jun 10</div>
+                    <div>
+                        Rating: @foreach (Rating rt in Model.Ratings.Where(s => s.Id==Model.Movie.RatingId))
+                        {
+                            @rt.Name
+                        }
+                    </div>
+                    <div>
+                        Studio:
+                        @foreach (Studio st in Model.Studios.Where(s => s.Id==Model.Movie.StudioId))
+                        {
+                            @st.Name
+                        }
+                    </div>
+                    <div>Language: @Model.Movie.Language</div>
+                    <div>Rotten Tomatoes® Score  ROTTEN  @Model.Movie.RottenTomatoes %</div>
+                    <div>Movies Anywhere</div>
+                </div>
+                <div class="col-lg-6 SecondInfo">
+                    <div>
+                        <img src="assets/img/Detail/UHD.png" alt=""> <span>4K, Dolby Vision, HDR10, Dolby </span>
+                    </div>
+                    <div>
+                        <img src="assets/img/Detail/HDX.png" alt=""> <span>1080p, Dolby Digital Plus 5.1</span>
+                    </div>
+                    <div>
+                        <img src="assets/img/Detail/SD.png" alt=""> <span>480p, Enhanced Widescreen, Dolby Digital Plus 5.1</span>
+                    </div>
+                    <div>
+                        <img style="width:25px ;" src="assets/img/Detail/CD.png" alt=""> <span>English</span>
+                    </div>
+                    <div>
+                        <img src="assets/img/Detail/AD.png" alt=""> <span>Audio Description</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+</main>
+
