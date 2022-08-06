@@ -1,0 +1,102 @@
+﻿@model Movie
+@{
+    ViewData["Title"] = "Create";
+}
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input asp-for="Name" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Length</label>
+        <input asp-for="Length" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Length"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Age</label>
+        <input asp-for="Age" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Age"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Rotten Tomatoes</label>
+        <input asp-for="RottenTomatoes" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="RottenTomatoes"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Info Movie</label>
+        <input asp-for="InfoMovie" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="InfoMovie"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Description</label>
+        <input asp-for="Description" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Language</label>
+        <input asp-for="Language" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Language"></span>
+    </div>
+
+    <div>
+        <span>Actor:</span>
+        <select class="form-control mt-2" style="cursor:pointer;" asp-for="IndexOptionIds" asp-items="@(new SelectList(ViewBag.IndexOption,"Id","Name"))"></select> <br />
+        <span class="text-danger" asp-validation-for="IndexOptionIds"></span>
+    </div>
+    <div>
+        <span>Genre:</span>
+        <select class="form-control mt-2" style="cursor:pointer;" asp-for="GenreIds" asp-items="@(new SelectList(ViewBag.Genre,"Id","Name"))"></select> <br />
+        <span class="text-danger" asp-validation-for="GenreIds"></span>
+    </div>
+    <div>
+        <span>Sub Option Image:</span>
+        <select class="form-control mt-2" style="cursor:pointer;" asp-for="SubOptionImageIds" asp-items="@(new SelectList(ViewBag.SubOptionImage,"Id","Title"))"></select> <br />
+        <span class="text-danger" asp-validation-for="SubOptionImageIds"></span>
+    </div>
+    <div>
+        <span>Sub Option Title:</span>
+        <select class="form-control mt-2" style="cursor:pointer;" asp-for="SubOptionTitleIds" asp-items="@(new SelectList(ViewBag.SubOptionTitle,"Id","Title"))"></select> <br />
+        <span class="text-danger" asp-validation-for="SubOptionTitleIds"></span>
+    </div>
+    <div>
+        <span>Sub Option SubTitle:</span>
+        <select class="form-control mt-2" style="cursor:pointer;" asp-for="SubOptionSubTitleIds" asp-items="@(new SelectList(ViewBag.SubOptionSubTitle,"Id","Title"))"></select> <br />
+        <span class="text-danger" asp-validation-for="SubOptionSubTitleIds"></span>
+    </div>
+    <div>
+        <span>Index Option :</span>
+        <select class="form-control mt-2" style="cursor:pointer;" asp-for="IndexOptionIds" asp-items="@(new SelectList(ViewBag.IndexOption,"Id","Name"))"></select> <br />
+        <span class="text-danger" asp-validation-for="IndexOptionIds"></span>
+    </div>
+    <div>
+        <span>Year:</span>
+        <select class="form-control mt-2" style="cursor:pointer;" asp-for="YearId" asp-items="@(new SelectList(ViewBag.Year,"Id","Name"))"></select> <br />
+        <span class="text-danger" asp-validation-for="YearId"></span>
+    </div>
+    <div>
+        <span>Rating:</span>
+        <select class="form-control mt-2" style="cursor:pointer;" asp-for="RatingId" asp-items="@(new SelectList(ViewBag.Rating,"Id","Name"))"></select> <br />
+        <span class="text-danger" asp-validation-for="RatingId"></span>
+    </div>
+    <div>
+        <span>Studio:</span>
+        <select class="form-control mt-2" style="cursor:pointer;" asp-for="StudioId" asp-items="@(new SelectList(ViewBag.Studio,"Id","Name"))"></select> <br />
+        <span class="text-danger" asp-validation-for="StudioId"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Image</label>
+        <input asp-for="MainImage" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="MainImage"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Back Image</label>
+        <input asp-for="BackgroundImage" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="BackgroundImage"></span>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-dark mt-3">Create</button>
+    </div>
+</form>

@@ -1,0 +1,60 @@
+﻿@model Movie
+@{
+    ViewData["Title"] = "Delete";
+}
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<form method="post">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input asp-for="Name" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Length:</label>
+        <input asp-for="Length" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Length"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Age:</label>
+        <input asp-for="Age" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Age"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Rotten Tomatoes:</label>
+        <input asp-for="RottenTomatoes" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="RottenTomatoes"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Info Movie:</label>
+        <input asp-for="InfoMovie" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="InfoMovie"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Description:</label>
+        <input asp-for="Description" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Language:</label>
+        <input asp-for="Language" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Language"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Image:</label>
+        <img class="mx-5" src="~/assets/img/Releases/@Model.Image" />
+    </div>
+    <div class="form-group mt-4">
+        <label for="name">Back Image:</label>
+        <img class="w-50 " src="~/assets/img/Releases/DetailBack/@Model.Image" />
+        <span class="text-danger" asp-validation-for="BackgroundImage"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Index Option:</label>
+        <input asp-for="IndexOptionIds" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="IndexOptionIds"></span>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-dark mt-3">Delete</button>
+    </div>
+</form>

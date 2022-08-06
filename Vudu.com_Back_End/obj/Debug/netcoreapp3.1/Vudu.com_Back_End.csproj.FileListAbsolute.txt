@@ -226,3 +226,10 @@ C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Setting\Detail.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Detail\Index.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Search\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Actor\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Actor\Create.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Movie\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Movie\Create.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Movie\Edit.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Movie\Delete.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Movie\Detail.cshtml.g.cs

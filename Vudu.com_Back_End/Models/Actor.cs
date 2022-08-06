@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vudu.com_Back_End.Models
 {
@@ -9,5 +11,9 @@ namespace Vudu.com_Back_End.Models
         public string Image { get; set; }
         public string Duty { get; set; }
         public List<ActorMovie> ActorMovies { get; set; }
+        [NotMapped]
+        public List<int> MoviesIds { get; set; }
+        [NotMapped]
+        public IFormFile Photo { get; set; }
     }
 }
