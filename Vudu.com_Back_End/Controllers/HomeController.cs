@@ -41,7 +41,7 @@ namespace Vudu.com_Back_End.Controllers
                 MovieSubOptionSubTitles=await _context.MovieSubOptionSubTitles.ToListAsync(),
                 SubOptionSubTitles=await _context.SubOptionSubTitles.ToListAsync(),
                 SubOptionImages=await _context.SubOptionImages.ToListAsync(),
-              
+                BasketItems= await _context.BasketItems.ToListAsync(),
             };
             return View(model);
         }

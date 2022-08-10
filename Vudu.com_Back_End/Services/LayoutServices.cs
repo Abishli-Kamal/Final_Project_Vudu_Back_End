@@ -20,5 +20,32 @@ namespace Vudu.com_Back_End.Services
 
             return setting;
         }
+
+      public async Task<List<MainOption>> GetMainOption()
+        {
+            List<MainOption> main = await _context.MainOptions.ToListAsync();
+
+            return main;
+        }
+        public async Task<List<SubOptionTitle>> GetSubTitleOption()
+        {
+            List<SubOptionTitle> subTitle = await _context.SubOptionTitles.ToListAsync();
+
+            return subTitle;
+        }
+        public async Task<List<SubOptionSubTitle>> GetSubOptionSubTitle()
+        {
+            List<SubOptionSubTitle> sub = await _context.SubOptionSubTitles.ToListAsync();
+
+            return sub;
+        }
+        public async Task<List<SubOptionImage>> GetSubOptionImage()
+        {
+            List<SubOptionImage> subimage = await _context.SubOptionImages.ToListAsync();
+
+            return subimage;
+        }
+
+
     }
 }

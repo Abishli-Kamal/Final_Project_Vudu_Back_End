@@ -13,6 +13,8 @@
     <Compile Remove="Migrations\20220729203204_CreateTableFilterAndFilterSubOptions.Designer.cs" />
     <Compile Remove="Migrations\20220802102545_CreateTableSubOptionTitle.cs" />
     <Compile Remove="Migrations\20220802102545_CreateTableSubOptionTitle.Designer.cs" />
+    <Compile Remove="Migrations\20220807073249_CreateIdentity.cs" />
+    <Compile Remove="Migrations\20220807073249_CreateIdentity.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

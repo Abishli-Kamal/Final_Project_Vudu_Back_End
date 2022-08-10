@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Vudu.com_Back_End.Models;
 
 namespace Vudu.com_Back_End.DAL
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext:IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> option) : base(option)
         {
@@ -33,6 +34,7 @@ namespace Vudu.com_Back_End.DAL
         public DbSet<SubOptionSubTitle> SubOptionSubTitles { get; set; }
         public DbSet<SubOptionImage> SubOptionImages { get; set; }
         public DbSet<MovieSubOptionImage> MovieSubOptionImages { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
     }
 }
 

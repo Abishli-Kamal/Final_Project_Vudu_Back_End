@@ -1,6 +1,11 @@
 ﻿@using Vudu.com_Back_End.Models
 @using Vudu.com_Back_End.View_models
-@model HomeVM
+@{
+    List<MainOption> mainoption = await servis.GetMainOption();
+    List<SubOptionTitle> subTitle = await servis.GetSubTitleOption();
+    List<SubOptionSubTitle> subtitle = await servis.GetSubOptionSubTitle();
+    List<SubOptionImage> image = await servis.GetSubOptionImage();
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +32,7 @@
                 </div>
                 <div class="mega_menu pt-3  mx-3 ">
                     <ul>
-                        @foreach (MainOption item in Model.MainOptions)
+                        @foreach (MainOption item in mainoption)
                         {
                             <li>
                                 <a href="movieslist.html">@item.Name</a>
@@ -38,7 +43,7 @@
 
                                         <div class="title">
                                             <h5>
-                                                @foreach (SubOptionTitle sub in Model.SubOptionTitles.Where(s => s.Id==item.Id))
+                                                @foreach (SubOptionTitle sub in subTitle.Where(s => s.Id==item.Id))
                                                 {
                                                     <a href="movieslist.html" style="color: rgb(3, 128, 3);">
                                                         @sub.Title
@@ -49,14 +54,14 @@
 
                                         <div class="categories">
                                             <ul>
-                                                @foreach (SubOptionSubTitle subTitle in Model.SubOptionSubTitles.FindAll(s => s.MainOptionId==item.Id))
+                                                @foreach (SubOptionSubTitle subtitles in subtitle.FindAll(s => s.MainOptionId==item.Id))
                                                 {
-                                                    <li><a href="rent.html">@subTitle.Title</a></li>
+                                                    <li><a href="rent.html">@subtitles.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
                                         <div class="row mt-3">
-                                            @foreach (SubOptionImage subImage in Model.SubOptionImages.Where(s => s.MainOptionId==item.Id))
+                                            @foreach (SubOptionImage subImage in image.Where(s => s.MainOptionId==item.Id))
                                             {
                                                 <div class="col-lg-4 moviesBtm pt-3">
                                                     <a href="deals.html ">
@@ -82,14 +87,31 @@
                 <div class="navbarSecond pt-3">
                     <ul>
                         <div class="dropdown">
-                        <li class="dropbtn mx-3"><a href="Login.html">Sign In</a></li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                            <li class="dropbtn mx-3"><a asp-controller="Account" asp-action="Edit">@(User.Identity.Name)</a></li>
+                            }
+                            else
+                            {
+                            <li class="dropbtn mx-3"><a asp-controller="Account" asp-action="Login">Sign In</a></li>
+                            }
+
                         <div class="dropdown-content mt-2">
-                            <a href="Login.html">Sign In</a>
-                            <a href="Register.html">Create an Account</a>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                <a  asp-controller="Account" asp-action="Edit">@(User.Identity.Name)</a>
+                                <a  asp-controller="Account" asp-action="Logout">Logout</a>
+                                }
+                                else
+                                {
+                                <a asp-controller="Account" asp-action="Login">Sign In</a>
+                                <a asp-controller="Account" asp-action="Register">Create an Account</a>
+                                }
+
                         </div>
                 </div>
                 </li>
-                <li><a href="basket.html"><i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="basket").Value"></i></a></li>
+                <li><a asp-controller="Basket" asp-action="Index"><i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="basket").Value"></i></a></li>
                 <li>
                     <a>
                         <i style="font-size:25px;cursor:pointer;color: white;" onclick="openNav()"
@@ -196,14 +218,14 @@
                         </div>
                     </li>
                     <li class="mt-2"><a href="Login.html">My Vudu</a> </li>
-                    <li class="mt-2"><a href="Login.html">Sign In</a> </li>
-                    <li class="mt-2"><a href="Register.html">Create New Account</a> </li>
+                    <li class="mt-2"><a asp-controller="Account" asp-action="Login">Sign In</a> </li>
+                    <li class="mt-2"><a asp-controller="Account" asp-action="Register">Create New Account</a> </li>
                 </ul>
             </div>
             <div class="logoRes pt-2 mt-2 mr-5 ">
                 <a href="index.html"><img src="assets/img/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="Logo").Value" alt=""></a>
             </div>
-            <a style="color: white; font-size:25px;" href="basket.html"><i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="basket").Value mx-3"></i></a>
+            <a style="color: white; font-size:25px;" asp-controller="Basket" asp-action="Index"><i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="basket").Value mx-3"></i></a>
         </nav>
     </header>
     @RenderBody()

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Vudu.com_Back_End.DAL;
+using Vudu.com_Back_End.Models;
 using Vudu.com_Back_End.Services;
 
 namespace Vudu.com_Back_End
@@ -33,14 +35,18 @@ namespace Vudu.com_Back_End
                 opt.UseSqlServer(_configuration.GetConnectionString("Default"));
             });
 
-            //    services.AddIdentity<AppUser, IdentityRole>(opt =>
-            //    {
-            //        opt.Password.RequireNonAlphanumeric=true;s
-            //        opt.Password.RequiredLength=8;
-            //        opt.Password.RequireLowercase=true;
-            //        opt.Password.RequireDigit=true;
-            //        opt.Password.RequireUppercase=true;
-            //    }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
+            services.AddIdentity<AppUser, IdentityRole>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric=true; 
+                opt.Password.RequiredLength=8;
+                opt.Password.RequireLowercase=true;
+                opt.Password.RequireDigit=true;
+                opt.Password.RequireUppercase=true;
+                opt.SignIn.RequireConfirmedEmail=false;
+                opt.Lockout.AllowedForNewUsers=true;
+                opt.Lockout.MaxFailedAccessAttempts = 5;
+                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +59,8 @@ namespace Vudu.com_Back_End
 
             app.UseRouting();
             app.UseStaticFiles();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

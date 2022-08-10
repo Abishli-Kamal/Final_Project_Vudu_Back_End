@@ -35,8 +35,8 @@
                         </div>
                     }
                 }
-                }
-                }
+
+
 
 
             </div>
@@ -53,17 +53,7 @@
         </div>
 
     </section>
-    <section id="Trailer">
-        <div id="myTrailer" class="overlay">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeTrailer()">&times;</a>
-            <div class="overlay-content">
-                <iframe style="width: 100%; display: block;" src="https://www.youtube.com/embed/AJktDS4dV18"
-                        title="YouTube video player" frameborder="0"
-                        allowfullscreen></iframe>
-            </div>
-        </div>
 
-    </section>
 
     @foreach (var item in Model.IndexOptions)
     {
@@ -93,7 +83,7 @@
                                         {
                                             @rt.Name
                                         }
-                                       | @movie.Movie.Length
+                                        | @movie.Movie.Length
                                     </span>
                                     <div class="pl-2 check">
                                         <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
@@ -112,14 +102,23 @@
                                         </div>
                                     </div>
                                     <div class=" plus">
-                                        <i class="fa-solid fa-circle-plus"></i>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                              <a asp-controller="Account" asp-action="Login" ><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
                                     </div>
                                     <div class="buttonTr">
-                                        <a href="#" onclick="openTrailer()"><button>Trailer</button></a>
+                                        <a asp-controller="Trailer" asp-action="Index" onclick="openTrailer()"><button>Trailer</button></a>
                                     </div>
                                 </a>
                             </div>
                         </div>
+
+
                     }
                 </div>
             </div>

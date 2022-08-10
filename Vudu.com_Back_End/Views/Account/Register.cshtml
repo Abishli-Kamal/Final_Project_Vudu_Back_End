@@ -1,0 +1,67 @@
+﻿@model RegisterVM
+@{
+    ViewData["Title"] = "Register";
+}
+
+<main>
+    <section id="Register">
+        <div class="image d-flex justify-content-center">
+            <img src="assets/img/Register.png" alt="">
+        </div>
+        <div class="container Form">
+            <div class="title text-center ">
+                <h4>Create Free Account</h4>
+            </div>
+            <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+            <form method="post">
+
+                <div class="name row mt-3   ">
+                    <div class="col-lg-6 ">
+                        <input asp-for="Firstname" placeholder="First Name" class="form-control w-100 mt-2" />
+                        <span asp-validation-for="Firstname" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <input asp-for="Lastname" placeholder="Last Name" class=" w-100 form-control mt-2" />
+                        <span asp-validation-for="Lastname" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <input asp-for="Username" placeholder="Username" class=" mt-2 form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <input asp-for="Email" placeholder="Email Address" class="form-control mt-2" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-center ">
+                    <input asp-for="Password" placeholder="Password" class="form-control mt-2" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-center ">
+                    <input asp-for="ConfirmPassword" placeholder="Confirm Password" class="mt-2 form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-center terms">
+                    <input asp-for="IHaveReadIAccept" id="IHaveReadIAccept" />
+                    <p class="mx-2 mt-1 ">
+                        I certify that I am at least 18 years old and that I agree to the <a href="https://www.fandango.com/policies/terms-and-policies">Terms and Policies </a> and
+                        <a href="https://www.fandango.com/policies/privacy-policy">
+                            Privacy
+                            Policy
+                        </a> . This service is for the U.S. only.
+                    </p>
+                </div>
+                <div class="Registerbtn d-flex justify-content-center mx-5">
+                    <button type="submit" class="btn btn-primary mb-3">Create Free Account</button>
+                </div>
+            </form>
+        </div>
+
+    </section>
+</main>
+<hr>
+

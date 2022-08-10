@@ -1,0 +1,59 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+}
+<    <main>
+    <section id="basketTable">
+        <div class="container">
+            <div class="row">
+
+                <table class="table table-primary pt-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Genre</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Length</th>
+                            <th scope="col">Language</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (BasketItem item in Model.BasketItems)
+                        {
+                            <tr>
+                                <td>
+                                    <img class="w-50" src="assets/img/Releases/@item.Movie.Image" alt="">
+                                </td>
+                                <td>@item.Movie.Name</td>
+                                <td>
+                                    @foreach (MovieGenre genre in Model.MovieGenres.Where(m => m.MovieId==item.Movie.Id))
+                                    {
+                                        <span> @genre.Genre.Name /</span>
+                                    }
+                                </td>
+                                <td>@item.Movie.Rating.Name</td>
+                                <td>@item.Movie.Length</td>
+                                <td>@item.Movie.Language</td>
+                                <td> <a asp-controller="Basket" asp-action="DeleteBasket" asp-route-id="@item.Movie.Id"><i class="fa-solid fa-xmark"></i></a> </td>
+                            </tr>
+                        }
+
+
+
+                    </tbody>
+
+                </table>
+            </div>
+            @if (Model.BasketItems.Count==0)
+            {
+                <h2 style="color:white;">Wishlist Is Empty</h2>
+            }
+
+        </div>
+
+    </section>
+</main>
+

@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Vudu.com_Back_End",
+    "\\Vudu.com_Back_End\\Services",
+    "\\Vudu.com_Back_End\\Views",
+    "\\Vudu.com_Back_End\\Views\\Shared"
   ],
-  "SelectedNode": "\\Vudu.com_Back_End.sln",
+  "SelectedNode": "\\Vudu.com_Back_End\\Views\\Shared\\_Layout.cshtml",
   "PreviewInSolutionExplorer": false
 }
