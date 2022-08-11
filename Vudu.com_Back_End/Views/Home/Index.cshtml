@@ -3,11 +3,31 @@
 @{
     ViewData["Title"] = "Index";
 }
+@if (TempData["Getstarted"]!=null)
+{
+    <input type="hidden" id="getstartedJs" />
+}
+
+@if (TempData["GetstartedId"] != null)
+{
+    <input type="hidden" id="getstartedId" />
+}
 
 <main>
     <div class="mainTop col-lg-12">
         <img src="assets/img/MainTop.png" alt="">
     </div>
+    <section id="Trailer">
+        <div id="myTrailer" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeTrailer()">&times;</a>
+            <div class="overlay-content">
+                <iframe style="width: 100%; display: block;" src="https://youtu.be/AJktDS4dV18"
+                        title="YouTube video player" frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+
+    </section>
     <section id="slider">
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -108,15 +128,26 @@
                                         }
                                         else
                                         {
-                                              <a asp-controller="Account" asp-action="Login" ><i class="fa-solid fa-circle-plus"></i></a>
+                                            <a asp-controller="Account" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
                                         }
                                     </div>
                                     <div class="buttonTr">
-                                        <a asp-controller="Trailer" asp-action="Index" onclick="openTrailer()"><button>Trailer</button></a>
+                                        <a onclick="openTrailer()"><button>Trailer</button></a>
                                     </div>
                                 </a>
                             </div>
                         </div>
+                        <section id="Trailer">
+                            <div id="myTrailer" class="overlay">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeTrailer()">&times;</a>
+                                <div class="overlay-content">
+                                    <iframe style="width: 100%; display: block;" src=""
+                                    title="YouTube video player" frameborder="0"
+                                    allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+                        </section>
 
 
                     }
@@ -136,6 +167,57 @@
 
 
 </main>
+
+@section Scripts
+    {
+
+    <script>
+
+        $(document).ready(function() {
+
+            if ($("#getstartedJs").length) {
+                Command: toastr["success"]("Please verify your email")
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "7000",
+                    "extendedTimeOut": "2000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+            if ($("#getstartedId").length) {
+                Command: toastr["success"]("Your email has been verified")
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "7000",
+                    "extendedTimeOut": "2000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+        })
+    </script>
+}
 
 
 

@@ -27,7 +27,7 @@
                             @movieGenre.Genre.Name
 
                             <span>  |  </span>
-                        } Jun 10 | 
+                        } Jun 10 |
                         @foreach (Rating rt in Model.Ratings.Where(s => s.Id==Model.Movie.RatingId))
                         {
                             @rt.Name
@@ -54,7 +54,16 @@
                 </div>
                 <div class="buttonTr mt-4">
                     <button onclick="openTrailer()"> Trailer</button>
-                    <button> <i class="fa-solid fa-circle-plus mr-2"></i>List</button>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a style="width:50px; text-align:center; border:1px solid #046aaf;" asp-controller="basket" asp-action="BasketAdd"><i class="fa-solid fa-circle-plus "></i></a>
+                    }
+                    else
+                    {
+
+                        <a style="width:140px;text-align:center; border:1px solid #046aaf; border-radius:8px;" asp-controller="Account" asp-action="Login" asp-route-id="@Model.Movie.Id "><i class="fa-solid fa-circle-plus"></i></a>
+
+                    }
                 </div>
                 <div class="description mt-3">
                     <p>@Model.Movie.Description</p>

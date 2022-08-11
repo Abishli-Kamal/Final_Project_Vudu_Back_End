@@ -37,7 +37,9 @@ namespace Vudu.com_Back_End
 
             services.AddIdentity<AppUser, IdentityRole>(opt =>
             {
-                opt.Password.RequireNonAlphanumeric=true; 
+                opt.SignIn.RequireConfirmedEmail=true;
+                opt.User.RequireUniqueEmail=false;
+                opt.Password.RequireNonAlphanumeric=true;
                 opt.Password.RequiredLength=8;
                 opt.Password.RequireLowercase=true;
                 opt.Password.RequireDigit=true;

@@ -237,3 +237,5 @@ C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Account\Edit.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgotPassword.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Account\ResetPassword.cshtml.g.cs
