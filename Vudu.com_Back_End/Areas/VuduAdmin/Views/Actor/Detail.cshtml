@@ -1,0 +1,19 @@
+﻿@model Actor
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="form-group">
+    <h2>Name:</h2>
+    <h4 style="color:cornflowerblue;">@Model.Name</h4>
+</div>
+<div class="form-group">
+    <h2>Duty:</h2>
+    <h4 style="color:cornflowerblue;">@Model.Duty</h4>
+</div>
+
+<div class="form-group">
+    <img style="height:200px; width:200px;" src="~/assets/img/Actors/OneMovies/@Model.Image" />
+</div>
+
+

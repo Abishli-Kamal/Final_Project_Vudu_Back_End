@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Vudu.com_Back_End.DAL;
 using Vudu.com_Back_End.Models;
 using Vudu.com_Back_End.Services;
+using Vudu.com_Back_End.Utilities;
 
 namespace Vudu.com_Back_End
 {
@@ -38,7 +39,7 @@ namespace Vudu.com_Back_End
             services.AddIdentity<AppUser, IdentityRole>(opt =>
             {
                 opt.SignIn.RequireConfirmedEmail=true;
-                opt.User.RequireUniqueEmail=false;
+                opt.User.RequireUniqueEmail=true;
                 opt.Password.RequireNonAlphanumeric=true;
                 opt.Password.RequiredLength=8;
                 opt.Password.RequireLowercase=true;
@@ -49,7 +50,15 @@ namespace Vudu.com_Back_End
                 opt.Lockout.MaxFailedAccessAttempts = 5;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("MovieManager", policy => policy.RequireAssertion(context =>
+                       context.User.IsInRole(Role.Admin.ToString()) || context.User.IsInRole(Role.SuperAdmin.ToString())
+                 ));
+            });
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

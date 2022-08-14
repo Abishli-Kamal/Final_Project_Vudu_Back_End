@@ -58,9 +58,10 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
             }
 
         }
-        public IActionResult Edit()
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            Slider slider = await _context.Sliders.FirstOrDefaultAsync(s => s.Id==id);
+            return View(slider);
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]

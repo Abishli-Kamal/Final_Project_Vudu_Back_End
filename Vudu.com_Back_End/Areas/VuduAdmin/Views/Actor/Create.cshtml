@@ -15,12 +15,9 @@
         <span class="text-danger" asp-validation-for="Duty"></span>
     </div>
 
-    <div>
-        <select class="form-control mt-2" style="cursor:pointer;" asp-for="MoviesIds" asp-items="@(new SelectList(ViewBag.Movies,"id","Name"))"></select> <br />
-        <span class="text-danger" asp-validation-for="MoviesIds"></span>
-    </div>
+ 
     <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">Image</label>
         <input asp-for="Photo" class="form-control" id="name">
         <span class="text-danger" asp-validation-for="Photo"></span>
     </div>

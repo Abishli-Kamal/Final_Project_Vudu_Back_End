@@ -239,3 +239,13 @@ C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Account\Edit.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgotPassword.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Account\ResetPassword.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\SubOption\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Account\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Account\Edit.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authorization.dll
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Metadata.dll
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\SubOptiontTitle\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\SubOptionImage\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Actor\Edit.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Actor\Delete.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Actor\Detail.cshtml.g.cs

@@ -1,0 +1,28 @@
+﻿@model Actor
+@{
+    ViewData["Title"] = "Edit";
+}
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input asp-for="Name" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Duty</label>
+        <input asp-for="Duty" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Duty"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label for="name">Image</label>
+        <input asp-for="Photo" class="form-control" id="name">
+        <span class="text-danger" asp-validation-for="Photo"></span>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-dark mt-3">Edit</button>
+    </div>
+</form>
+

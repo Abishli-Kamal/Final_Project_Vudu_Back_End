@@ -72,47 +72,45 @@ namespace Vudu.com_Back_End.Controllers
 
             }
 
-
-
             await _usermanager.AddToRoleAsync(user, Role.Member.ToString());
 
             //await _signInManager.SignInAsync(user, false);
 
-            //    string token = await _usermanager.GenerateEmailConfirmationTokenAsync(user);
-            //    string link = Url.Action(nameof(GetStart), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
-            //    MailMessage mail = new MailMessage();
-            //    mail.From=new MailAddress("tu7ldxfzy@code.edu.az", "Vudu Movies");
-            //    mail.To.Add(new MailAddress(user.Email));
+            string token = await _usermanager.GenerateEmailConfirmationTokenAsync(user);
+            string link = Url.Action(nameof(GetStart), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
+            MailMessage mail = new MailMessage();
+            mail.From=new MailAddress("tu7ldxfzy@code.edu.az", "Vudu Movies");
+            mail.To.Add(new MailAddress(user.Email));
 
-            //    mail.Subject = "Get Started ";
-            //    string body = string.Empty;
-            //    using (StreamReader reader = new StreamReader("wwwroot/assets/template/EmailHtml.html"))
-            //    {
-            //        body= reader.ReadToEnd();
-            //    }
-            //    body=body.Replace("{{link}}", link);
+            mail.Subject = "Get Started ";
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader("wwwroot/assets/template/EmailHtml.html"))
+            {
+                body= reader.ReadToEnd();
+            }
+            body=body.Replace("{{link}}", link);
 
-            //    mail.IsBodyHtml=true;
+            mail.IsBodyHtml=true;
 
-            //    SmtpClient smtp = new SmtpClient();
-            //    smtp.Host="smtp.gmail.com";
-            //    smtp.Port=587;
-            //    smtp.EnableSsl=true;
-            //    smtp.Credentials=new NetworkCredential("tu7ldxfzy@code.edu.az", "oawpaurbtvrijkzs");
-            //    smtp.Send(mail);
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host="smtp.gmail.com";
+            smtp.Port=587;
+            smtp.EnableSsl=true;
+            smtp.Credentials=new NetworkCredential("tu7ldxfzy@code.edu.az", "oawpaurbtvrijkzs");
+            smtp.Send(mail);
 
-            //    TempData["Getstarted"] = true;
-            //    return RedirectToAction("Index", "Home");
-            //}
+            TempData["Getstarted"] = true;
+            return RedirectToAction("Index", "Home");
+        }
 
-            //public async Task<IActionResult> GetStart(string email, string token)
-            //{
-            //    AppUser user = await _usermanager.FindByEmailAsync(email);
-            //    if (user == null) return BadRequest();
-            //    await _usermanager.ConfirmEmailAsync(user, token);
+        public async Task<IActionResult> GetStart(string email, string token)
+        {
+            AppUser user = await _usermanager.FindByEmailAsync(email);
+            if (user == null) return BadRequest();
+            await _usermanager.ConfirmEmailAsync(user, token);
 
-            //    await _signInManager.SignInAsync(user, true);
-            //    TempData["Getstarted"] = true;
+            await _signInManager.SignInAsync(user, true);
+            TempData["Getstarted"] = true;
 
             return RedirectToAction("Index", "Home");
         }
@@ -147,46 +145,55 @@ namespace Vudu.com_Back_End.Controllers
             }
             else
             {
-                if (login.RememberMe)
+                if (user.IsBlock==false)
                 {
-                    Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user, login.Password, true, true);
-
-                    if (!result.Succeeded)
+                    if (login.RememberMe)
                     {
-                        if (result.IsLockedOut)
+                        Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user, login.Password, true, true);
+
+                        if (!result.Succeeded)
                         {
-                            ModelState.AddModelError("", "You have been dismissed for 5 minutes");
-                            return View();
-                        }
-                        else
-                        {
+                            if (result.IsLockedOut)
+                            {
+                                ModelState.AddModelError("", "You have been dismissed for 5 minutes");
+                                return View();
+                            }
+                            else
+                            {
+
+                            }
+                            {
+                                ModelState.AddModelError("", "Username or Password is incorrect");
+                                return View();
+
+                            }
 
                         }
+                    }
+                    else
+                    {
+                        Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user, login.Password, false, true);
+
+                        if (!result.Succeeded)
                         {
+                            if (result.IsLockedOut)
+                            {
+                                ModelState.AddModelError("", "You have been dismissed for 5 minutes");
+                                return View();
+                            }
+
                             ModelState.AddModelError("", "Username or Password is incorrect");
                             return View();
 
                         }
-
                     }
                 }
                 else
                 {
-                    Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user, login.Password, false, true);
-
-                    if (!result.Succeeded)
-                    {
-                        if (result.IsLockedOut)
-                        {
-                            ModelState.AddModelError("", "You have been dismissed for 5 minutes");
-                            return View();
-                        }
-
-                        ModelState.AddModelError("", "Username or Password is incorrect");
-                        return View();
-
-                    }
+                    ModelState.AddModelError("", "Your access has been restricted");
+                    return View();
                 }
+               
                 return RedirectToAction("Index", "Home");
             }
 
@@ -267,7 +274,7 @@ namespace Vudu.com_Back_End.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
+       
         public IActionResult ForgotPassword()
         {
             return View();

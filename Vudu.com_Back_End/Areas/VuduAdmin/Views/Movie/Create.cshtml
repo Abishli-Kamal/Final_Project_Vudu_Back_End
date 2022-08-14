@@ -41,7 +41,7 @@
     </div>
 
     <div>
-        <span>Actor:</span>
+        <span>Index Option:</span>
         <select class="form-control mt-2" style="cursor:pointer;" asp-for="IndexOptionIds" asp-items="@(new SelectList(ViewBag.IndexOption,"Id","Name"))"></select> <br />
         <span class="text-danger" asp-validation-for="IndexOptionIds"></span>
     </div>

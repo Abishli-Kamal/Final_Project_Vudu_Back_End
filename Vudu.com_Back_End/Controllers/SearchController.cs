@@ -25,7 +25,10 @@ namespace Vudu.com_Back_End.Controllers
             List<SubOptionTitle> sub = await _context.SubOptionTitles.ToListAsync();
             List<SubOptionImage> subOptionImages = await _context.SubOptionImages.ToListAsync();
             List<SubOptionSubTitle> subOptionSubTitles = await _context.SubOptionSubTitles.ToListAsync();
-          
+            List<Year> year = await _context.Years.ToListAsync();
+            List<Rating> rating = await _context.Ratings.ToListAsync();
+
+
 
             HomeVM model = new HomeVM
             {
@@ -34,6 +37,9 @@ namespace Vudu.com_Back_End.Controllers
                 SubOptionImages=subOptionImages,
                 SubOptionSubTitles=subOptionSubTitles,
                 MainOptions=mainOption,
+                Years=year,
+                Ratings=rating
+               
             };
             return View(model);
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -15,12 +16,13 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
-
+    
         public MovieController(AppDbContext context, IWebHostEnvironment env)
         {
             _context=context;
             _env=env;
         }
+        //[Authorize(Policy = "MovieManager")]
         public async Task<IActionResult> Index()
         {
             List<Movie> actor = await _context.Movies.ToListAsync();
@@ -84,16 +86,6 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             Movie movie = await _context.Movies.FindAsync(id);
-            //ViewBag.Year = await _context.Years.FindAsync(id);
-            //ViewBag.Rating = await _context.Ratings.FindAsync(id);
-            //ViewBag.Studio = await _context.Studios.FindAsync(id);
-            //ViewBag.Genre = await _context.Genres.FindAsync(id);
-            //ViewBag.MainOpt = await _context.MainOptions.FindAsync(id);
-            //ViewBag.Genre = await _context.Genres.FindAsync(id);
-            //ViewBag.SubOptionImage = await _context.SubOptionImages.FindAsync(id);
-            //ViewBag.SubOptionSubTitle = await _context.SubOptionSubTitles.FindAsync(id);
-            //ViewBag.SubOptionTitle = await _context.SubOptionTitles.FindAsync(id);
-            //ViewBag.IndexOption = await _context.IndexOptions.FindAsync(id);
             return View(movie);
         }
 
@@ -140,7 +132,6 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
         }
         public async Task<IActionResult> Delete(int id)
         {
-           ViewBag.IndexOption = await _context.IndexOptions.FindAsync(id);
             Movie movie = await _context.Movies.FirstOrDefaultAsync(m => m.Id==id);
             return View(movie);
         }

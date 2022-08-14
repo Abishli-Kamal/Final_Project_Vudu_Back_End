@@ -3,15 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-@if (TempData["Getstarted"]!=null)
-{
-    <input type="hidden" id="getstartedJs" />
-}
 
-@if (TempData["GetstartedId"] != null)
-{
-    <input type="hidden" id="getstartedId" />
-}
 
 <main>
     <div class="mainTop col-lg-12">
@@ -98,7 +90,10 @@
                                 <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Id">
                                     <h6 class="p-2">@movie.Movie.Name</h6>
                                     <span>
-                                        May 27 |
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } |
                                         @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
                                         {
                                             @rt.Name
@@ -168,56 +163,6 @@
 
 </main>
 
-@section Scripts
-    {
-
-    <script>
-
-        $(document).ready(function() {
-
-            if ($("#getstartedJs").length) {
-                Command: toastr["success"]("Please verify your email")
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "7000",
-                    "extendedTimeOut": "2000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-            }
-            if ($("#getstartedId").length) {
-                Command: toastr["success"]("Your email has been verified")
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "7000",
-                    "extendedTimeOut": "2000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-            }
-        })
-    </script>
-}
 
 
 

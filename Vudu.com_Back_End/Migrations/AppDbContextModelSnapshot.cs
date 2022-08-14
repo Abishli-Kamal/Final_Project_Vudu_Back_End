@@ -230,6 +230,9 @@ namespace Vudu.com_Back_End.Migrations
                     b.Property<string>("Firstname")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsBlock")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
@@ -506,9 +509,6 @@ namespace Vudu.com_Back_End.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ImageId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("MovieId")
                         .HasColumnType("int");
 
@@ -537,9 +537,6 @@ namespace Vudu.com_Back_End.Migrations
                     b.Property<int?>("SubOptionSubTitleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TitleId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MovieId");
@@ -560,9 +557,6 @@ namespace Vudu.com_Back_End.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("SubOptionTitleId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TitleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

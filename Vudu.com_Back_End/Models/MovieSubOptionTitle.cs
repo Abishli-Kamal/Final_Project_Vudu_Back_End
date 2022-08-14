@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public int? MovieId { get; set; }
         public Movie Movie { get; set; }
-        public int? TitleId { get; set; }
+        public int? SubOptionTitleId { get; set; }
         public SubOptionTitle SubOptionTitle { get; set; }
     }
 }
