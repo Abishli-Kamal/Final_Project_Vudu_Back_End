@@ -10,5 +10,6 @@ namespace Vudu.com_Back_End.Models
         public List<BasketItem> BasketItems { get; set; }
 
         public bool IsBlock { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

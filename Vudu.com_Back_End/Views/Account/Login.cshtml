@@ -14,27 +14,37 @@
                     <h3>Sign In to Vudu</h3>
                 </div>
                 <div class="d-flex justify-content-center mt-5">
-                    <input asp-for="Username" class="form-control " placeholder=" Vudu User Name">
-                    <span asp-validation-for="Username" class="text-danger"></span>
+                    <input asp-for="Username" class="form-control " placeholder="Vudu User Name">
+                   
                 </div>
+                 <div class="d-flex justify-content-center">
+                          <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
 
                 <div class="d-flex justify-content-center mt-4 PasswordLogin">
                     <div class="iconType" onclick="PasswordShowHidden()">
-                        <i id="hide1" class="fa-solid fa-eye-slash"></i>
-                        <i id="hide2" class="fa-solid fa-eye"></i>
+                        <i id="hide1" class="fa-solid fa-eye-slash mb-5"></i>
+                        <i id="hide2" class="fa-solid fa-eye mb-5"></i>
                     </div>
+                
                     <input asp-for="Password" class="form-control " id="myInput" placeholder=" Vudu Password">
-                    <span asp-validation-for="Password" class="text-danger"></span>
+                
                 </div>
+                    <div class="d-flex justify-content-center">
+                          <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                  
+
 
                 <div class="d-flex justify-content-end forgotPw mt-4">
                     <a asp-controller="Account" asp-action="ForgotPassword">Forgot Password</a>
                 </div>
-                
+
                 <div class="lgnBtn d-flex justify-content-center mt-4 ">
                     <button type="submit" class="btn mb-3">Sign In</button>
 
                 </div>
+
                 <div class="text-center ">
                     <a asp-controller="Account" asp-action="Register">Create New Account</a>
                 </div>
@@ -43,5 +53,4 @@
         </div>
     </section>
 </main>
-<hr>
 

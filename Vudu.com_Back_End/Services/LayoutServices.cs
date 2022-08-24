@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Vudu.com_Back_End.DAL;
 using Vudu.com_Back_End.Models;
@@ -44,6 +45,12 @@ namespace Vudu.com_Back_End.Services
             List<SubOptionImage> subimage = await _context.SubOptionImages.ToListAsync();
 
             return subimage;
+        }
+        public async Task<List<BasketItem>> GetBasket(string username)
+        {
+            List<BasketItem> item = await _context.BasketItems.Include(s=>s.AppUser).Where(s=>s.AppUser.UserName==username).ToListAsync();
+
+            return item;
         }
 
 

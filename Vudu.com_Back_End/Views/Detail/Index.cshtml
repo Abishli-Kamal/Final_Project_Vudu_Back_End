@@ -1,16 +1,6 @@
 ﻿@model HomeVM
 <main>
-    <section id="Trailer">
-        <div id="myTrailer" class="overlay">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeTrailer()">&times;</a>
-            <div class="overlay-content">
-                <iframe style="width: 100%; display: block;" src="https://www.youtube.com/embed/AJktDS4dV18"
-                        title="YouTube video player" frameborder="0"
-                        allowfullscreen></iframe>
-            </div>
-        </div>
-
-    </section>
+  
     <section id="detailMovie">
         <div class="row w-100">
             <div class="col-lg-2 ml-5">
@@ -56,7 +46,7 @@
                     <button onclick="openTrailer()"> Trailer</button>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a style="width:50px; text-align:center; border:1px solid #046aaf;" asp-controller="basket" asp-action="BasketAdd"><i class="fa-solid fa-circle-plus "></i></a>
+                        <a style="width:150px; text-align:center; border:1px solid #046aaf;border-radius:8px;" asp-controller="basket" asp-action="BasketAdd" asp-route-id="@Model.Movie.Id"><i class="fa-solid fa-circle-plus "></i></a>
                     }
                     else
                     {

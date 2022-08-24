@@ -1,0 +1,30 @@
+﻿@model Trailer
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<table class="table table-secondary mt-5">
+    <thead>
+        <tr>
+
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Movie Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td>@Model.Id</td>
+            <td>@Model.Title</td>
+            <td>@Model.Movie.Name</td>
+        </tr>
+</table>
+<div>
+    <form method="post">
+         <button type="submit" class="btn btn-danger mt-3">Delete</button>
+    </form>
+</div>
+
+
+

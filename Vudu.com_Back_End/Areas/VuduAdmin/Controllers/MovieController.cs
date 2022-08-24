@@ -8,25 +8,29 @@ using System.Threading.Tasks;
 using Vudu.com_Back_End.DAL;
 using Vudu.com_Back_End.Models;
 using Vudu.com_Back_End.Utilities;
+using X.PagedList;
 
 namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
 {
     [Area("VuduAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class MovieController : Controller
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
-    
+
         public MovieController(AppDbContext context, IWebHostEnvironment env)
         {
             _context=context;
             _env=env;
         }
-        //[Authorize(Policy = "MovieManager")]
-        public async Task<IActionResult> Index()
+     
+        public async Task<IActionResult> Index(int page = 1)
         {
-            List<Movie> actor = await _context.Movies.ToListAsync();
-            return View(actor);
+
+            List<Movie> movie = await _context.Movies.ToListAsync();
+
+            return View(movie.ToPagedList(page, 6));
         }
         public async Task<IActionResult> Create()
         {
@@ -46,7 +50,20 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create(Movie movie)
+
         {
+            ViewBag.Actor = await _context.Actors.ToListAsync();
+            ViewBag.Year = await _context.Years.ToListAsync();
+            ViewBag.Rating = await _context.Ratings.ToListAsync();
+            ViewBag.Studio = await _context.Studios.ToListAsync();
+            ViewBag.Genre = await _context.Genres.ToListAsync();
+            ViewBag.MainOpt = await _context.MainOptions.ToListAsync();
+            ViewBag.Genre = await _context.Genres.ToListAsync();
+            ViewBag.Trailer = await _context.Trailers.ToListAsync();
+            ViewBag.SubOptionImage = await _context.SubOptionImages.ToListAsync();
+            ViewBag.SubOptionSubTitle = await _context.SubOptionSubTitles.ToListAsync();
+            ViewBag.SubOptionTitle = await _context.SubOptionTitles.ToListAsync();
+            ViewBag.IndexOption = await _context.IndexOptions.ToListAsync();
             if (!ModelState.IsValid) return View();
             if (movie.MainImage!=null)
             {
@@ -78,9 +95,66 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
                     return View();
                 }
             }
+            movie.MovieIndexOptions = new List<MovieIndexOption>();
+            foreach (int id in movie.IndexOptionIds)
+            {
+                MovieIndexOption movieIndex = new MovieIndexOption
+                {
+                    IndexOptionId = id,
+                    Movie = movie
+                };
+                movie.MovieIndexOptions.Add(movieIndex);
+            }
+
+            movie.MovieSubOptionTitles = new List<MovieSubOptionTitle>();
+            foreach (int id in movie.SubOptionTitleIds)
+            {
+                MovieSubOptionTitle movieIndex = new MovieSubOptionTitle
+                {
+                    SubOptionTitleId = id,
+                    Movie = movie
+                };
+                movie.MovieSubOptionTitles.Add(movieIndex);
+            }
+
+            movie.MovieGenres = new List<MovieGenre>();
+            foreach (int id in movie.GenreIds)
+            {
+                MovieGenre moviegenre = new MovieGenre
+                {
+                    GenreId = id,
+                    Movie = movie
+                };
+                movie.MovieGenres.Add(moviegenre);
+            }
+
+            movie.MovieSubOptionSubTitles = new List<MovieSubOptionSubTitle>();
+            foreach (int id in movie.SubOptionSubTitleIds)
+            {
+                MovieSubOptionSubTitle submovie = new MovieSubOptionSubTitle
+                {
+                    SubOptionSubTitleId = id,
+                    Movie = movie
+                };
+                movie.MovieSubOptionSubTitles.Add(submovie);
+            }
+
+            movie.MovieSubOptionImages = new List<MovieSubOptionImage>();
+            foreach (int id in movie.SubOptionSubTitleIds)
+            {
+                MovieSubOptionImage submovie = new MovieSubOptionImage
+                {
+                    SubOptionImageId = id,
+                    Movie = movie
+                };
+                movie.MovieSubOptionImages.Add(submovie);
+            }
+
             await _context.AddAsync(movie);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        
+        
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -140,7 +214,7 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
         [ActionName("Delete")]
         public async Task<IActionResult> DeleteMovie(int id)
         {
-            Movie movie = await _context.Movies.FirstOrDefaultAsync(m=>m.Id==id);
+            Movie movie = await _context.Movies.Include(s => s.MovieSubOptionImages).ThenInclude(s => s.SubOptionImage).FirstOrDefaultAsync(m => m.Id==id);
             _context.Remove(movie);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

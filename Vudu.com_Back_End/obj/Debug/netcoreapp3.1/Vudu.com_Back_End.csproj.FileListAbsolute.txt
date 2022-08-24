@@ -220,7 +220,6 @@ C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Tomatometer\Delete.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Tomatometer\Detail.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Setting\Index.cshtml.g.cs
-C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Setting\Create.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Setting\Edit.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Setting\Delete.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Setting\Detail.cshtml.g.cs
@@ -249,3 +248,19 @@ C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Actor\Edit.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Actor\Delete.cshtml.g.cs
 C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Actor\Detail.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Views\Trailer\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Vudu.com_Back_End.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\bin\Debug\netcoreapp3.1\X.PagedList.dll
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\bin\Debug\netcoreapp3.1\X.PagedList.Mvc.Core.dll
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\bin\Debug\netcoreapp3.1\X.PagedList.Web.Common.dll
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Trailer\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Account\CreateAdmin.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Account\Login.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Trailer\Create.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Trailer\Edit.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Trailer\Detail.cshtml.g.cs
+C:\Users\ASUS\Desktop\Vudu.com_Back_End\Vudu.com_Back_End\obj\Debug\netcoreapp3.1\Razor\Areas\VuduAdmin\Views\Trailer\Delete.cshtml.g.cs

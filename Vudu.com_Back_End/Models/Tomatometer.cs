@@ -10,5 +10,6 @@ namespace Vudu.com_Back_End.Models
         public int Title { get; set; }
         public int? FilterId { get; set; }
         public Filter Filter { get; set; }
+        public List<Movie> Movies { get; set; }
     }
 }

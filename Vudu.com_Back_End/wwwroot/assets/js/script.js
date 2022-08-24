@@ -8,11 +8,15 @@ var responsiveUl = document.querySelector(".responsiveUl");
 var UhdMain = document.querySelector(".UhdMain")
 const box = document.querySelectorAll(".footerToggle")
 
+$(document).ready(function () {
+    $(".toast").toast('show');
+});
 function openTrailer() {
 
     document.getElementById("myTrailer").style.width = "100%";
 
 }
+
 
 function closeTrailer() {
     document.getElementById("myTrailer").style.width = "0%";
@@ -55,6 +59,7 @@ function PasswordShowHidden() {
         hidden.style.display = "block";
     }
 }
+
 
 
 

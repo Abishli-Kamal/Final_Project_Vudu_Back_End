@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using Vudu.com_Back_End.Utilities;
 namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
 {
     [Area("VuduAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class SubOptionController : Controller
     {
         private readonly AppDbContext _context;
@@ -17,11 +19,14 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
 
         public SubOptionController(AppDbContext context, IWebHostEnvironment env)
         {
+
+            
             _context=context;
             _env=env;
         }
         public async Task<IActionResult> Index()
         {
+            
             List<SubOption> subOptions = await _context.SubOptions.ToListAsync();
             return View(subOptions);
         }

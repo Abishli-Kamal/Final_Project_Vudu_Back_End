@@ -18,6 +18,8 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
         }
         public async Task<IActionResult> Index()
         {
+
+            
             List<Rating> rt = await _context.Ratings.ToListAsync();
             return View(rt);
         }

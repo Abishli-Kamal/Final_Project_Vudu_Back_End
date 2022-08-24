@@ -17,8 +17,9 @@ namespace Vudu.com_Back_End.Controllers
         {
             _context=context;
         }
-        public async Task<IActionResult> Index(string search)
+        public async Task<IActionResult> Index(string search,int id)
         {
+           
             ViewBag.Serach=search;
             List<Movie> movies = await _context.Movies.Where(m => m.Name.Contains(search)).ToListAsync();
             List<MainOption> mainOption= await _context.MainOptions.ToListAsync();
@@ -27,6 +28,7 @@ namespace Vudu.com_Back_End.Controllers
             List<SubOptionSubTitle> subOptionSubTitles = await _context.SubOptionSubTitles.ToListAsync();
             List<Year> year = await _context.Years.ToListAsync();
             List<Rating> rating = await _context.Ratings.ToListAsync();
+
 
 
 

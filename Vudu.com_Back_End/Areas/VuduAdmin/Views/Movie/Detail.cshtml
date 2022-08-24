@@ -12,8 +12,8 @@
             <th scope="col">Age</th>
             <th scope="col">Length</th>
             <th scope="col">Language</th>
-             <th scope="col">Description</th>
-              <th scope="col">Movie Info</th>
+            <th scope="col">Description</th>
+            <th scope="col">Movie Info</th>
 
         </tr>
     </thead>
@@ -24,12 +24,19 @@
                 <img class="w-100" src="~/assets/img/Releases/@Model.Image" />
             </td>
             <td>
-                <img class="w-100" src="~/assets/img/Releases/DetailBack/@Model.BackImage" />
+                @if (@Model.BackImage!=null)
+                {
+                    <img class="w-100" style="height:130px;" src="~/assets/img/Releases/DetailBack/@Model.BackImage" alt="Image" />
+                }
+                else
+                {
+                    <img class="w-100" style="height:130px;" src="~/assets/img/Releases/DetailBack/back.jpg" alt="Image" />
+                }
             </td>
             <td>@Model.Age</td>
             <td>@Model.Length</td>
             <td>@Model.Language</td>
-            <td >@Model.Description</td>
-            <td >@Model.InfoMovie</td>
+            <td>@Model.Description</td>
+            <td>@Model.InfoMovie</td>
         </tr>
 </table>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -17,6 +17,12 @@
     <Compile Remove="Migrations\20220807073249_CreateIdentity.Designer.cs" />
     <Compile Remove="Migrations\20220810200521_AddColumn.cs" />
     <Compile Remove="Migrations\20220810200521_AddColumn.Designer.cs" />
+    <Compile Remove="Migrations\20220815134151_EditManyToManyTable.cs" />
+    <Compile Remove="Migrations\20220815134151_EditManyToManyTable.Designer.cs" />
+    <Compile Remove="Migrations\20220817205340_AddColumnMoviess.cs" />
+    <Compile Remove="Migrations\20220817205340_AddColumnMoviess.Designer.cs" />
+    <Compile Remove="Migrations\20220817205530_AddColumnMoviess.cs" />
+    <Compile Remove="Migrations\20220817205530_AddColumnMoviess.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -129,6 +135,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.0.7" />
   </ItemGroup>
 
   <ItemGroup>

@@ -17,20 +17,20 @@ namespace Vudu.com_Back_End.Models
         public string InfoMovie { get; set; }
         public string Language { get; set; }
         public string Description { get; set; }
-   
         public int? MainOptionId { get; set; }
         public MainOption MainOption { get; set; }
         public List<MovieGenre> MovieGenres { get; set; }
         public List<ActorMovie> ActorMovies { get; set; }
         public List<MovieIndexOption> MovieIndexOptions { get; set; }
-
+        public List<Trailer> Trailers { get; set; }
         public int? YearId { get; set; }
         public Year Year { get; set; }
         public int? RatingId { get; set; }
         public Rating Rating { get; set; }
         public int? StudioId { get; set; }
         public Studio Studio { get; set; }
-        public string Trailer { get; set; }
+        public int? TomatometerId { get; set; }
+        public Tomatometer Tomatometer { get; set; }
         public List<MovieSubOptionTitle> MovieSubOptionTitles { get; set; }
         public List<MovieSubOptionSubTitle> MovieSubOptionSubTitles { get; set; }
         public List<MovieSubOptionImage> MovieSubOptionImages { get; set; }

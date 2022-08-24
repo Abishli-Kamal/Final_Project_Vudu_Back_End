@@ -3,25 +3,25 @@
 @{
     ViewData["Title"] = "Index";
 }
+@if (TempData["Verify"]!=null)
+{
+    <div style="z-index: 1000; position: absolute; top: 50px; right: 20px;" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex justify-content-end">
+            <div class="toast-body">
+                Your email has been verified
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+}
+
 
 
 <main>
     <div class="mainTop col-lg-12">
-        <img src="assets/img/MainTop.png" alt="">
+        <img src="assets/img/@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="MainTop").Value" alt="">
     </div>
-    <section id="Trailer">
-        <div id="myTrailer" class="overlay">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeTrailer()">&times;</a>
-            <div class="overlay-content">
-                <iframe style="width: 100%; display: block;" src="https://youtu.be/AJktDS4dV18"
-                        title="YouTube video player" frameborder="0"
-                        allowfullscreen></iframe>
-            </div>
-        </div>
-
-    </section>
     <section id="slider">
-
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators  ">
                 @{
@@ -67,39 +67,41 @@
     </section>
 
 
-    @foreach (var item in Model.IndexOptions)
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==1))
     {
         <section id="releases">
             <div class="container">
                 <div class="row">
                     <div class="title d-flex justify-content-between w-100">
                         <div class="subTitle">
-                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==@item.Id).Name</a>
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==1).Name</a>
                         </div>
                         <div class="all">
                             <a href="">View All</a>
                         </div>
                     </div>
-                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==item.Id))
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==1))
                     {
                         <div class="col-lg-2 cardReleases">
-                            <div class="img">
-                                <a href=""><img class="w-100" src="assets/img/Releases/@movie.Movie.Image" alt=""></a>
-                            </div>
-                            <div class="description">
-                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Id">
-                                    <h6 class="p-2">@movie.Movie.Name</h6>
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
                                     <span>
                                         @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
                                         {
                                             @rt.Name
-                                        } |
+                                        } :
                                         @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
                                         {
                                             @rt.Name
                                         }
-                                        | @movie.Movie.Length
+                                        <span>Time : @movie.Movie.Length</span>
+
                                     </span>
+
                                     <div class="pl-2 check">
                                         <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
                                     </div>
@@ -116,36 +118,38 @@
                                             <span>@movie.Movie.RottenTomatoes %</span>
                                         </div>
                                     </div>
-                                    <div class=" plus">
+                                    <div class="plus d-flex">
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i class="fa-solid fa-circle-plus"></i></a>
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
                                         }
                                         else
                                         {
-                                            <a asp-controller="Account" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
                                         }
+                                        <style>
+                                            .trailer {
+                                                width: 16px;
+                                                height: 16px;
+                                                margin-left: 10px;
+                                                border: 1px solid gray;
+                                                border-radius: 50%;
+                                                font-size: 10px;
+                                                text-align: center;
+                                                margin-top: 3.7px;
+                                            }
+
+                                        </style>
+
+                                        <a class="trailer" asp-controller="Trailer" title="Trailer" asp-action="Index" asp-route-Id="@movie.Movie.Id">T</a>
                                     </div>
-                                    <div class="buttonTr">
-                                        <a onclick="openTrailer()"><button>Trailer</button></a>
-                                    </div>
+
                                 </a>
                             </div>
                         </div>
-                        <section id="Trailer">
-                            <div id="myTrailer" class="overlay">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeTrailer()">&times;</a>
-                                <div class="overlay-content">
-                                    <iframe style="width: 100%; display: block;" src=""
-                                    title="YouTube video player" frameborder="0"
-                                    allowfullscreen></iframe>
-                                </div>
-                            </div>
-
-                        </section>
-
 
                     }
+
                 </div>
             </div>
         </section>
@@ -154,13 +158,931 @@
         {
             <div class="advertising">
                 <div class="container">
-                    <img class="w-100" src="assets/img/Releases/@advr.Image" alt="">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+          <hr>
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==2))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==2).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==2))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span>Time : @movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+
+
+                                        <a class="trailer" asp-controller="Trailer" title="Trailer" asp-action="Index" asp-route-Id="@movie.Movie.Id">T</a>
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+          <hr>
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==3))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==3).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==3))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span>Time : @movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+
+
+                                        <a class="trailer" asp-controller="Trailer" title="Trailer" asp-action="Index" asp-route-Id="@movie.Movie.Id">T</a>
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+          <hr>
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==4))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==4).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==4))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span>Time : @movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+
+
+                                        <a class="trailer" asp-controller="Trailer" title="Trailer" asp-action="Index" asp-route-Id="@movie.Movie.Id">T</a>
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+          <hr>
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==5))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==5).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==5))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span> @movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+
+
+                                        <a class="trailer" asp-controller="Trailer" title="Trailer" asp-action="Index" asp-route-Id="@movie.Movie.Id">T</a>
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+          <hr>
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==6))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==6).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==6))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span>@movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+
+
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+          <hr>
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==7))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==7).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==7))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span>@movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+          <hr>
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==8))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==8).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==8))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span>@movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+          <hr>
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==9))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==9).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==9))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span>@movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+      
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==10))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==10).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==10))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span> @movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+
+
+                                        <a class="trailer" asp-controller="Trailer" title="Trailer" asp-action="Index" asp-route-Id="@movie.Movie.Id">T</a>
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+          
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==12))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==12).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==12))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span>@movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
+                </div>
+            </div>
+        }
+       
+    }
+    @foreach (var item in Model.IndexOptions.Where(s => s.Id==13))
+    {
+        <section id="releases">
+            <div class="container">
+                <div class="row">
+                    <div class="title d-flex justify-content-between w-100">
+                        <div class="subTitle">
+                            <a href=""> @Model.IndexOptions.FirstOrDefault(s=>s.Id==13).Name</a>
+                        </div>
+                        <div class="all">
+                            <a href="">View All</a>
+                        </div>
+                    </div>
+                    @foreach (MovieIndexOption movie in Model.MovieIndexOptions.FindAll(s => s.IndexOptionId==13))
+                    {
+                        <div class="col-lg-2 cardReleases">
+
+                            <img class=" img-fluid" src="assets/img/Releases/@movie.Movie.Image" alt="">
+
+                            <div class="description p-1">
+                                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Movie.Id">
+                                    <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Movie.Name</h6>
+                                    <span>
+                                        @foreach (Year rt in Model.Years.Where(s => s.Id==movie.Movie.YearId))
+                                        {
+                                            @rt.Name
+                                        } :
+                                        @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.Movie.RatingId))
+                                        {
+                                            @rt.Name
+                                        }
+                                        <span> @movie.Movie.Length</span>
+
+                                    </span>
+
+                                    <div class="pl-2 check">
+                                        <i class="fa-regular fa-circle-check"></i><span>@movie.Movie.Age</span>
+                                    </div>
+
+                                    <div class="icon d-flex">
+                                        <div class="star d-flex pt-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                        <div class="faiz">
+                                            <span>@movie.Movie.RottenTomatoes %</span>
+                                        </div>
+                                    </div>
+                                    <div class="plus d-flex">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                        }
+
+
+                                        <a class="trailer" asp-controller="Trailer" title="Trailer" asp-action="Index" asp-route-Id="@movie.Movie.Id">T</a>
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </section>
+        <hr>
+        @foreach (Advertising advr in Model.Advertisings.Where(s => s.Id==item.Id))
+        {
+            <div class="advertising">
+                <div class="container">
+                    <img class="w-100" src="~/assets/img/Releases/@advr.Image" alt="">
                 </div>
             </div>
         }
     }
-
-
 </main>
 
 

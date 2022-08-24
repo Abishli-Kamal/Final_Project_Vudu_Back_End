@@ -1,162 +1,320 @@
-﻿
-@model HomeVM
+﻿@model HomeVM
 @{
     ViewData["Title"] = "Index";
 }
 
 <main>
-    <section id="Uhdheader">
-        <div class="container">
-            <div class="mainTitle d-flex">
-                <div class="title text-center mt-3">
-                    <h4></h4>
-                </div>
-                <div class="responsiveMenubar mt-4">
-                    <i class="fa-solid fa-bars" id="respMenu"></i>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="title d-flex justify-content-between mt-5">
-                    <div class="reset">
-                        <a href="">Reset</a>
+    <section id="header">
+        <div class="row w-100">
+            <div class="container">
+                <div style="color:white;" class="title  text-center mt-5">
+                    @if (ViewBag.Id!=null)
+                    {
+                    <h4>@Model.SubOptionSubTitles.FirstOrDefault(s=>s.Id==ViewBag.Id).Title (@Model.Movies.Count)</h4>
+                        
+                    }
+                    else
+                    {
+                        <h4></h4>     
+                    }
                     </div>
-                    <div class="responsiveUl ">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Most Watched
+                    <div class="title d-flex justify-content-between mt-5">
+                        <div class="reset">
+                            <a href="">Reset</a>
+                        </div>
+
+                        <div class="sub d-flex ">
+                            <button class="btn border-rounded titleBtn" id="filterBtn">
+                                Filters <i class="fa-solid fa-sort-down ml-2"></i>
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Release Date</a>
-                            </div>
+
+                            </a>
+                        </div>
+
+                        <div class="responsiveMenubar">
+                            <i class="fa-solid fa-bars" id="respMenu"></i>
                         </div>
                     </div>
-                    <div class="sub d-flex ">
-                        <button class="btn border-rounded titleBtn" id="filterBtn">
-                            Filters <i class="fa-solid fa-sort-down ml-2"></i>
-                        </button>
-                    </div>
-
                 </div>
-            </div>
-            <div class="respMenuFilters">
-                <div class="filters mt-3 ">
-                    <div class="title ">
-                        <h6 class="">Genre:</h6>
-                    </div>
-                    <div class="genre d-flex ">
-                        <div class="firstGenre mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio" checked> All</a></li>
+                <div class="respMenuFilters">
+                    <div class="container">
+                        <div class="filters mt-3 ">
+                            <div class="title ">
+                                <h6 class="">Genre:</h6>
+                            </div>
+                            <div class="genre d-flex ">
+                                <div class="firstGenre mt-2">
+                                    <ul>
+                                        @foreach (Genre item in Model.Genres)
+                                        {
+                                            <li><a asp-action="Index" asp-route-genre="@item.Id"><input type="radio" > @item.Name</a></li>
+                                        }
 
-                                <li><a href=""><input type="radio">Animation</a></li>
-                                <li><a href=""><input type="radio">Crime & Thrillers</a></li>
+                                    </ul>
+                                </div>
+                                @*<div class="secondGenre ml-5 mt-2">
+                                <ul>
+                                <li><a href=""><input type="radio">International</a></li>
                                 <li><a href=""><input type="radio">Kids & Family</a></li>
-                                <li><a href=""><input type="radio">Sci-Fi</a></li>
-                            </ul>
-                        </div>
-                        <div class="secondGenre ml-5 mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio"> Action</a></li>
-                                <li><a href=""><input type="radio">Comedy</a></li>
-                                <li><a href=""><input type="radio">Horror</a></li>
+                                <li><a href=""><input type="radio">Music/Musical</a></li>
+                                <li><a href=""><input type="radio">Other</a></li>
+                                <li><a href=""><input type="radio">Reality</a></li>
                                 <li><a href=""><input type="radio">Romance</a></li>
-                            </ul>
+                                <li><a href=""><input type="radio">Sci-Fi</a></li>
+                                <li><a href=""><input type="radio">Sports</a></li>
+                                <li><a href=""><input type="radio">Superheroes</a></li>
+                                <li><a href=""><input type="radio">Suspense</a></li>
+                                <li><a href=""><input type="radio">Western</a></li>
+                                </ul>*@
+                            </div>
                         </div>
                     </div>
-                </div>
-                <hr>
-                <div class="filters mt-3 ">
-                    <div class="title ">
-                        <h6 class="">Ways to Watch:</h6>
-                    </div>
-                    <div class="genre d-flex ">
-                        <div class="firstGenre mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio" checked> All</a></li>
-                            </ul>
-                        </div>
-                        <div class="secondGenre ml-5 mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio"> Free with ads</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="filters mt-3 ">
-                    <div class="title ">
-                        <h6 class="">Tomatometers:</h6>
-                    </div>
-                    <div class="genre d-flex ">
-                        <div class="firstGenre mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio" checked> All</a></li>
-                            </ul>
-                        </div>
-                        <div class="secondGenre ml-5 mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio"> Fresh only</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="filterAll mt-5">
-                <div class="row">
-                    <div class="filters  col-lg-2">
+                    <hr>
+                    <div class="filters mt-3 ">
                         <div class="title ">
-                            <h6 class="">Genre:</h6>
+                            <h6 class="">Year:</h6>
                         </div>
-                        <div class="genre">
-                            <div class="firstGenre ">
+                        <div class="genre d-flex ">
+                            <div class="firstGenre mt-2">
                                 <ul>
-                                    <li><a href="">Action</a></li>
-                                    <li><a href="">Animation</a></li>
-                                    <li><a href="">Comedy</a></li>
-                                    <li><a href="">Crime & Thrillers</a></li>
-                                    <li><a href="">Horror</a></li>
-                                    <li><a href="">Kids & Family</a></li>
-                                    <li><a href="">Romance</a></li>
-                                    <li><a href="">Sci-Fi</a></li>
+                                    <li><a href=""><input type="radio" checked> Any Year</a></li>
+                                    <li><a href=""><input type="radio"> 2010's</a></li>
+                                    <li><a href=""><input type="radio"> 1990's</a></li>
+                                    <li><a href=""><input type="radio">1970's</a></li>
+                                    <li><a href=""><input type="radio">1950's Earlier</a></li>
+                                </ul>
+                            </div>
+                            <div class="secondGenre ml-5 mt-2">
+                                <ul>
+                                    <li><a href=""><input type="radio">New Releases</a></li>
+                                    <li><a href=""><input type="radio">2000's</a></li>
+                                    <li><a href=""><input type="radio">1980's</a></li>
+                                    <li><a href=""><input type="radio">1960's</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="filters  col-lg-2">
-                        <div class="title ">
-                            <h6 class="">Ways to Watch:</h6>
-                        </div>
-                        <div class="genre">
-                            <div class="firstGenre">
-                                <ul>
-                                    <li><a href="">Free with ads</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filters col-lg-2">
+                    <hr>
+                    <div class="filters mt-3 ">
                         <div class="title ">
                             <h6 class="">Tomatometer:</h6>
                         </div>
-                        <div class="genre ">
-                            <div class="firstGenre">
+                        <div class="genre d-flex ">
+                            <div class="firstGenre mt-2">
                                 <ul>
-                                    <li><a href="">Fresh only</a></li>
+                                    <li><a href=""><input type="radio" checked> Any</a></li>
+                                    <li><a href=""><input type="radio">> 60% fresh</a></li>
+                                </ul>
+                            </div>
+                            <div class="secondGenre ml-5 mt-2">
+                                <ul>
+                                    <li><a href=""><input type="radio">>80% fresh</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="filters mt-3 ">
+                        <div class="title ">
+                            <h6 class="">Features:</h6>
+                        </div>
+                        <div class="genre d-flex ">
+                            <div class="firstGenre mt-2">
+                                <ul>
+                                    <li><a href=""><input type="radio" checked> Any Feature</a></li>
+                                    <li><a href=""><input type="radio"> Bonus Features</a></li>
+                                    <li><a href=""><input type="radio"> 3D</a></li>
+                                </ul>
+                            </div>
+                            <div class="secondGenre ml-5 mt-2">
+                                <ul>
+                                    <li><a href=""><input type="radio">4K UHD</a></li>
+                                    <li><a href=""><input type="radio">Auido Description</a></li>
+                                    <li><a href=""><input type="radio">Available for rent</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters mt-3 ">
+                        <div class="title ">
+                            <h6 class="">Community:</h6>
+                        </div>
+                        <div class="genre d-flex ">
+                            <div class="firstGenre mt-2">
+                                <ul>
+                                    <li><a href=""><input type="radio" checked> Any Rating</a></li>
+                                    <li><a href=""><input type="radio">3 stars and above</a></li>
+                                </ul>
+                            </div>
+                            <div class="secondGenre ml-5 mt-2">
+                                <ul>
+                                    <li><a href=""><input type="radio">4 stars and above</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters mt-3 ">
+                        <div class="title ">
+                            <h6 class="">MPAA Rating:</h6>
+                        </div>
+                        <div class="genre d-flex ">
+                            <div class="firstGenre mt-2">
+                                <ul>
+                                    <li><a href=""><input type="radio" checked> Any Rating</a></li>
+                                    <li><a href=""><input type="radio">PG-13 and below</a></li>
+                                    <li><a href=""><input type="radio"> FAM and below</a></li>
+                                </ul>
+                            </div>
+                            <div class="secondGenre ml-5 mt-2">
+                                <ul>
+                                    <li><a href=""><input type="radio">R and below</a></li>
+                                    <li><a href=""><input type="radio">PG and below</a></li>
+                                    <li><a href=""><input type="radio">G</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters mt-3 ">
+                        <div class="title ">
+                            <h6 class="">Studio:</h6>
+                        </div>
+                        <div class="genre d-flex ">
+                            <div class="firstGenre mt-2">
+                                <ul>
+                                    <li><a href=""><input type="radio" checked> Any Studio</a></li>
+                                    <li><a href=""><input type="radio"> AMC Film</a></li>
+                                    <li><a href=""><input type="radio"> Paramount Pictures</a></li>
+                                    <li><a href=""><input type="radio">Sony Pictures</a></li>
+                                    <li><a href=""><input type="radio">VUDU</a></li>
+                                    <li><a href=""><input type="radio">Warner Bros</a></li>
+                                </ul>
+                            </div>
+                            <div class="secondGenre ml-5 mt-2">
+                                <ul>
+                                    <li><a href=""><input type="radio">ABC Studios</a></li>
+                                    <li><a href=""><input type="radio">FOX</a></li>
+                                    <li><a href=""><input type="radio">MGM</a></li>
+                                    <li><a href=""><input type="radio">Peacock</a></li>
+                                    <li><a href=""><input type="radio">Universal Studios</a></li>
+                                    <li><a href=""><input type="radio">Walt Disney Studios</a></li>
+                                    <li><a href=""><input type="radio">Other Studios</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="clear text-center">
-                    <a href="">Clear all filters</a>
-                </div>
-                <hr>
             </div>
         </div>
+        @foreach (Filter filter in Model.Filters)
+        {
+            <div class="filterAll w-100">
+                <div class="row w-100">
+                    <div class="filters mt-3 col-lg-2">
+                        <div class="title ">
+                            <h6 class="">@filter.Name:</h6>
+                        </div>
+                        <div class="genre d-flex">
+                            <div class="firstGenre mt-2">
+                                <ul>
+
+                                    @foreach (Genre item in Model.Genres)
+                                    {
+                                        <li><a asp-action="Index" asp-route-genre="@item.Id">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="secondGenre ml-5 mt-2">
+                                <ul>
+                                    @foreach (Genre item in Model.Genres.Take(6))
+                                    {
+                                        <li><a asp-action="Index" asp-route-genre="@item.Id">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters mt-3 col-lg-2">
+                        <div class="title ">
+                            <h6 class="">@Model.Filters.FirstOrDefault(s=>s.Id==2).Name:</h6>
+                        </div>
+                        <div class="genre d-flex">
+                            <div class="firstGenre mt-2">
+
+                                <ul>
+
+                                    @foreach (Year item in Model.Years)
+                                    {
+                                        <li><a asp-action="Index" asp-route-year="@item.Id">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="filters mt-3 col-lg-2">
+                        <div class="title ">
+                            <h6 class="">@Model.Filters.FirstOrDefault(s=>s.Id==3).Name::</h6>
+                        </div>
+                        <div class="genre ">
+                            <div class="firstGenre mt-2">
+
+                                <ul>
+
+                                    @foreach (Tomatometer item in Model.Tomatometers)
+                                    {
+                                        <li><a asp-action="Index" asp-route-tom="@item.Id"> >@item.Title % fresh</a></li>
+                                    }
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="filters col-lg-2">
+                        <div class="genre ">
+
+                            <div class="title mt-2 ">
+                                <h6 class="">@Model.Filters.FirstOrDefault(s=>s.Id==7).Name::</h6>
+                            </div>
+                            <div class="genre d-flex">
+                                <div class="firstGenre mt-2">
+                                    <ul>
+                                        @foreach (Rating item in Model.Ratings)
+                                        {
+                                            <li><a asp-action="Index" asp-route-rating="@item.Id">@item.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters mt-3 col-lg-2">
+                        <div class="title ">
+                            <h6 class="">@Model.Filters.FirstOrDefault(s=>s.Id==5).Name::</h6>
+                        </div>
+                        <div class="genre">
+                            <div class="firstGenre mt-2">
+
+                                <ul>
+                                    @foreach (Studio item in Model.Studios)
+                                    {
+                                        <li><a asp-action="Index" asp-route-studio="@item.Id">@item.Name</a></li>
+                                    }
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clear ml-4">
+                    <a href="">Clear all filters</a>
+                </div>
+            </div>
+        }
+
+
 
 
     </section>
@@ -168,21 +326,31 @@
                     <div id="all-movies">
                         <div class="container">
                             <div class="row w-100">
-                                @foreach (MovieSubOptionSubTitle sub in Model.MovieSubOptionSubTitles)
+
+                                @foreach (Movie movie in Model.Movies)
                                 {
                                     <div class="col-lg-2 cardReleases">
-                                        <div class="img">
-                                            <a href="">
-                                                <img class="w-100" src="~/assets/img/Releases/@sub.Movie.Image"
-                                                 alt="">
-                                            </a>
-                                        </div>
-                                        <div class="description">
-                                            <a href="">
-                                                <h6 class="p-2">@sub.Movie.Name </h6>
-                                                <span> Jun 10 PG-13 @sub.Movie.Length</span>
+
+                                        <img class=" img-fluid" src="assets/img/Releases/@movie.Image" alt="">
+
+                                        <div class="description p-1">
+                                            <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Id">
+                                                <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Name</h6>
+                                                <span>
+                                                    @foreach (Year rt in Model.Years.Where(s => s.Id==movie.YearId))
+                                                    {
+                                                        @rt.Name
+                                                    } :
+                                                    @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.RatingId))
+                                                    {
+                                                        @rt.Name
+                                                    }
+                                                    <span>Time : @movie.Length</span>
+
+                                                </span>
+
                                                 <div class="pl-2 check">
-                                                    <i class="fa-regular fa-circle-check"></i><span>@sub.Movie.Age</span>
+                                                    <i class="fa-regular fa-circle-check"></i><span>@movie.Age</span>
                                                 </div>
 
                                                 <div class="icon d-flex">
@@ -191,761 +359,51 @@
                                                         <i class="fa-solid fa-star"></i>
                                                         <i class="fa-solid fa-star"></i>
                                                         <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-regular fa-star"></i>
+                                                        <i class="fa-solid fa-star-half-stroke"></i>
                                                     </div>
                                                     <div class="faiz">
-                                                        <span>@sub.Movie.RottenTomatoes</span>
+                                                        <span>@movie.RottenTomatoes %</span>
                                                     </div>
                                                 </div>
-                                                <div class="mt-3 plus">
-                                                    <i class="fa-solid fa-circle-plus"></i>
+                                                <div class="plus d-flex">
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                        <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                                                    }
+                                                    <style>
+                                                        .trailer {
+                                                            width: 16px;
+                                                            height: 16px;
+                                                            margin-left: 10px;
+                                                            border: 1px solid gray;
+                                                            border-radius: 50%;
+                                                            font-size: 10px;
+                                                            text-align: center;
+                                                            margin-top: 3.7px;
+                                                        }
+
+                                                    </style>
+                                                    
+                                                    <a class="trailer" asp-controller="Trailer" title="Trailer" asp-action="Index" asp-route-Id="@movie.Id">T</a>
+
                                                 </div>
-                                                <div class="buttonTr mt-1">
-                                                    <a href="#" onclick="openTrailer()"><button>Trailer</button></a>
-                                                </div>
+
                                             </a>
                                         </div>
                                     </div>
                                 }
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <div id="all-movies">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-1.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">American Carnage</h6>
-                                            <span>2048 R 101 min</span>
 
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-4 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-5">
-                                                <a href="#" onclick="openTrailer()"><button>Trailer</button></a>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-
-                                    <div class="img">
-                                        <a href=""><img class="w-100" src="assets/img/Releases/3-2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Code Name Banshee</h6>
-                                            <span>Jul 1 NR 93 min</span>
-                                            <div class="pl-2 check">
-                                                <i class="fa-regular fa-circle-check"></i><span>Age 15+</span>
-                                            </div>
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-3 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-3">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-
-                                    <div class="img">
-                                        <a href=""><img class="w-100" src="assets/img/Releases/3-3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Hot Seat </h6>
-                                            <span>Jul 1 NR 99 min</span>
-                                            <div class="pl-2 check">
-                                                <i class="fa-regular fa-circle-check"></i><span>Age 15+</span>
-                                            </div>
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-4 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Last Journey of Paul W.R</h6>
-                                            <span>Aug 26 NR</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-
-                                    <div class="img">
-                                        <a href=""><img class="w-100" src="assets/img/Releases/5-3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Family Camp</h6>
-                                            <span>May 20 PG 111 min</span>
-                                            <div class="pl-2 check">
-                                                <i class="fa-regular fa-circle-check"></i><span>Age 8+</span>
-                                            </div>
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-                                                <div class="faiz">
-                                                    <span>40%</span>
-                                                </div>
-                                            </div>
-                                            <div class="mt-4 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-3.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Rowdy </h6>
-                                            <span> Aug 9 NR 101 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-5">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href=""><img class="w-100" src="assets/img/Releases/7.jpg" alt=""></a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Memory</h6>
-                                            <span>May 19 PG 100 min</span>
-                                            <div class="pl-2 check">
-                                                <i class="fa-regular fa-circle-check"></i><span>Age 16+</span>
-                                            </div>
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                                </div>
-                                                <div class="faiz">
-                                                    <span>29%</span>
-                                                </div>
-                                            </div>
-                                            <div class="mt-4 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-4.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Wild Men </h6>
-                                            <span> Aug 5 NR 102 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-5">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-5.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Comedy House Party </h6>
-                                            <span> Aug 2 NR 102 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-4 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-6.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Alien Contact in the Rockies </h6>
-                                            <span>Jul 26 TV-14 100 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-4 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-7.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Beba </h6>
-                                            <span>Jul 26 R 100 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-8.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">My Shattered Life </h6>
-                                            <span>Jul 26 TV-MA 80 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-9.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Prescription for Love </h6>
-                                            <span>Jul 26 TV-MA 141 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-4 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-10.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">The Nan Movie</h6>
-                                            <span>Jul 22 TV-14</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-5">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-11.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Fortune Favors Lady Nikuko</h6>
-                                            <span>Jul 19 NR 96 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-4 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-5">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-12.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">The Irish Connection</h6>
-                                            <span>Jul 19 TV-MA 93 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-13.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">White Lies</h6>
-                                            <span>Jul 19 TV-MA 86 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-5">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-14.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Diary of a Spy</h6>
-                                            <span>Jul 15 NR 100 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-5">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-15.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">Marcus</h6>
-                                            <span>Jul 15 NR 108 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-16.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">The Royal</h6>
-                                            <span>Jul 15 NR 98 min</span>
-                                            <div class="pl-2 check">
-                                                <i class="fa-regular fa-circle-check"></i><span>Age 15+</span>
-                                            </div>
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-4 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100" src="assets/img/Releases/all-m-5.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">She Will </h6>
-                                            <span> Jul 15 NR 96 min</span>
-                                            <div class="pl-2 check">
-                                                <i class="fa-regular fa-circle-check"></i><span>Age 15+</span>
-                                            </div>
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-                                                <div class="faiz">
-                                                    <span>88%</span>
-                                                </div>
-                                            </div>
-                                            <div class="mt-3 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 cardReleases">
-                                    <div class="img">
-                                        <a href="">
-                                            <img class="w-100"
-                                                 src="assets/img/Releases/all-movies-date-17.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        <a href="">
-                                            <h6 class="p-2">When We Speak</h6>
-                                            <span>Jul 15 NR 78 min</span>
-
-
-                                            <div class="icon d-flex">
-                                                <div class="star d-flex pt-2">
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                    <i class="fa-regular fa-star"></i>
-                                                </div>
-
-                                            </div>
-                                            <div class="mt-5 plus">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </div>
-                                            <div class="buttonTr mt-4">
-                                                <button>Trailer</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>
     </section>
-    <section id="Trailer">
-        <div id="myTrailer" class="overlay">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeTrailer()">&times;</a>
-            <div class="overlay-content">
-                <iframe style="width: 100%; display: block;" src="https://www.youtube.com/embed/AJktDS4dV18"
-                        title="YouTube video player" frameborder="0"
-                        allowfullscreen></iframe>
-            </div>
-        </div>
 
-    </section>
 </main>

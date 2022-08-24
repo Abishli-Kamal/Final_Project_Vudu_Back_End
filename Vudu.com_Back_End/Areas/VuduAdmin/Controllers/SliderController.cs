@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using Vudu.com_Back_End.Utilities;
 namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
 {
     [Area("VuduAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class SliderController : Controller
     {
         private readonly AppDbContext _context;
@@ -22,6 +24,8 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
         }
         public async Task<IActionResult> Index()
         {
+
+            
             List<Slider> slider = await _context.Sliders.ToListAsync();
             return View(slider);
         }

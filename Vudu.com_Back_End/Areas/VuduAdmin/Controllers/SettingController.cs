@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using Vudu.com_Back_End.Utilities;
 namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
 {
     [Area("VuduAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class SettingController : Controller
     {
         private readonly AppDbContext _context;
@@ -22,39 +24,12 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
         }
         public async Task<IActionResult> Index()
         {
+
+            
             List<Setting> settings = await _context.Settings.ToListAsync();
             return View(settings);
         }
-        public IActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Create(Setting setting)
-        {
-            if (!ModelState.IsValid) return View();
-            if (setting.Photo != null)
-            {
-                if (setting.Photo.Length<1024*1024&&setting.Photo.ContentType.Contains("image"))
-                {
-                    setting.Value = await setting.Photo.FileCreate(_env.WebRootPath, @"assets\img");
-                    await _context.AddAsync(setting);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-                else
-                {
-                    ModelState.AddModelError("Photo", "Please choose supported file");
-                    return View();
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("Photo", "Please choose file");
-                return View();
-            }
-        }
+ 
         public async Task<IActionResult> Edit(int id)
         {
             Setting setting = await _context.Settings.FirstOrDefaultAsync(s => s.Id == id);

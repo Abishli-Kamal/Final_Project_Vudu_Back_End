@@ -230,6 +230,9 @@ namespace Vudu.com_Back_End.Migrations
                     b.Property<string>("Firstname")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsBlock")
                         .HasColumnType("bit");
 
@@ -417,8 +420,8 @@ namespace Vudu.com_Back_End.Migrations
                     b.Property<int?>("StudioId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Trailer")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("TomatometerId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("YearId")
                         .HasColumnType("int");
@@ -430,6 +433,8 @@ namespace Vudu.com_Back_End.Migrations
                     b.HasIndex("RatingId");
 
                     b.HasIndex("StudioId");
+
+                    b.HasIndex("TomatometerId");
 
                     b.HasIndex("YearId");
 
@@ -446,7 +451,7 @@ namespace Vudu.com_Back_End.Migrations
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MovieId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -468,7 +473,7 @@ namespace Vudu.com_Back_End.Migrations
                     b.Property<int>("IndexOptionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MovieId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -487,10 +492,10 @@ namespace Vudu.com_Back_End.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MovieId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SubOptionId")
+                    b.Property<int>("SubOptionId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -509,10 +514,10 @@ namespace Vudu.com_Back_End.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MovieId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SubOptionImageId")
+                    b.Property<int>("SubOptionImageId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -531,10 +536,10 @@ namespace Vudu.com_Back_End.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MovieId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SubOptionSubTitleId")
+                    b.Property<int>("SubOptionSubTitleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -553,10 +558,10 @@ namespace Vudu.com_Back_End.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MovieId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SubOptionTitleId")
+                    b.Property<int>("SubOptionTitleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -710,7 +715,6 @@ namespace Vudu.com_Back_End.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("MainOptionId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -764,6 +768,26 @@ namespace Vudu.com_Back_End.Migrations
                     b.HasIndex("FilterId");
 
                     b.ToTable("Tomatometers");
+                });
+
+            modelBuilder.Entity("Vudu.com_Back_End.Models.Trailer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("Trailers");
                 });
 
             modelBuilder.Entity("Vudu.com_Back_End.Models.Year", b =>
@@ -889,6 +913,10 @@ namespace Vudu.com_Back_End.Migrations
                         .WithMany("Movies")
                         .HasForeignKey("StudioId");
 
+                    b.HasOne("Vudu.com_Back_End.Models.Tomatometer", "Tomatometer")
+                        .WithMany("Movies")
+                        .HasForeignKey("TomatometerId");
+
                     b.HasOne("Vudu.com_Back_End.Models.Year", "Year")
                         .WithMany("Movies")
                         .HasForeignKey("YearId");
@@ -904,7 +932,9 @@ namespace Vudu.com_Back_End.Migrations
 
                     b.HasOne("Vudu.com_Back_End.Models.Movie", "Movie")
                         .WithMany("MovieGenres")
-                        .HasForeignKey("MovieId");
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Vudu.com_Back_End.Models.MovieIndexOption", b =>
@@ -917,51 +947,69 @@ namespace Vudu.com_Back_End.Migrations
 
                     b.HasOne("Vudu.com_Back_End.Models.Movie", "Movie")
                         .WithMany("MovieIndexOptions")
-                        .HasForeignKey("MovieId");
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Vudu.com_Back_End.Models.MovieSubOption", b =>
                 {
                     b.HasOne("Vudu.com_Back_End.Models.Movie", "Movie")
                         .WithMany()
-                        .HasForeignKey("MovieId");
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Vudu.com_Back_End.Models.SubOption", "SubOption")
                         .WithMany("MovieSubOptions")
-                        .HasForeignKey("SubOptionId");
+                        .HasForeignKey("SubOptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Vudu.com_Back_End.Models.MovieSubOptionImage", b =>
                 {
                     b.HasOne("Vudu.com_Back_End.Models.Movie", "Movie")
                         .WithMany("MovieSubOptionImages")
-                        .HasForeignKey("MovieId");
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Vudu.com_Back_End.Models.SubOptionImage", "SubOptionImage")
                         .WithMany("MovieSubOptionImages")
-                        .HasForeignKey("SubOptionImageId");
+                        .HasForeignKey("SubOptionImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Vudu.com_Back_End.Models.MovieSubOptionSubTitle", b =>
                 {
                     b.HasOne("Vudu.com_Back_End.Models.Movie", "Movie")
                         .WithMany("MovieSubOptionSubTitles")
-                        .HasForeignKey("MovieId");
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Vudu.com_Back_End.Models.SubOptionSubTitle", "SubOptionSubTitle")
                         .WithMany("MovieSubOptionSubTitles")
-                        .HasForeignKey("SubOptionSubTitleId");
+                        .HasForeignKey("SubOptionSubTitleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Vudu.com_Back_End.Models.MovieSubOptionTitle", b =>
                 {
                     b.HasOne("Vudu.com_Back_End.Models.Movie", "Movie")
                         .WithMany("MovieSubOptionTitles")
-                        .HasForeignKey("MovieId");
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Vudu.com_Back_End.Models.SubOptionTitle", "SubOptionTitle")
                         .WithMany("MovieSubOptionTitles")
-                        .HasForeignKey("SubOptionTitleId");
+                        .HasForeignKey("SubOptionTitleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Vudu.com_Back_End.Models.Rating", b =>
@@ -998,9 +1046,7 @@ namespace Vudu.com_Back_End.Migrations
                 {
                     b.HasOne("Vudu.com_Back_End.Models.MainOption", "MainOption")
                         .WithMany("SubOptionSubTitles")
-                        .HasForeignKey("MainOptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MainOptionId");
                 });
 
             modelBuilder.Entity("Vudu.com_Back_End.Models.SubOptionTitle", b =>
@@ -1017,6 +1063,13 @@ namespace Vudu.com_Back_End.Migrations
                     b.HasOne("Vudu.com_Back_End.Models.Filter", "Filter")
                         .WithMany("Tomatometers")
                         .HasForeignKey("FilterId");
+                });
+
+            modelBuilder.Entity("Vudu.com_Back_End.Models.Trailer", b =>
+                {
+                    b.HasOne("Vudu.com_Back_End.Models.Movie", "Movie")
+                        .WithMany("Trailers")
+                        .HasForeignKey("MovieId");
                 });
 
             modelBuilder.Entity("Vudu.com_Back_End.Models.Year", b =>

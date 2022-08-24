@@ -9,13 +9,15 @@ namespace Vudu.com_Back_End.Controllers
     public class HomeController : Controller
     {
         private readonly AppDbContext _context;
-
+       
         public HomeController(AppDbContext context)
         {
             _context=context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string url)
         {
+            ViewBag.Url=url;
+            
             HomeVM model = new HomeVM
             {
                 Settings=await _context.Settings.ToListAsync(),

@@ -15,44 +15,30 @@ namespace Vudu.com_Back_End.Controllers
         {
             _context=context;
         }
-        public async Task<IActionResult> Index(int? imageId, int id)
+        public async Task<IActionResult> Index(int? imageId, int? year, int? rating, int? studio, int? tom, int? genre)
         {
-            var query = _context.MovieSubOptionImages.AsQueryable();
-            if (imageId!=null)
-            {
-                query=query.Where(m => m.SubOptionImage.Id==imageId);
-            }
-
+            ViewBag.Id=imageId;
             HomeVM model = new HomeVM
             {
-                Settings=await _context.Settings.ToListAsync(),
-                Sliders=await _context.Sliders.ToListAsync(),
-                MainOptions=await _context.MainOptions.ToListAsync(),
                 SubOptions=await _context.SubOptions.ToListAsync(),
                 Filters=await _context.Filters.ToListAsync(),
                 Genres=await _context.Genres.ToListAsync(),
                 Years=await _context.Years.ToListAsync(),
                 Studios=await _context.Studios.ToListAsync(),
                 Ratings=await _context.Ratings.ToListAsync(),
-                Movies=await _context.Movies.ToListAsync(),
+                SubOptionImages=await _context.SubOptionImages.ToListAsync(),
+                Movies=await _context.Movies.Include(k => k.MovieGenres).ThenInclude(s => s.Genre).Include(m => m.MovieSubOptionImages).ThenInclude(ms => ms.SubOptionImage).Where(m => m.MovieSubOptionImages.Any(mso => mso.SubOptionImageId==imageId)|| m.YearId==year || m.RatingId==rating || m.StudioId==studio || m.TomatometerId==tom || m.MovieGenres.Any(s => s.GenreId==genre)).ToListAsync(),
                 MovieSubOptions=await _context.MovieSubOptions.ToListAsync(),
                 Tomatometers=await _context.Tomatometers.ToListAsync(),
                 MovieGenres=await _context.MovieGenres.ToListAsync(),
-                Actors=await _context.Actors.ToListAsync(),
-                ActorMovies=await _context.ActorMovies.ToListAsync(),
-                MovieIndexOptions=await _context.MovieIndexOptions.ToListAsync(),
-                IndexOptions=await _context.IndexOptions.ToListAsync(),
-                Advertisings=await _context.Advertisings.ToListAsync(),
                 MovieSubOptionTitles=await _context.MovieSubOptionTitles.ToListAsync(),
                 SubOptionTitles=await _context.SubOptionTitles.ToListAsync(),
-
-                MovieSubOptionSubTitles=await _context.MovieSubOptionSubTitles.ToListAsync(),
-                MovieSubOptionImages=await query.ToListAsync(),
-
                 SubOptionSubTitles=await _context.SubOptionSubTitles.ToListAsync(),
-                SubOptionImages=await _context.SubOptionImages.ToListAsync(),
-                BasketItems= await _context.BasketItems.ToListAsync(),
+                MovieSubOptionImages=await _context.MovieSubOptionImages.ToListAsync(),
+                MovieSubOptionSubTitles=await _context.MovieSubOptionSubTitles.ToListAsync(),
+
             };
+
             return View(model);
         }
     }

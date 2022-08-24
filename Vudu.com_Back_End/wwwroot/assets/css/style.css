@@ -935,6 +935,7 @@ footer .footerToggle.active i {
 @media screen and (max-width: 992px) {
   #RentAllMovies .cardReleases {
     width: 30%;
+
   }
   #RentAllMovies .cardReleases .description {
     display: none;

@@ -36,6 +36,7 @@ namespace Vudu.com_Back_End.DAL
         public DbSet<MovieSubOptionImage> MovieSubOptionImages { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Trailer> Trailers { get; set; }
     }
 }
 

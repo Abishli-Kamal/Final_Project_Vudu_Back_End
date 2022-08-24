@@ -1,8 +1,10 @@
 ﻿@model HomeVM
 @{
     ViewData["Title"] = "Index";
+    List<BasketItem> basketItems = await servis.GetBasket(User.Identity.Name);
 }
-<    <main>
+
+  <main>
     <section id="basketTable">
         <div class="container">
             <div class="row">
@@ -21,7 +23,7 @@
                     </thead>
                     <tbody>
 
-                        @foreach (BasketItem item in Model.BasketItems)
+                        @foreach (BasketItem item in basketItems)
                         {
                             <tr>
                                 <td>
@@ -47,7 +49,7 @@
 
                 </table>
             </div>
-            @if (Model.BasketItems.Count==0)
+            @if (basketItems.Count==0)
             {
                 <h2 style="color:white;">Wishlist Is Empty</h2>
             }

@@ -64,7 +64,7 @@
                                             @foreach (SubOptionImage subImage in image.Where(s => s.MainOptionId==item.Id))
                                             {
                                                 <div class="col-lg-4 moviesBtm pt-3">
-                                                    <a asp-controller="SubOptionImage" asp-action="Index"  asp-route-imageId="@subImage.Id">
+                                                    <a asp-controller="SubOptionImage" asp-action="Index" asp-route-imageId="@subImage.Id">
                                                         <img width="100%" src="~/assets/img/Mov-Img-Navbar/@subImage.Image" alt=""><button class=" btn btn-dark rounded-0 w-100 mx-3">
                                                             @subImage.Title
                                                         </button>
@@ -111,7 +111,17 @@
                         </div>
                 </div>
                 </li>
-                <li><a asp-controller="Basket" asp-action="Index"><i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="basket").Value"></i></a></li>
+                <li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                        <a asp-controller="Basket" asp-action="Index"><i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="basket").Value"></i></a>
+                            }
+                            else
+                            {
+                        <a asp-controller="Account" asp-action="Login"><i class="@servis.GetDatas().Result.FirstOrDefault(s=>s.Key=="basket").Value"></i></a>
+                            }
+
+                </li>
                 <li>
                     <a>
                         <i style="font-size:25px;cursor:pointer;color: white;" onclick="openNav()"
@@ -413,7 +423,9 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
+
     <script src="~/assets/js/script.js"></script>
+    <script src="//code.tidio.co/mnnjyf2ona6ek0wqhnctjudkwhvfuplj.js" async></script>
 </body>
 
 </html>

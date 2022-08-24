@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,16 +9,20 @@ using Vudu.com_Back_End.Models;
 namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
 {
     [Area("VuduAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class FilterController : Controller
     {
         private readonly AppDbContext _context;
 
         public FilterController(AppDbContext context)
         {
+            
+            
             _context=context;
         }
         public async Task<IActionResult> Index()
         {
+            
             List<Filter> filter = await _context.Filters.ToListAsync();
             return View(filter);
         }

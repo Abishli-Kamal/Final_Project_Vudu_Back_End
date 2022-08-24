@@ -50,6 +50,10 @@ namespace Vudu.com_Back_End.Controllers
                 Email = registerVm.Email,
                 UserName = registerVm.Username
             };
+            if (user==null)
+            {
+                return View();
+            }
             if (registerVm.IHaveReadIAccept == true)
             {
                 IdentityResult result = await _usermanager.CreateAsync(user, registerVm.Password);
@@ -84,11 +88,11 @@ namespace Vudu.com_Back_End.Controllers
 
             mail.Subject = "Get Started ";
             string body = string.Empty;
-            using (StreamReader reader = new StreamReader("wwwroot/assets/template/EmailHtml.html"))
+            using (StreamReader reader = new StreamReader(@"wwwroot/assets/template/EmailHtml.html"))
             {
                 body= reader.ReadToEnd();
             }
-            body=body.Replace("{{link}}", link);
+            mail.Body=body.Replace("{{link}}", link);
 
             mail.IsBodyHtml=true;
 
@@ -99,7 +103,7 @@ namespace Vudu.com_Back_End.Controllers
             smtp.Credentials=new NetworkCredential("tu7ldxfzy@code.edu.az", "oawpaurbtvrijkzs");
             smtp.Send(mail);
 
-            TempData["Getstarted"] = true;
+            TempData["Verify"] = true;
             return RedirectToAction("Index", "Home");
         }
 
@@ -134,20 +138,25 @@ namespace Vudu.com_Back_End.Controllers
 
         public async Task<IActionResult> Login(LoginVM login)
         {
+            if (!ModelState.IsValid) return View();
             AppUser user = await _usermanager.FindByNameAsync(login.Username);
-            if (user == null) return View();
-            IList<string> roles = await _usermanager.GetRolesAsync(user);
-            string role = roles.FirstOrDefault(r => r == Role.Member.ToString());
-            if (role == null)
+            if (user == null)
             {
-                ModelState.AddModelError("", "Please contact with admins");
+                ModelState.AddModelError("Username", "Username or password is incorrect");
                 return View();
             }
-            else
+            IList<string> roles = await _usermanager.GetRolesAsync(user);
+            string role = roles.FirstOrDefault(r => r == Role.Member.ToString());
+            if (user.IsAdmin==false)
             {
-                if (user.IsBlock==false)
+                if (role == null)
                 {
-                    if (login.RememberMe)
+                    ModelState.AddModelError("", "Username or password is incorrect");
+                    return View();
+                }
+                else
+                {
+                    if (user.IsBlock==false)
                     {
                         Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user, login.Password, true, true);
 
@@ -160,19 +169,14 @@ namespace Vudu.com_Back_End.Controllers
                             }
                             else
                             {
-
-                            }
-                            {
                                 ModelState.AddModelError("", "Username or Password is incorrect");
                                 return View();
 
                             }
 
                         }
-                    }
-                    else
-                    {
-                        Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user, login.Password, false, true);
+
+                        Microsoft.AspNetCore.Identity.SignInResult resultOne = await _signInManager.PasswordSignInAsync(user, login.Password, false, true);
 
                         if (!result.Succeeded)
                         {
@@ -181,24 +185,32 @@ namespace Vudu.com_Back_End.Controllers
                                 ModelState.AddModelError("", "You have been dismissed for 5 minutes");
                                 return View();
                             }
-
-                            ModelState.AddModelError("", "Username or Password is incorrect");
-                            return View();
+                            else
+                            {
+                                ModelState.AddModelError("", "Username or Password is incorrect");
+                                return View();
+                            }
 
                         }
                     }
+                    else
+                    {
+                        ModelState.AddModelError("", "Your access has been restricted");
+                        return View();
+                    }
+
+                    return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Your access has been restricted");
-                    return View();
-                }
-               
-                return RedirectToAction("Index", "Home");
             }
-
-
+            else
+            {
+                ModelState.AddModelError("", "Username or Password is incorrect");
+                return View();
+            }
+          
         }
+
+
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -274,7 +286,7 @@ namespace Vudu.com_Back_End.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-       
+
         public IActionResult ForgotPassword()
         {
             return View();

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,8 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Vudu.com_Back_End.DAL;
 using Vudu.com_Back_End.Models;
@@ -50,13 +49,11 @@ namespace Vudu.com_Back_End
                 opt.Lockout.MaxFailedAccessAttempts = 5;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
-
-            services.AddAuthorization(options =>
+            services.ConfigureApplicationCookie(opt =>
             {
-                options.AddPolicy("MovieManager", policy => policy.RequireAssertion(context =>
-                       context.User.IsInRole(Role.Admin.ToString()) || context.User.IsInRole(Role.SuperAdmin.ToString())
-                 ));
+                    opt.LoginPath = new PathString("/VuduAdmin/Account/Login");
             });
+
         }
 
 

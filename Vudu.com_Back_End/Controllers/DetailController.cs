@@ -17,40 +17,7 @@ namespace Vudu.com_Back_End.Controllers
         }
         public async Task<IActionResult> Index(int id)
         {
-            if (id==7)
-            {
-                id-=4;
-            }
-            if (id==8)
-            {
-                id-=3;
-            }
-            if (12>id &&id>8)
-            {
-                id-=2;
-            }
-            if (id==12)
-            {
-                id=6;
-            }
-            if (id>12)
-            {
-                id-=3;
-            }
-            if (id>41)
-            {
-                id-=1;
-            }
-            if (id>51&&id<60)
-            {
-                id-=1;
-            }
-            if (id>60&&id<70)
-            {
-                id-=4;
-            }
-
-            Movie movie = await _context.Movies.Include(j => j.MovieGenres).FirstOrDefaultAsync(m => m.Id==id);
+            Movie movie = await _context.Movies.Include(j => j.MovieGenres).ThenInclude(s=>s.Genre).Include(j => j.Year).Include(j => j.Rating).Include(j => j.Studio).Include(j => j.ActorMovies).ThenInclude(s=>s.Actor).FirstOrDefaultAsync(m => m.Id==id);
 
             if (movie==null) return NotFound();
 
@@ -58,29 +25,13 @@ namespace Vudu.com_Back_End.Controllers
 
             HomeVM model = new HomeVM
             {
-                Settings=await _context.Settings.ToListAsync(),
-                Sliders=await _context.Sliders.ToListAsync(),
-                MainOptions=await _context.MainOptions.ToListAsync(),
-                SubOptions=await _context.SubOptions.ToListAsync(),
-                Filters=await _context.Filters.ToListAsync(),
                 Genres=await _context.Genres.ToListAsync(),
-                Years=await _context.Years.ToListAsync(),
                 Studios=await _context.Studios.ToListAsync(),
                 Ratings=await _context.Ratings.ToListAsync(),
-                Movies=await _context.Movies.ToListAsync(),
-                MovieSubOptions=await _context.MovieSubOptions.ToListAsync(),
                 Tomatometers=await _context.Tomatometers.ToListAsync(),
                 MovieGenres=await _context.MovieGenres.ToListAsync(),
                 Actors=await _context.Actors.ToListAsync(),
                 ActorMovies=await _context.ActorMovies.ToListAsync(),
-                MovieIndexOptions=await _context.MovieIndexOptions.ToListAsync(),
-                IndexOptions=await _context.IndexOptions.ToListAsync(),
-                Advertisings=await _context.Advertisings.ToListAsync(),
-                MovieSubOptionTitles=await _context.MovieSubOptionTitles.ToListAsync(),
-                SubOptionTitles=await _context.SubOptionTitles.ToListAsync(),
-                MovieSubOptionSubTitles=await _context.MovieSubOptionSubTitles.ToListAsync(),
-                SubOptionSubTitles=await _context.SubOptionSubTitles.ToListAsync(),
-                SubOptionImages=await _context.SubOptionImages.ToListAsync(),
                 Movie=movie
             };
             return View(model);
