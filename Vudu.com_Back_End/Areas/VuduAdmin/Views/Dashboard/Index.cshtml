@@ -35,24 +35,22 @@
             margin-top: 20px;
         }
 
- .pie {
-  margin: 5vmin auto;
-  border-radius: 50%;
-  width: 50vmin;
-  height: 50vmin;
-  overflow: hidden;
-  background: linear-gradient(-21deg, #2196f3 20%, transparent 50%), linear-gradient(to right, #2196f3 50%, #ffc107 50%);
-}
+    .pie {
+        margin: 5vmin auto;
+        border-radius: 50%;
+        width: 90vmin;
+        height: 90vmin;
+        overflow: hidden;
+        background: linear-gradient(-21deg, #2196f3 50%, transparent 50%), linear-gradient(to right, #2196f3 50%, #ffc107 50%);
+    }
 
-.html {
-  margin: 20vmin 0 0 50vmin;
-  color:black;
-}
+    .html {
+        margin: 20vmin 0 0 50vmin;
+    }
 
-.css {
-  margin: 20vmin;
-  color:black;
-}
+    .css {
+        margin: 33vmin;
+    }
 </style>
 
 <main>
@@ -83,19 +81,19 @@
         </div>
     </section>
 
-   
-     <div class="container text-center mt-5">
-       <h2 style="color:red; font-size:30px;">Rating</h2> 
+
+    <div class="container text-center mt-5">
+        <h2 style="color:red; font-size:30px;">Rating</h2>
     </div>
-     <div class="container mt-5">
-        <span style="color:orange;font-weight:500">Yellow:</span> 50%-dən az olanlar  
+    <div class="container mt-5">
+        <span style="color:orange;font-weight:500">Yellow:</span> 50%-dən az olanlar
     </div>
-     <div class="container">
-          <span style="color:blue;font-weight:500">Blue:</span> 50%-dən çox olanlar  
+    <div class="container">
+        <span style="color:blue;font-weight:500">Blue:</span> 50%-dən çox olanlar
     </div>
     <div class="pie">
         <div class="html">@((Model.Movies.Where(s=>s.RottenTomatoes<50).Count()*100/Model.Movies.Count).ToString("#.##"))%</div>
-        
+
         <div class="css">@((Model.Movies.Where(s=>s.RottenTomatoes>50).Count()*100/Model.Movies.Count).ToString("#.##"))%</div>
 
     </div>
