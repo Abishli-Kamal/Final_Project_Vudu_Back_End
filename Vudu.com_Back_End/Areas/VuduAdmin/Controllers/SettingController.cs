@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Vudu.com_Back_End.DAL;
 using Vudu.com_Back_End.Models;
 using Vudu.com_Back_End.Utilities;
+using X.PagedList;
 
 namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
 {
@@ -22,12 +23,12 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
             _context = context;
             _env = env;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
 
             
             List<Setting> settings = await _context.Settings.ToListAsync();
-            return View(settings);
+            return View(settings.ToPagedList(page, 6));
         }
  
         public async Task<IActionResult> Edit(int id)

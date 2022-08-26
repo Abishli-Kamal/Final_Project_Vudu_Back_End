@@ -19,133 +19,143 @@
 
     @foreach (Movie movie in Model.Movies)
     {
-                <div class="col-lg-2 cardReleases">
-                    <div class="img">
-                        <a href=""><img class="w-100" src="assets/img/Releases/@movie.Image" alt=""></a>
-                    </div>
-                    <div class="description">
-                        <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Id">
-                            <h6 class="p-2">@movie.Name</h6>
-                            <div style="width: 200px;">
-                                @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.RatingId))
-                                {
-                                    @rt.Name
-                                }
-                                |
-                                @foreach (Year rt in Model.Years.Where(s => s.Id==movie.YearId))
-                                {
-                                    @rt.Name
-                                }
+        <div class="SearchMain">
+            <div class="col-lg-2 cardReleases">
 
-                                @movie.Length
-                            </div>
+                <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Id"><img class=" img-fluid" src="assets/img/Releases/@movie.Image" alt=""></a>
 
-                            <div class="pl-2 check">
-                                <i class="fa-regular fa-circle-check"></i><span>@movie.Age</span>
-                            </div>
 
-                            <div class="icon d-flex">
-                                <div class="star d-flex pt-2">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                </div>
-                                <div class="faiz">
-                                    <span>@movie.RottenTomatoes</span>
-                                </div>
+                <div class="description p-1">
+                    <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Id">
+                        <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Name</h6>
+                        <span>
+                            @foreach (Year rt in Model.Years.Where(s => s.Id==movie.YearId))
+                            {
+                                @rt.Name
+                            } :
+                            @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.RatingId))
+                            {
+                                @rt.Name
+                            }
+                            <span>Time : @movie.Length</span>
+
+                        </span>
+
+                        <div class="pl-2 check">
+                            <i class="fa-regular fa-circle-check"></i><span>@movie.Age</span>
+                        </div>
+
+                        <div class="icon d-flex">
+                            <div class="star d-flex pt-2">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
                             </div>
-                            <div class="mt-3 plus">
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Id"><i class="fa-solid fa-circle-plus"></i></a>
-                                }
-                                else
-                                {
-                                    <a asp-controller="Account" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
-                                }
+                            <div class="faiz">
+                                <span>@movie.RottenTomatoes %</span>
                             </div>
-                            <div class="buttonTr mt-4">
-                                <a href="#" onclick="openTrailer()"><button>Trailer</button></a>
-                            </div>
-                        </a>
-                    </div>
+                        </div>
+                        <div class="plus d-flex">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-controller="basket" asp-action="BasketAdd" asp-route-id="@movie.Id"><i title="Add To Wishlist" class="fa-solid fa-circle-plus"></i></a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" title="Add To Wishlist" asp-action="Login"><i class="fa-solid fa-circle-plus"></i></a>
+                            }
+
+
+                            <a class="trailer" asp-controller="Trailer" title="Trailer" asp-action="Index" asp-route-Id="@movie.Id">T</a>
+                        </div>
+
+                    </a>
                 </div>
+            </div>
+        </div>
+
     }
 </div>
 
 
 <style>
+    .SearchMain {
+        width: 90%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
     .cardReleases {
         margin-top: 12%;
         position: relative;
     }
 
-        .cardReleases .description {
-            position: absolute;
-            background-color: #011629;
-            opacity: 87%;
-            height: 100%;
-            width: 88.5%;
+    .trailer {
+        width: 16px;
+        height: 16px;
+        margin-left: 10px;
+        border: 1px solid gray;
+        border-radius: 50%;
+        font-size: 10px;
+        text-align: center;
+        margin-top: 3.7px;
+    }
+
+    .cardReleases .description {
+        position: absolute;
+        background-color: #011629;
+        opacity: 87%;
+        height: 100%;
+        width: 84.5%;
+        color: white;
+        top: 0;
+        visibility: hidden;
+    }
+
+        .cardReleases .description a {
+            text-decoration: none;
             color: white;
-            top: 0;
-            visibility: hidden;
         }
 
-            .cardReleases .description a {
-                text-decoration: none;
-                color: white;
-            }
+        .cardReleases .description span {
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            padding: 8px;
+        }
 
-            .cardReleases .description span {
+        .cardReleases .description .icon {
+            margin-top: 10%;
+            color: orange;
+            padding-left: 8px;
+        }
+
+            .cardReleases .description .icon i {
                 font-size: 12px;
-                font-weight: bold;
-                color: white;
-                padding: 8px;
             }
 
-            .cardReleases .description .icon {
-                margin-top: 10%;
-                color: orange;
-                padding-left: 8px;
-            }
-
-                .cardReleases .description .icon i {
-                    font-size: 12px;
-                }
-
-            .cardReleases .description .plus {
-                color: #0470b8;
-                padding-left: 8px;
-            }
-
-            .cardReleases .description .check i {
-                color: green;
-            }
-
-            .cardReleases .description .buttonTr {
-                margin-top: 10%;
-                width: 100%;
-            }
-
-                .cardReleases .description .buttonTr button {
-                    background-color: #011629;
-                    width: 100%;
-                    margin-top: 10%;
-                    border-radius: 8px;
-                    color: white;
-                    border: 1px solid #0470b8;
-                    font-weight: 500;
-                }
-
-                    .cardReleases .description .buttonTr button:hover {
-                        color: gray;
-                    }
-
-        .cardReleases:hover .description {
-            opacity: 85%;
-            visibility: visible;
+        .cardReleases .description .plus {
+            color: #0470b8;
+            padding-left: 8px;
         }
+
+        .cardReleases .description .check i {
+            color: green;
+        }
+
+        .cardReleases .description .buttonTr {
+            margin-top: 10%;
+            width: 100%;
+        }
+
+
+
+    .cardReleases:hover .description {
+        opacity: 85%;
+        visibility: visible;
+    }
 </style>
 

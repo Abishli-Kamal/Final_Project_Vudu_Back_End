@@ -18,8 +18,8 @@ namespace Vudu.com_Back_End.Controllers
         public async Task<IActionResult> Index(int id)
         {
             
-            Trailer trailers = await _context.Trailers.Include(s=>s.Movie).FirstOrDefaultAsync(t=>t.MovieId==id);
-            return View(trailers);
+                Trailer trailers = await _context.Trailers.Include(s => s.Movie).FirstOrDefaultAsync(t => t.MovieId==id);
+                return View(trailers);
 
         }
     }

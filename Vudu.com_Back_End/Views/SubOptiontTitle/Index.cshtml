@@ -331,7 +331,8 @@
                                 {
                                     <div class="col-lg-2 cardReleases">
 
-                                        <img class=" img-fluid" src="assets/img/Releases/@movie.Image" alt="">
+                                        <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Id"><img class=" img-fluid" src="assets/img/Releases/@movie.Image" alt=""></a>
+                                       
 
                                         <div class="description p-1">
                                             <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Id">

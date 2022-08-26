@@ -1,4 +1,6 @@
-﻿@model List<Slider>
+﻿@using X.PagedList
+@model PagedList<Slider>
+@using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "Index";
 }
@@ -42,6 +44,13 @@
 
     </tbody>
 </table>
+<div class="text-center"> 
+ @Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}),new X.PagedList.Web.Common.PagedListRenderOptionsBase
+{
+    LiElementClasses=new[] {"page-item"},
+    PageClasses = new[] {"page-link"}
+})
+</div>
 
 
 

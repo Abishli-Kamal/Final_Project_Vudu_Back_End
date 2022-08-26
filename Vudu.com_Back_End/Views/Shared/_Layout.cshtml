@@ -20,6 +20,8 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/assets/bootstrap/bootstrap.min.css">
 
+
+
     <title>Vudu</title>
 </head>
 
@@ -96,7 +98,7 @@
                             <li class="dropbtn mx-3"><a asp-controller="Account" asp-action="Login">Sign In</a></li>
                             }
 
-                        <div class="dropdown-content mt-2">
+                        <div class="dropdown-content mt-1">
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                 <a asp-controller="Account" asp-action="Edit">@(User.Identity.Name)</a>
@@ -171,13 +173,16 @@
                             <div class="categories">
 
                                 <ul>
-                                    <li><a href="movieslist.html">View All Movies</a></li>
-                                    <li><a href="rent.html">New to Rent</a></li>
-                                    <li><a href="orders.html">Pre-Orders</a></li>
-                                    <li><a href="4kUhd.html">4K UHD</a></li>
-                                    <li><a href="rotten.html">Rotten Tomatoes</a></li>
-                                    <li><a href="movAnywhere.html">Movies Anywhere </a></li>
-                                    <li><a href="collection.html">Collections</a></li>
+                                      @foreach (MainOption item in mainoption.Where(s=>s.Id==1))
+                                    {
+                                    <li><a asp-controller="SubOptiontTitle" asp-action="Index" asp-route-titleId="@item.Id"> @item.Name</a></li>
+
+                                  
+                                        @foreach (SubOptionSubTitle subtitles in subtitle.FindAll(s => s.MainOptionId==item.Id))
+                                        {
+                                            <li><a asp-controller="SubOption" asp-action="Index" asp-route-suboptionId="@subtitles.Id">@subtitles.Title</a></li>
+                                        }
+                                    }
                                 </ul>
                             </div>
                         </div>

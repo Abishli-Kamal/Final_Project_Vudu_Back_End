@@ -1,6 +1,6 @@
 ﻿@model HomeVM
 <main>
-  
+
     <section id="detailMovie">
         <div class="row w-100">
             <div class="col-lg-2 ml-5">
@@ -42,8 +42,9 @@
                         <i class="fa-regular fa-circle-check"></i><span>@Model.Movie.Age</span>
                     </div>
                 </div>
-                <div class="buttonTr mt-4">
-                    <button onclick="openTrailer()"> Trailer</button>
+                <div class="buttonTr mt-4 text-center">
+                    <a style="width:50%; border:1px solid blue; text-decoration:none;border-radius:10px; color:white "   asp-controller="Trailer" title="Trailer" asp-action="Index" asp-route-Id="@Model.Movie.Id">Trailer</a>
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         <a style="width:150px; text-align:center; border:1px solid #046aaf;border-radius:8px;" asp-controller="basket" asp-action="BasketAdd" asp-route-id="@Model.Movie.Id"><i class="fa-solid fa-circle-plus "></i></a>

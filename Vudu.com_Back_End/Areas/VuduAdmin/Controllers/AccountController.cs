@@ -67,10 +67,7 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
             {
                 existerUser.IsAdmin = false;
             }
-            else if (user.IsAdmin==false)
-            {
-                existerUser.IsAdmin=true;
-            }
+           
             existerUser.IsAdmin=user.IsAdmin;
             existerUser.IsBlock = user.IsBlock;
             await _context.SaveChangesAsync();
@@ -96,7 +93,7 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
             AppUser admin = await _userManager.Users.FirstOrDefaultAsync(x => x.NormalizedUserName == adminLogin.Username.ToUpper() && x.IsAdmin==true);
             if (admin==null)
             {
-                ModelState.AddModelError("", "Ad və ya Şifrə yanlışdır!!!");
+                ModelState.AddModelError("", "Username or password is incorrect");
                 return View();
             }
             if (admin.IsAdmin==true)
@@ -104,7 +101,7 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
                 var result = await _sigInManager.PasswordSignInAsync(admin, adminLogin.Password, false, false);
                 if (!result.Succeeded)
                 {
-                    ModelState.AddModelError("", "Ad və ya Şifrə yanlışdır!!!");
+                    ModelState.AddModelError("", "Username or password is incorrect");
                     return View();
                 }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vudu.com_Back_End.DAL;
 using Vudu.com_Back_End.Models;
+using X.PagedList;
 
 namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
 {
@@ -20,12 +21,12 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
         {
             _context=context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
 
            
             List<Trailer> trailer = await _context.Trailers.ToListAsync();
-            return View(trailer);
+            return View(trailer.ToPagedList(page,5));
         }
         public async Task< IActionResult> Create()
         {

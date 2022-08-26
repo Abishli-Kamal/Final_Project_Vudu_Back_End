@@ -142,7 +142,7 @@ namespace Vudu.com_Back_End.Controllers
             AppUser user = await _usermanager.FindByNameAsync(login.Username);
             if (user == null)
             {
-                ModelState.AddModelError("Username", "Username or password is incorrect");
+                ModelState.AddModelError("", "Username or password is incorrect");
                 return View();
             }
             IList<string> roles = await _usermanager.GetRolesAsync(user);

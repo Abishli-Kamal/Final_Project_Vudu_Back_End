@@ -29,7 +29,7 @@ namespace Vudu.com_Back_End.View_models
         public List<MovieSubOptionSubTitle> MovieSubOptionSubTitles { get; set; }
         public List<SubOptionImage> SubOptionImages { get; set; }
         public List<MovieSubOptionImage> MovieSubOptionImages { get; set; }
-
+        public List<Trailer> Trailers { get; set; }
         public Movie Movie { get; set; }
         public AppUser AppUser { get; set; }
         public List<BasketItem> BasketItems { get; set; }
