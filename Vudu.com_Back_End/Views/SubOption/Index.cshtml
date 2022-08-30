@@ -6,6 +6,7 @@
 <main>
     <section id="header">
         <div class="row w-100">
+
             <div class="container">
                 <div style="color:white;" class="title  text-center mt-5">
                     @if (ViewBag.Id!=null)
@@ -19,9 +20,6 @@
                     }
                 </div>
                 <div class="title d-flex justify-content-between mt-5">
-                    <div class="reset">
-                        <a href="">Reset</a>
-                    </div>
 
                     <div class="sub d-flex ">
                         <button class="btn border-rounded titleBtn" id="filterBtn">
@@ -36,174 +34,102 @@
                     </div>
                 </div>
             </div>
-            <div class="respMenuFilters">
-                <div class="container">
+            @foreach (Filter filter in Model.Filters)
+            {
+                <div class="respMenuFilters ml-5">
+                    <div class="container">
+                        <div class="filters mt-3  ">
+                            <div class="title ">
+                                <h6 class="">@filter.Name:</h6>
+                            </div>
+                            <div class="genre d-flex ">
+                                <div class="firstGenre mt-2">
+                                    <ul>
+                                        @foreach (Genre item in Model.Genres)
+                                        {
+                                            <li><a asp-action="Index" asp-route-genre="@item.Id"><input type="radio"> @item.Name</a></li>
+                                        }
+
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
                     <div class="filters mt-3 ">
                         <div class="title ">
-                            <h6 class="">Genre:</h6>
+                            <h6 class="">Year:</h6>
                         </div>
                         <div class="genre d-flex ">
                             <div class="firstGenre mt-2">
                                 <ul>
-                                    @foreach (Genre item in Model.Genres)
+                                    @foreach (Year item in Model.Years)
                                     {
-                                        <li><a asp-action="Index" asp-route-genre="@item.Id"><input type="radio"> @item.Name</a></li>
+                                        <li><a asp-action="Index" asp-route-tom="@item.Id"><input type="radio"> @item.Name</a></li>
+
                                     }
 
                                 </ul>
                             </div>
-                            @*<div class="secondGenre ml-5 mt-2">
-                            <ul>
-                            <li><a href=""><input type="radio">International</a></li>
-                            <li><a href=""><input type="radio">Kids & Family</a></li>
-                            <li><a href=""><input type="radio">Music/Musical</a></li>
-                            <li><a href=""><input type="radio">Other</a></li>
-                            <li><a href=""><input type="radio">Reality</a></li>
-                            <li><a href=""><input type="radio">Romance</a></li>
-                            <li><a href=""><input type="radio">Sci-Fi</a></li>
-                            <li><a href=""><input type="radio">Sports</a></li>
-                            <li><a href=""><input type="radio">Superheroes</a></li>
-                            <li><a href=""><input type="radio">Suspense</a></li>
-                            <li><a href=""><input type="radio">Western</a></li>
-                            </ul>*@
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="filters mt-3 ">
+                        <div class="title ">
+                            <h6 class="">Tomatometer:</h6>
+                        </div>
+                        <div class="genre d-flex ">
+                            <div class="firstGenre mt-2">
+                                <ul>
+                                    @foreach (Tomatometer item in Model.Tomatometers)
+                                    {
+                                        <li><a asp-action="Index" asp-route-tom="@item.Id"><input type="radio">@item.Title %</a></li>
+                                    }
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+
+
+                    <div class="filters mt-3 ">
+                        <div class="title ">
+                            <h6 class="">MPAA Rating:</h6>
+                        </div>
+                        <div class="genre d-flex ">
+                            <div class="firstGenre mt-2">
+                                <ul>
+                                    @foreach (Rating item in Model.Ratings)
+                                    {
+                                        <li><a asp-action="Index" asp-route-rating="@item.Id"><input type="radio">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="filters mt-3 ">
+                        <div class="title ">
+                            <h6 class="">Studio:</h6>
+                        </div>
+                        <div class="genre d-flex ">
+                            <div class="firstGenre mt-2">
+                                <ul>
+                                    @foreach (Studio item in Model.Studios)
+                                    {
+                                        <li><a asp-action="Index" asp-route-studio="@item.Id"><input type="radio">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-                <hr>
-                <div class="filters mt-3 ">
-                    <div class="title ">
-                        <h6 class="">Year:</h6>
-                    </div>
-                    <div class="genre d-flex ">
-                        <div class="firstGenre mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio" checked> Any Year</a></li>
-                                <li><a href=""><input type="radio"> 2010's</a></li>
-                                <li><a href=""><input type="radio"> 1990's</a></li>
-                                <li><a href=""><input type="radio">1970's</a></li>
-                                <li><a href=""><input type="radio">1950's Earlier</a></li>
-                            </ul>
-                        </div>
-                        <div class="secondGenre ml-5 mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio">New Releases</a></li>
-                                <li><a href=""><input type="radio">2000's</a></li>
-                                <li><a href=""><input type="radio">1980's</a></li>
-                                <li><a href=""><input type="radio">1960's</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="filters mt-3 ">
-                    <div class="title ">
-                        <h6 class="">Tomatometer:</h6>
-                    </div>
-                    <div class="genre d-flex ">
-                        <div class="firstGenre mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio" checked> Any</a></li>
-                                <li><a href=""><input type="radio">> 60% fresh</a></li>
-                            </ul>
-                        </div>
-                        <div class="secondGenre ml-5 mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio">>80% fresh</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="filters mt-3 ">
-                    <div class="title ">
-                        <h6 class="">Features:</h6>
-                    </div>
-                    <div class="genre d-flex ">
-                        <div class="firstGenre mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio" checked> Any Feature</a></li>
-                                <li><a href=""><input type="radio"> Bonus Features</a></li>
-                                <li><a href=""><input type="radio"> 3D</a></li>
-                            </ul>
-                        </div>
-                        <div class="secondGenre ml-5 mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio">4K UHD</a></li>
-                                <li><a href=""><input type="radio">Auido Description</a></li>
-                                <li><a href=""><input type="radio">Available for rent</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="filters mt-3 ">
-                    <div class="title ">
-                        <h6 class="">Community:</h6>
-                    </div>
-                    <div class="genre d-flex ">
-                        <div class="firstGenre mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio" checked> Any Rating</a></li>
-                                <li><a href=""><input type="radio">3 stars and above</a></li>
-                            </ul>
-                        </div>
-                        <div class="secondGenre ml-5 mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio">4 stars and above</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="filters mt-3 ">
-                    <div class="title ">
-                        <h6 class="">MPAA Rating:</h6>
-                    </div>
-                    <div class="genre d-flex ">
-                        <div class="firstGenre mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio" checked> Any Rating</a></li>
-                                <li><a href=""><input type="radio">PG-13 and below</a></li>
-                                <li><a href=""><input type="radio"> FAM and below</a></li>
-                            </ul>
-                        </div>
-                        <div class="secondGenre ml-5 mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio">R and below</a></li>
-                                <li><a href=""><input type="radio">PG and below</a></li>
-                                <li><a href=""><input type="radio">G</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="filters mt-3 ">
-                    <div class="title ">
-                        <h6 class="">Studio:</h6>
-                    </div>
-                    <div class="genre d-flex ">
-                        <div class="firstGenre mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio" checked> Any Studio</a></li>
-                                <li><a href=""><input type="radio"> AMC Film</a></li>
-                                <li><a href=""><input type="radio"> Paramount Pictures</a></li>
-                                <li><a href=""><input type="radio">Sony Pictures</a></li>
-                                <li><a href=""><input type="radio">VUDU</a></li>
-                                <li><a href=""><input type="radio">Warner Bros</a></li>
-                            </ul>
-                        </div>
-                        <div class="secondGenre ml-5 mt-2">
-                            <ul>
-                                <li><a href=""><input type="radio">ABC Studios</a></li>
-                                <li><a href=""><input type="radio">FOX</a></li>
-                                <li><a href=""><input type="radio">MGM</a></li>
-                                <li><a href=""><input type="radio">Peacock</a></li>
-                                <li><a href=""><input type="radio">Universal Studios</a></li>
-                                <li><a href=""><input type="radio">Walt Disney Studios</a></li>
-                                <li><a href=""><input type="radio">Other Studios</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            }
+
         </div>
         @foreach (Filter filter in Model.Filters)
         {
@@ -217,7 +143,7 @@
 
                             @foreach (Genre item in Model.Genres)
                             {
-                                <div class="firstGenre  col-lg-6">
+                                <div class="firstGenre col-lg-6">
 
                                     <ul>
                                         <li><a asp-action="Index" asp-route-genre="@item.Id">@item.Name</a></li>
@@ -228,7 +154,7 @@
 
                         </div>
                     </div>
-                    <div class="filters mt-3 col-lg-2">
+                    <div class="filters mt-3 col-lg-2 ml-4">
                         <div class="title ">
                             <h6 class="">@Model.Filters.FirstOrDefault(s=>s.Id==2).Name:</h6>
                         </div>
@@ -308,10 +234,6 @@
                 </div>
             </div>
         }
-
-
-
-
     </section>
     <section id="UhdMain">
         <div class="mt-4 container ">
@@ -331,11 +253,11 @@
 
                                         <div class="description p-1">
                                             <a asp-controller="Detail" asp-action="Index" asp-route-id="@movie.Id">
-                                                <h6 class="p-2" style="font-size:12px; text-align-cet">@movie.Name</h6>
+                                                <h6 class="p-2" style="font-size:12px; text-align:center">@movie.Name</h6>
                                                 <span>
-                                                    @foreach (Year rt in Model.Years.Where(s => s.Id==movie.YearId))
+                                                    @foreach (Year yr in Model.Years.Where(s => s.Id==movie.YearId))
                                                     {
-                                                        @rt.Name
+                                                        @yr.Name
                                                     } :
                                                     @foreach (Rating rt in Model.Ratings.Where(s => s.Id==movie.RatingId))
                                                     {

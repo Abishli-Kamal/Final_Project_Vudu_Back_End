@@ -9,10 +9,14 @@ namespace Vudu.com_Back_End.Models
     {
         public int Id { get; set; }
         public string Image { get; set; }
+      
         public int RottenTomatoes { get; set; }
         public string BackImage { get; set; }
+        [Required]
         public string Name { get; set; }
+    
         public string Length { get; set; }
+      
         public string Age { get; set; }
         public string InfoMovie { get; set; }
         public string Language { get; set; }

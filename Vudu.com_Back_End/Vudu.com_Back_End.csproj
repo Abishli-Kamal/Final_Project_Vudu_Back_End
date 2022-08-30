@@ -23,6 +23,14 @@
     <Compile Remove="Migrations\20220817205340_AddColumnMoviess.Designer.cs" />
     <Compile Remove="Migrations\20220817205530_AddColumnMoviess.cs" />
     <Compile Remove="Migrations\20220817205530_AddColumnMoviess.Designer.cs" />
+    <Compile Remove="Migrations\20220829220236_AddRequiredColumn.cs" />
+    <Compile Remove="Migrations\20220829220236_AddRequiredColumn.Designer.cs" />
+    <Compile Remove="Migrations\20220829220521_AddRequiredColumn.cs" />
+    <Compile Remove="Migrations\20220829220521_AddRequiredColumn.Designer.cs" />
+    <Compile Remove="Migrations\20220829220618_AddRequiredColumn.cs" />
+    <Compile Remove="Migrations\20220829220618_AddRequiredColumn.Designer.cs" />
+    <Compile Remove="Migrations\20220829220706_AddRequiredColumn.cs" />
+    <Compile Remove="Migrations\20220829220706_AddRequiredColumn.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
