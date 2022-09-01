@@ -52,7 +52,7 @@ namespace Vudu.com_Back_End
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
             services.ConfigureApplicationCookie(opt =>
             {
-                    opt.LoginPath = new PathString("/VuduAdmin/Account/Login");
+                opt.LoginPath = new PathString("/VuduAdmin/Account/Login");
             });
         }   
 

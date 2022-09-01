@@ -780,7 +780,7 @@ namespace Vudu.com_Back_End.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MovieId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -1072,7 +1072,9 @@ namespace Vudu.com_Back_End.Migrations
                 {
                     b.HasOne("Vudu.com_Back_End.Models.Movie", "Movie")
                         .WithMany("Trailers")
-                        .HasForeignKey("MovieId");
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Vudu.com_Back_End.Models.Year", b =>

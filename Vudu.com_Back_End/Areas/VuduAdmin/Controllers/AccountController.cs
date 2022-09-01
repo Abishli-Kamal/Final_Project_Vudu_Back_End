@@ -12,7 +12,7 @@ using Vudu.com_Back_End.Models;
 namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
 {
     [Area ("VuduAdmin")]
-    [Authorize(Roles = "Admin,SuperAdmin")]
+    //[Authorize(Roles = "Admin,SuperAdmin")]
 
     public class AccountController : Controller
     {
@@ -117,20 +117,20 @@ namespace Vudu.com_Back_End.Areas.VuduAdmin.Controllers
             return RedirectToAction("login","account");
         }
 
-        //public async Task<IActionResult> CreateSuperAdmin()
-        //{
-        //    AppUser superadmin = new AppUser
-        //    {
-        //        UserName = "Kamal",
-        //        IsAdmin = true,
-        //        Email = "malik.seferov8008@gmail.com",
-        //        PhoneNumber = "0507312011"
-        //    };
+        public async Task<IActionResult> CreateSuperAdmin()
+        {
+            AppUser superadmin = new AppUser
+            {
+                UserName = "Kamal",
+                IsAdmin = true,
+                Email = "malik.seferov8008@gmail.com",
+                PhoneNumber = "0507312011"
+            };
 
-        //    var result = await _userManager.CreateAsync(superadmin, "Admin123!");
-        //    await _userManager.AddToRoleAsync(superadmin, "SuperAdmin");
-        //    return Ok(result);
-        //}
+            var result = await _userManager.CreateAsync(superadmin, "Admin123!");
+            await _userManager.AddToRoleAsync(superadmin, "SuperAdmin");
+            return Ok(result);
+        }
 
         public async Task CreateRole()
         {

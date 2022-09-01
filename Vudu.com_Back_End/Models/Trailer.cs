@@ -8,6 +8,6 @@ namespace Vudu.com_Back_End.Models
     
         public string Title { get; set; }
         public Movie Movie { get; set; }
-        public int? MovieId { get; set; }
+        public int MovieId { get; set; }
     }
 }

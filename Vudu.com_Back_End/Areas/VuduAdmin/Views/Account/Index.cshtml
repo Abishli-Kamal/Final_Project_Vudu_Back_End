@@ -17,6 +17,7 @@
   <tbody>
    @foreach (AppUser user in Model.Where(s=>s.IsAdmin==false))
   {
+      
       <tr>
           <td>@user.Firstname</td>
           <td>@user.Lastname</td>
